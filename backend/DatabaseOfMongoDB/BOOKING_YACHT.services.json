@@ -1,0 +1,63 @@
+[{
+  "_id": {
+    "$oid": "682aac9a81f0fd7069e74049"
+  },
+  "serviceName": "Spa & Massage",
+  "price": 500000
+},
+{
+  "_id": {
+    "$oid": "682aac9a81f0fd7069e7404a"
+  },
+  "serviceName": "Bữa tối lãng mạn tại boong tàu",
+  "price": 1000000
+},
+{
+  "_id": {
+    "$oid": "682aac9a81f0fd7069e7404b"
+  },
+  "serviceName": "Tour tham quan vịnh bằng kayak",
+  "price": 300000
+},
+{
+  "_id": {
+    "$oid": "682aac9a81f0fd7069e7404c"
+  },
+  "serviceName": "Bể bơi nước ngọt trong nhà",
+  "price": 100000
+},
+{
+  "_id": {
+    "$oid": "682aac9a81f0fd7069e7404d"
+  },
+  "serviceName": "Bar & Đồ uống",
+  "price": 500000
+},
+{
+  "_id": {
+    "$oid": "682aac9a81f0fd7069e7404e"
+  },
+  "serviceName": "Phòng gym & yoga sáng",
+  "price": 100000
+},
+{
+  "_id": {
+    "$oid": "682aac9a81f0fd7069e7404f"
+  },
+  "serviceName": "Chụp ảnh chuyên nghiệp",
+  "price": 500000
+},
+{
+  "_id": {
+    "$oid": "682aac9a81f0fd7069e74050"
+  },
+  "serviceName": "Buffet sáng/trưa/tối",
+  "price": 0
+},
+{
+  "_id": {
+    "$oid": "682aac9a81f0fd7069e74051"
+  },
+  "serviceName": "Party BBQ trên boong tàu",
+  "price": 300000
+}]

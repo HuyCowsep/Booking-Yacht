@@ -1,0 +1,374 @@
+[{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d765"
+  },
+  "name": "Phòng Standard 101",
+  "description": "Phòng tiêu chuẩn với giường đơn, phù hợp cho 1-2 người",
+  "area": 20,
+  "avatar": "/images/room-2.jpg",
+  "max_people": 2,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85141"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d766"
+  },
+  "name": "Phòng Deluxe 201",
+  "description": "Phòng cao cấp với giường đôi và ban công",
+  "area": 30,
+  "avatar": "/images/room-1.jpg",
+  "max_people": 3,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85142"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d767"
+  },
+  "name": "Phòng Suite 301",
+  "description": "Phòng suite với bồn tắm và ban công lớn",
+  "area": 40,
+  "avatar": "/images/room-5.jpg",
+  "max_people": 4,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85147"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d768"
+  },
+  "name": "Phòng Standard 102",
+  "description": "Phòng tiêu chuẩn với giường đơn",
+  "area": 22,
+  "avatar": "/images/room-4.jpg",
+  "max_people": 2,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85143"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d769"
+  },
+  "name": "Phòng Suite 302",
+  "description": "Phòng suite cao cấp với bồn tắm và ban công lớn",
+  "area": 40,
+  "avatar": "/images/room-3.jpg",
+  "max_people": 4,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85144"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d76a"
+  },
+  "name": "Phòng Deluxe 202",
+  "description": "Phòng cao cấp với giường đôi và ban công",
+  "area": 30,
+  "avatar": "/images/room-2.jpg",
+  "max_people": 3,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85148"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d76b"
+  },
+  "name": "Phòng Standard 103",
+  "description": "Phòng tiêu chuẩn với giường đơn",
+  "area": 18,
+  "avatar": "/images/room-1.jpg",
+  "max_people": 2,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85145"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d76c"
+  },
+  "name": "Phòng Deluxe 203",
+  "description": "Phòng cao cấp với giường đôi và ban công",
+  "area": 28,
+  "avatar": "/images/room-5.jpg",
+  "max_people": 3,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85146"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d76d"
+  },
+  "name": "Phòng Standard 104",
+  "description": "Phòng tiêu chuẩn với giường đơn",
+  "area": 20,
+  "avatar": "/images/room-4.jpg",
+  "max_people": 2,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85149"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d730"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d76e"
+  },
+  "name": "Phòng Deluxe 204",
+  "description": "Phòng cao cấp với giường đôi và ban công",
+  "area": 30,
+  "avatar": "/images/room-3.jpg",
+  "max_people": 3,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f8514a"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d730"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d76f"
+  },
+  "name": "Phòng Suite 304",
+  "description": "Phòng suite với bồn tắm và ban công lớn",
+  "area": 40,
+  "avatar": "/images/room-2.jpg",
+  "max_people": 4,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f8514b"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d730"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d770"
+  },
+  "name": "Phòng Standard 105",
+  "description": "Phòng tiêu chuẩn với giường đơn",
+  "area": 20,
+  "avatar": "/images/room-1.jpg",
+  "max_people": 2,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f8514c"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d731"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d771"
+  },
+  "name": "Phòng Deluxe 205",
+  "description": "Phòng cao cấp với giường đôi và ban công",
+  "area": 30,
+  "avatar": "/images/room-5.jpg",
+  "max_people": 3,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f8514d"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d731"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d772"
+  },
+  "name": "Phòng VIP 405",
+  "description": "Phòng VIP với bồn tắm, ban công lớn và quầy bar mini",
+  "area": 50,
+  "avatar": "/images/room-4.jpg",
+  "max_people": 5,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f8514e"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d731"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d773"
+  },
+  "name": "Phòng Standard 106",
+  "description": "Phòng tiêu chuẩn với giường đơn",
+  "area": 20,
+  "avatar": "/images/room-3.jpg",
+  "max_people": 2,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f8514f"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d732"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d774"
+  },
+  "name": "Phòng Deluxe 206",
+  "description": "Phòng cao cấp với giường đôi và ban công",
+  "area": 30,
+  "avatar": "/images/room-2.jpg",
+  "max_people": 3,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85150"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d732"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d775"
+  },
+  "name": "Phòng Standard 107",
+  "description": "Phòng tiêu chuẩn với giường đơn",
+  "area": 18,
+  "avatar": "/images/room-1.jpg",
+  "max_people": 2,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85151"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d733"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d776"
+  },
+  "name": "Phòng Deluxe 207",
+  "description": "Phòng cao cấp với giường đôi và ban công",
+  "area": 28,
+  "avatar": "/images/room-5.jpg",
+  "max_people": 3,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85152"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d733"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d777"
+  },
+  "name": "Phòng Suite 307",
+  "description": "Phòng suite với bồn tắm và ban công lớn",
+  "area": 38,
+  "avatar": "/images/room-4.jpg",
+  "max_people": 4,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85153"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d733"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d778"
+  },
+  "name": "Phòng Standard 108",
+  "description": "Phòng tiêu chuẩn với giường đơn",
+  "area": 20,
+  "avatar": "/images/room-3.jpg",
+  "max_people": 2,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85154"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d734"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d779"
+  },
+  "name": "Phòng Deluxe 208",
+  "description": "Phòng cao cấp với giường đôi và ban công",
+  "area": 30,
+  "avatar": "/images/room-2.jpg",
+  "max_people": 3,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85155"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d734"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b615a4fffc4ea6a39d77a"
+  },
+  "name": "Phòng VIP 408",
+  "description": "Phòng VIP với bồn tắm, ban công lớn và quầy bar mini",
+  "area": 50,
+  "avatar": "/images/room-1.jpg",
+  "max_people": 5,
+  "roomTypeId": {
+    "$oid": "682b1a1f92e3cd8070f85156"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d734"
+  },
+  "__v": 0
+}]

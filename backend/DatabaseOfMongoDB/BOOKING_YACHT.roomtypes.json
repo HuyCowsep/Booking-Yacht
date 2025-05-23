@@ -1,0 +1,286 @@
+[{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85141"
+  },
+  "name": "Phòng Standard",
+  "type": "Standard",
+  "utility": "Giường đơn, điều hòa, nhà vệ sinh riêng",
+  "price": 2500000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85142"
+  },
+  "name": "Phòng Deluxe",
+  "type": "Deluxe",
+  "utility": "Giường đôi, điều hòa, ban công, nhà vệ sinh riêng",
+  "price": 4000000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85147"
+  },
+  "name": "Phòng Suite",
+  "type": "Suite",
+  "utility": "Giường đôi, điều hòa, ban công lớn, bồn tắm",
+  "price": 6000000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85143"
+  },
+  "name": "Phòng Standard",
+  "type": "Standard",
+  "utility": "Giường đơn, điều hòa, nhà vệ sinh riêng",
+  "price": 3000000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85144"
+  },
+  "name": "Phòng Suite",
+  "type": "Suite",
+  "utility": "Giường đôi, điều hòa, ban công lớn, bồn tắm",
+  "price": 5500000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85148"
+  },
+  "name": "Phòng Deluxe",
+  "type": "Deluxe",
+  "utility": "Giường đôi, điều hòa, ban công",
+  "price": 4500000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85145"
+  },
+  "name": "Phòng Standard",
+  "type": "Standard",
+  "utility": "Giường đơn, điều hòa",
+  "price": 2000000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85146"
+  },
+  "name": "Phòng Deluxe",
+  "type": "Deluxe",
+  "utility": "Giường đôi, điều hòa, ban công",
+  "price": 3500000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85149"
+  },
+  "name": "Phòng Standard",
+  "type": "Standard",
+  "utility": "Giường đơn, điều hòa, nhà vệ sinh riêng",
+  "price": 2800000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d730"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f8514a"
+  },
+  "name": "Phòng Deluxe",
+  "type": "Deluxe",
+  "utility": "Giường đôi, điều hòa, ban công",
+  "price": 4200000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d730"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f8514b"
+  },
+  "name": "Phòng Suite",
+  "type": "Suite",
+  "utility": "Giường đôi, điều hòa, ban công lớn, bồn tắm",
+  "price": 6500000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d730"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f8514c"
+  },
+  "name": "Phòng Standard",
+  "type": "Standard",
+  "utility": "Giường đơn, điều hòa",
+  "price": 2700000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d731"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f8514d"
+  },
+  "name": "Phòng Deluxe",
+  "type": "Deluxe",
+  "utility": "Giường đôi, điều hòa, ban công",
+  "price": 4300000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d731"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f8514e"
+  },
+  "name": "Phòng VIP",
+  "type": "VIP",
+  "utility": "Giường đôi, điều hòa, ban công lớn, bồn tắm, quầy bar mini",
+  "price": 7000000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d731"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f8514f"
+  },
+  "name": "Phòng Standard",
+  "type": "Standard",
+  "utility": "Giường đơn, điều hòa, nhà vệ sinh riêng",
+  "price": 2600000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d732"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85150"
+  },
+  "name": "Phòng Deluxe",
+  "type": "Deluxe",
+  "utility": "Giường đôi, điều hòa, ban công",
+  "price": 4100000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d732"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85151"
+  },
+  "name": "Phòng Standard",
+  "type": "Standard",
+  "utility": "Giường đơn, điều hòa",
+  "price": 2200000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d733"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85152"
+  },
+  "name": "Phòng Deluxe",
+  "type": "Deluxe",
+  "utility": "Giường đôi, điều hòa, ban công",
+  "price": 3800000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d733"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85153"
+  },
+  "name": "Phòng Suite",
+  "type": "Suite",
+  "utility": "Giường đôi, điều hòa, ban công lớn",
+  "price": 5800000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d733"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85154"
+  },
+  "name": "Phòng Standard",
+  "type": "Standard",
+  "utility": "Giường đơn, điều hòa, nhà vệ sinh riêng",
+  "price": 2900000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d734"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85155"
+  },
+  "name": "Phòng Deluxe",
+  "type": "Deluxe",
+  "utility": "Giường đôi, điều hòa, ban công",
+  "price": 4600000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d734"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b1a1f92e3cd8070f85156"
+  },
+  "name": "Phòng VIP",
+  "type": "VIP",
+  "utility": "Giường đôi, điều hòa, ban công lớn, bồn tắm, quầy bar mini",
+  "price": 7500000,
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d734"
+  },
+  "__v": 0
+}]

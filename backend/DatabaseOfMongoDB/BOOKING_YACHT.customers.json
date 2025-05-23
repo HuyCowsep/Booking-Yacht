@@ -1,0 +1,75 @@
+[{
+  "_id": {
+    "$oid": "6829db047869b68f629e55f3"
+  },
+  "fullName": "Nguyễn Đức Huy",
+  "phoneNumber": "0912202885",
+  "address": "123 Đường Lê Lợi, Quận 1, TP.HCM",
+  "email": "nguyenduchuy@gmail.com",
+  "accountId": {
+    "$oid": "68278caa91575c93cecc4c9c"
+  },
+  "createdAt": {
+    "$date": "2024-05-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-05-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6829db697869b68f629e55f7"
+  },
+  "fullName": "Nguyễn Văn A",
+  "phoneNumber": "0988765432",
+  "address": "456 Đường Nguyễn Huệ, Quận 3, TP.HCM",
+  "email": "nguyenvana@gmail.com",
+  "accountId": {
+    "$oid": "68278cb491575c93cecc4c9e"
+  },
+  "createdAt": {
+    "$date": "2024-05-02T10:30:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-05-02T10:30:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "682c26e0c2a6cecd3daaf1eb"
+  },
+  "fullName": "Trần Dương Đây",
+  "phoneNumber": "1230981231",
+  "address": "123 Đường ABC, Quận 1, TP.HCM",
+  "email": "duong@gmail.com",
+  "accountId": {
+    "$oid": "682c26e0c2a6cecd3daaf1e9"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682c2705c2a6cecd3daaf1f0"
+  },
+  "fullName": "Thực Đây",
+  "phoneNumber": "1231231231",
+  "address": "101 Đường Giải Phóng, Quận Hoàng Mai, Hà Nội",
+  "email": "thuctd29@gmail.com",
+  "accountId": {
+    "$oid": "682c2705c2a6cecd3daaf1ee"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682c2731c2a6cecd3daaf1f5"
+  },
+  "fullName": "Tuấn 2003",
+  "phoneNumber": "0980989081",
+  "address": "123 Đường ABC, Quận 10, TP.HCM",
+  "email": "phamtuan2003@gmaiil.com",
+  "accountId": {
+    "$oid": "682c2731c2a6cecd3daaf1f3"
+  },
+  "__v": 0
+}]

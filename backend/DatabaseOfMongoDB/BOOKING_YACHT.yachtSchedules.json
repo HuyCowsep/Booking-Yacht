@@ -1,0 +1,168 @@
+[{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d799"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d787"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d79a"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d78c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d79b"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d788"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d79c"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d78d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d79d"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72f"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d789"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d79e"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72f"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d78e"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d79f"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d730"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d78a"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d7a0"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d730"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d78f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d7a1"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d731"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d78b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d7a2"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d731"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d790"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d7a3"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d732"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d78c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d7a4"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d733"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d791"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d7a5"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d734"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d792"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b74404fffc4ea6a39d7a6"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d734"
+  },
+  "scheduleId": {
+    "$oid": "682b725a4fffc4ea6a39d78d"
+  },
+  "__v": 0
+}]

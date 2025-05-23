@@ -1,0 +1,30 @@
+/* Auth.css */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Loại bỏ background-image cố định, để MUI xử lý */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Giữ style cho auth-form-wrapper nếu cần */
+.auth-form-wrapper {
+  padding: 30px;
+}
+
+.auth-form .social-buttons .social-btn .icon {
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+/* Media query cho responsive */
+@media (min-width: 768px) {
+  .auth-form-wrapper {
+    padding: 40px;
+  }
+}

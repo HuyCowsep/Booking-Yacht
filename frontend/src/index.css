@@ -1,0 +1,779 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+html {
+    font-family: "Archivo", serif;
+}
+
+button {
+    border-radius: 100px;
+    box-shadow: 0px 1px 2px 0px #1018280d;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+h4,
+h5 {
+    font-weight: 700;
+    color: #101828;
+}
+
+h4 {
+    font-size: 36px;
+    line-height: 44px;
+}
+
+.input_group {
+    position: relative;
+    padding: 16px 20px;
+    border: 1px solid #eaecf0;
+    border-radius: 28px;
+    display: flex;
+    width: 100%;
+    gap: 8px;
+}
+
+.input_group:focus-within {
+    border: 1px solid #77DADA;
+    box-shadow: 0 0 0 4px #caf8f8;
+}
+
+.after-line::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #77DADA;
+    right: 0;
+    bottom: -24px;
+}
+
+.secsion-bg {
+    background-image: url(../public/images/background2.jpg);
+    background-repeat: no-repeat;
+}
+
+.image-partner {
+    object-fit: contain;
+}
+
+.footer {
+    background-color: #101828;
+}
+
+.footer-hover:hover {
+    color: #0e4f4f;
+}
+
+/* RESULT SEARCH */
+/* SECTION BG */
+.section-bg {
+    background-image: url(https://mixivivu.com/section-background.png);
+    background-repeat: repeat;
+}
+
+.cart-section {
+    border-radius: 32px;
+    border: 1px solid #eaecf0;
+    background: #fff;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, .06), 0px 1px 3px 0px rgba(16, 24, 40, .1);
+    ;
+}
+
+.Checkbox_container__ccFUl > input:checked ~ .Checkbox_checkmark__81gnF {
+    border: 1px solid #0e4f4f;
+    background: #77dada;
+}
+
+.Checkbox_container__ccFUl > input[type=checkbox] ~ .Checkbox_checkmark__81gnF {
+    border-radius: 4px;
+}
+
+.Checkbox_checkmark__81gnF.Checkbox_sm__nLRCs {
+    width: 16px;
+    height: 16px;
+}
+
+.Checkbox_checkmark__81gnF {
+    border: 1px solid #d0d5dd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.Checkbox_checkmark__81gnF.Checkbox_sm__nLRCs > svg {
+    width: 12px;
+    height: 12px;
+    stroke-width: 1.6;
+}
+
+.Checkbox_checkmark__81gnF > svg {
+    content: "";
+    display: none;
+}
+
+.Checkbox_textGroup__Z0QZ_ {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 0;
+}
+
+label.xl {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 500;
+}
+
+.label.sm {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+label.sm {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+label {
+    cursor: inherit;
+}
+
+.Checkbox_title__rGvCj {
+    color: #344054;
+    font-weight: 500;
+}
+
+p.sm {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+p.md,
+p.sm {
+    font-weight: 400;
+}
+
+p {
+    margin: 0;
+}
+
+p {
+    word-wrap: break-word;
+}
+
+.Checkbox_container__ccFUl input:checked ~ .Checkbox_checkmark__81gnF > svg {
+    display: block;
+    stroke: solid #0e4f4f;
+}
+
+.Button_button-color__7QnYK {
+    background-color: #77dada;
+    border: 1px solid #77dada;
+    color: #0e4f4f;
+    fill: #0e4f4f;
+}
+
+.Button_button-normal__y4h10 {
+    padding: 16px 20px;
+    white-space: nowrap;
+}
+
+.Button_button__QHarr {
+    height: -moz-fit-content;
+    height: fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* RESULT SEARCH */
+.Steps_step-item__XtHlS {
+    position: relative;
+    width: 320px;
+}
+
+.subheading.sm {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+}
+
+.subheading {
+    color: #344054;
+}
+
+p.md,
+p.sm {
+    font-weight: 400;
+}
+
+p.md {
+    font-size: 16px;
+    line-height: 24px;
+    color: #475467;
+}
+
+/* AFTER RESULT SEARCH */
+
+.Steps_step-icon__PzJTo:after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.Steps_step-icon-inprogress__Ep1hC:after {
+    background-color: #0e4f4f;
+}
+
+.Steps_step-icon__PzJTo {
+    z-index: 2;
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f2f4f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Steps_step-icon-inprogress__Ep1hC {
+    background: #77dada;
+    box-shadow: 0 0 0 4px #caf8f8;
+}
+
+.Steps_step-item__XtHlS::after {
+    position: absolute;
+    z-index: 1;
+    content: "";
+    border-bottom: 2px solid #eaecf0;
+    width: 100%;
+    top: 16px;
+    left: 50%;
+}
+
+.Steps_step-item__XtHlS-Active::after {
+    position: absolute;
+    z-index: 1;
+    content: "";
+    border-bottom: 2px solid #77dada;
+    width: 100%;
+    top: 16px;
+    left: 50%;
+}
+
+.Steps_step-item__XtHlS-Active {
+    position: relative;
+    width: 320px;
+}
+
+/* ----------------------------- */
+.FlightSidebar_side-bar__lbiAI {
+    width: 280px;
+    height: -moz-fit-content;
+    height: fit-content;
+    border-radius: 24px;
+    border: 1px solid #eaecf0;
+    background: #fff;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, .06), 0px 1px 3px 0px rgba(16, 24, 40, .1);
+}
+
+.FlightSidebar_side-bar__header__GQbTV {
+    display: flex;
+    padding: 20px 24px;
+    gap: 16px;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-200, #eaecf0);
+}
+
+.FlightSidebar_side-bar__lbiAI .FlightSidebar_filter-item__jtakl {
+    display: flex;
+    padding: 20px 24px;
+    gap: 16px;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid #eaecf0;
+}
+
+.FlightSidebar_side-bar__lbiAI .FlightSidebar_filter-item__jtakl:last-child {
+    border-bottom: none;
+}
+
+/* Card result */
+.Card_card__rC1zg {
+    border-radius: 32px;
+    border: 1px solid #eaecf0;
+    background: #fff;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, .06), 0px 1px 3px 0px rgba(16, 24, 40, .1);
+}
+
+.Collapse_open-header__wyuXQ {
+    border-bottom: 1px solid #eaecf0;
+}
+
+.Collapse_collapse__g6PnD {
+    transition: height .25s cubic-bezier(.4, 0, .2, 1);
+}
+
+.FlightCalendar_flight-calendar-item__1IeW2 {
+    min-width: 96px;
+    display: flex;
+    padding: 8px 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    flex: 1 0;
+    border-radius: 12px;
+    border: 1px solid #eaecf0;
+}
+
+.subheading.md {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 700;
+}
+
+.FlightCalendar_date__THTRM {
+    color: #0e4f4f;
+}
+
+.FlightItemCard_header__fyioF .FlightItemCard_destination___qpoR {
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.FlightItemCard_header__fyioF p {
+    color: #667085;
+}
+
+.FlightItemCard_header__fyioF .FlightItemCard_price__yFFyH {
+    width: 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.FlightItemCard_header__fyioF .FlightItemCard_price__yFFyH label {
+    color: var(--success-base, #12b76a);
+}
+
+.Button_button-outline__YRytX {
+    background: linear-gradient(0deg, #fff, #fff), linear-gradient(0deg, #eaecf0, #eaecf0);
+    border: 1px solid #eaecf0;
+    color: #1d2939;
+    fill: #1d2939;
+}
+
+.Button_button-sm__ljQtM {
+    padding: 10px 16px;
+    white-space: nowrap;
+}
+
+.Button_button__QHarr {
+    height: -moz-fit-content;
+    height: fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Collapse_collapsed-content__UzsXV {
+    overflow: hidden;
+}
+
+.FlightItemCard_content__eJaAQ {
+    display: flex;
+    padding: 24px 24px 24px 88px;
+    gap: 24px;
+}
+
+.FlightItemCard_content__eJaAQ .FlightItemCard_vertical-steps__Wzkcv {
+    display: flex;
+    padding: 4px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3px;
+}
+
+.FlightItemCard_vertical-steps__Wzkcv .FlightItemCard_vertical-big-dot__68E_0 {
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--gray-200, #eaecf0);
+    border-radius: 50%;
+}
+
+.FlightItemCard_vertical-steps__Wzkcv .FlightItemCard_vertical-small-dot__pPBY5 {
+    width: 4px;
+    height: 4px;
+    background-color: var(--gray-200, #eaecf0);
+}
+
+.FlightItemCard_content__eJaAQ .FlightItemCard_dot__Fb_rm {
+    width: 2px;
+    height: 2px;
+    background-color: var(--gray-400, #98a2b3);
+    border-radius: 50%;
+}
+
+.FlightItemCard_content__eJaAQ p {
+    color: var(--gray-500, #667085);
+}
+
+.FlightItemCard_content__eJaAQ .FlightItemCard_dot__Fb_rm {
+    width: 2px;
+    height: 2px;
+    background-color: var(--gray-400, #98a2b3);
+    border-radius: 50%;
+}
+
+.Collapse_open-header__wyuXQ {
+    border-bottom: 1px solid var(--gray-200, #eaecf0);
+}
+
+.Pagination_pagination__dV9rN {
+    padding: 12px 24px 16px;
+    border-top: 1px solid var(--gray-200, #eaecf0);
+}
+
+.Pagination_pagination__dV9rN label,
+.Pagination_pagination__dV9rN p {
+    color: var(--gray-700, #344054);
+}
+
+.Pagination_pagination__dV9rN .Pagination_page-size__Rakop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--gray-300, #d0d5dd);
+    background: var(--base-white, #fff);
+    box-shadow: 0px 1px 2px 0px #1018280d;
+}
+
+.Pagination_page-size__Rakop > input[type=number] {
+    border: none;
+    outline: none;
+    width: 30px;
+    height: 24px;
+    color: var(--gray-900, #101828);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin: 0;
+}
+
+.Pagination_page-size__Rakop > input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none
+}
+
+.Pagination_pagination-container__J4wRd {
+    display: flex;
+    list-style-type: none;
+    border-radius: 100px;
+    border: 1px solid var(--gray-300, #d0d5dd);
+    box-shadow: var(--shadow-xs);
+    width: -moz-fit-content;
+    width: fit-content;
+    overflow: hidden;
+}
+
+.Pagination_pagination-container__J4wRd .Pagination_pagination-item__ZzJmt.Pagination_disabled__UwpSX {
+    pointer-events: none;
+}
+
+.Pagination_pagination-container__J4wRd .Pagination_pagination-item__ZzJmt:last-child,
+.Pagination_pagination-item__ZzJmt:first-child {
+    padding: 10px 16px;
+    gap: 8px;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.Pagination_pagination-container__J4wRd .Pagination_pagination-item__ZzJmt {
+    display: flex;
+    width: 40px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid var(--gray-300, #d0d5dd);
+    background: var(--base-white, #fff);
+    color: var(--gray-800, #1d2939);
+}
+
+.Pagination_pagination-container__J4wRd .Pagination_pagination-item__ZzJmt.Pagination_selected__G5yaV {
+    background: var(--gray-50, #f9fafb);
+}
+
+.Pagination_pagination-container__J4wRd .Pagination_pagination-item__ZzJmt:last-child,
+.Pagination_pagination-item__ZzJmt:first-child {
+    padding: 10px 16px;
+    gap: 8px;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.Pagination_pagination-container__J4wRd .Pagination_pagination-item__ZzJmt:last-child {
+    border-right: none;
+}
+
+
+/* no flight search */
+.no-flight {
+    box-sizing: border-box;
+    display: inline-block;
+    overflow: hidden;
+    width: initial;
+    height: initial;
+    background: none;
+    opacity: 1;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    max-width: 100%;
+}
+
+.no-flight-child {
+    box-sizing: border-box;
+    display: block;
+    width: initial;
+    height: initial;
+    background: none;
+    opacity: 1;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    max-width: 100%;
+}
+
+.img-no-flight {
+    display: block;
+    max-width: 100%;
+    width: initial;
+    height: initial;
+    background: none;
+    opacity: 1;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.img-no_flight {
+    position: absolute;
+    inset: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+    border: none;
+    margin: auto;
+    display: block;
+    width: 0px;
+    height: 0px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+}
+
+/*  */
+.CustomerInfo_customer-info__8_dK8 {
+    display: flex;
+    flex-direction: column;
+}
+
+.CustomerInfo_customer-info__content__gFjoX,
+.CustomerInfo_customer-info__footer__wrr_x,
+.CustomerInfo_customer-info__header__vUsm9 {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 24px;
+    gap: 16px;
+}
+
+.CustomerInfo_customer-info__header__vUsm9 {
+    justify-content: center;
+    border-bottom: 1px solid #eaecf0;
+}
+
+.CustomerInfo_customer-info__footer__wrr_x {
+    border-top: 1px solid #eaecf0;
+}
+
+.CustomerInfo_selectInput__Mwxef {
+    position: relative;
+}
+
+.Input_input-group__6PMfq {
+    position: relative;
+    padding: 16px 20px;
+    border-radius: 28px;
+    border: 1px solid #eaecf0;
+    box-shadow: 0px 1px 2px 0px #1018280d;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    fill: #fff;
+}
+
+.Input_input-group__6PMfq > label {
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+    left: 16px;
+    background-color: #fff;
+    padding: 0 4px;
+    color: var(--gray-600, #475467);
+}
+
+.Input_required__eYDG_:after {
+    content: " *";
+    color: red;
+}
+
+.CustomerInfo_customer-info__footer__wrr_x {
+    border-top: 1px solid #eaecf0;
+}
+
+.CustomerInfo_customer-info__footer__wrr_x .CustomerInfo_img-wrapper__Nyg9S {
+    width: 40px;
+    height: 40px;
+}
+
+.CustomerInfo_selectInput__Mwxef {
+    position: relative;
+}
+
+.Input_input-group__6PMfq input[type=button] {
+    background: #fff;
+    text-align: left;
+}
+
+.Input_input-group__6PMfq > input,
+.Input_input-group__6PMfq > textarea {
+    border: none;
+    flex-grow: 1;
+    width: 0;
+    color: #1d2939;
+    height: 24px;
+    outline: none;
+}
+
+.Input_input-group__6PMfq > svg {
+    width: 20px;
+    height: 20px;
+}
+
+.Button_button-outline__YRytX:hover {
+    background: #f9fafb;
+    color: #344054;
+    fill: #344054;
+    cursor: pointer;
+}
+
+.Button_button-normal__y4h10 > svg,
+.Button_button-sm__ljQtM > svg {
+    width: 20px;
+    height: 20px;
+}
+
+.Button_button-color__7QnYK:disabled {
+    background-color: #caf8f8;
+    pointer-events: none;
+}
+
+.Input_input-group__6PMfq:focus-within {
+    border: 1px solid #77DADA;
+    box-shadow: 0 0 0 4px #caf8f8;
+}
+
+.Loading_loading__EUYtZ {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .5);
+    z-index: 9999;
+}
+
+.Loading_open__V3g2v {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.css-1sqq6so-MuiContainer-root,
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+    font-family: "Archivo", sans-serif !important;
+}
+
+
+.css-8j6b76-MuiInputBase-root-MuiOutlinedInput-root,
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root,
+.css-1q6at85-MuiInputBase-root-MuiOutlinedInput-root {
+    font-family: "Archivo", sans-serif !important;
+    position: relative !important;
+    padding: 16px 20px !important;
+    border-radius: 28px !important;
+    border: 1px solid #eaecf0 !important;
+    box-shadow: 0px 1px 2px 0px #1018280d !important;
+    display: flex !important;
+    align-items: center !important;
+
+    fill: #fff !important;
+    height: 50px !important;
+}
+
+.css-19wlste-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-19wlste-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-19wlste-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+    font-size: 14px !important;
+}
+
+.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+    border-radius: 25px !important;
+}
+
+.css-8j6b76-MuiInputBase-root-MuiOutlinedInput-root:hover,
+.css-kk7b3e-MuiButtonBase-root-MuiButton-root:hover,
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root:hover,
+.css-8j6b76-MuiInputBase-root-MuiOutlinedInput-root:hover {
+    border: 1px solid #58deff !important;
+    box-shadow: 0px 1px 2px 0px #58deff !important;
+    outline: none !important;
+    background-color: #fff !important;
+}
+
+.css-5vsnzl-MuiButtonBase-root-MuiButton-root:hover {
+    background-color: #34707f !important;
+    color: #fff !important;
+
+}
+
+.css-18623pr-MuiButtonBase-root-MuiButton-root:hover {
+    background-color: #f3f3f5 !important;
+    color: #4a4a4a !important;
+}

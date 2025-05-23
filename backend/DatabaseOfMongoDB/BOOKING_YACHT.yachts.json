@@ -1,0 +1,176 @@
+[{
+  "_id": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  },
+  "name": "Du thuyền Emerald Dream",
+  "image": "/images/yacht-1.jpg",
+  "launch": "2019",
+  "description": "Du thuyền Emerald Dream mang đến trải nghiệm sang trọng và hiện đại giữa kỳ quan thiên nhiên Vịnh Hạ Long.",
+  "hullBody": "Gỗ cứng",
+  "rule": 30,
+  "itinerary": "Hạ Long - Titop - Hang Sửng Sốt - Hang Luồn",
+  "locationId": {
+    "$oid": "682a9ece81f0fd7069e74030"
+  },
+  "yachtTypeId": {
+    "$oid": "682aab0481f0fd7069e74042"
+  },
+  "IdCompanys": {
+    "$oid": "682ab2c581f0fd7069e74056"
+  },
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "name": "Du thuyền Royal Star",
+  "image": "/images/yacht-2.jpg",
+  "launch": "2021",
+  "description": "Du thuyền Royal Star mang đến trải nghiệm sang trọng và hiện đại giữa kỳ quan thiên nhiên Vịnh Hạ Long.",
+  "hullBody": "Kim loại",
+  "rule": 50,
+  "itinerary": "Hạ Long - Titop - Hang Sửng Sốt - Hang Luồn",
+  "locationId": {
+    "$oid": "682a9ece81f0fd7069e7403b"
+  },
+  "yachtTypeId": {
+    "$oid": "682aab0481f0fd7069e74043"
+  },
+  "IdCompanys": {
+    "$oid": "682ab2c581f0fd7069e74057"
+  },
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "682add964fffc4ea6a39d72f"
+  },
+  "name": "Du thuyền Ocean Queen",
+  "image": "/images/yacht-3.jpg",
+  "launch": "2015",
+  "description": "Du thuyền Ocean Queen mang đến trải nghiệm sang trọng và hiện đại giữa kỳ quan thiên nhiên Vịnh Hạ Long.",
+  "hullBody": "Titan, nhôm",
+  "rule": 20,
+  "itinerary": "Hạ Long - Titop - Hang Sửng Sốt - Hang Luồn",
+  "locationId": {
+    "$oid": "682a9ece81f0fd7069e74036"
+  },
+  "yachtTypeId": {
+    "$oid": "682aab0481f0fd7069e74041"
+  },
+  "IdCompanys": {
+    "$oid": "682ab2c581f0fd7069e74055"
+  },
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "682add964fffc4ea6a39d730"
+  },
+  "name": "Du thuyền Halong Glory",
+  "image": "/images/yacht-4.jpg",
+  "launch": "2020",
+  "description": "Du thuyền Halong Glory mang đến trải nghiệm sang trọng và hiện đại giữa kỳ quan thiên nhiên Vịnh Hạ Long.",
+  "hullBody": "Tổng hợp",
+  "rule": 50,
+  "itinerary": "Hạ Long - Titop - Hang Sửng Sốt - Hang Luồn",
+  "locationId": {
+    "$oid": "682a9ece81f0fd7069e7403d"
+  },
+  "yachtTypeId": {
+    "$oid": "682aab0481f0fd7069e74045"
+  },
+  "IdCompanys": {
+    "$oid": "682ab2c581f0fd7069e74056"
+  },
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "682add964fffc4ea6a39d731"
+  },
+  "name": "Du thuyền Sun Legend",
+  "image": "/images/yacht-5.jpg",
+  "launch": "2023",
+  "description": "Du thuyền Sun Legend mang đến trải nghiệm sang trọng và hiện đại giữa kỳ quan thiên nhiên Vịnh Hạ Long.",
+  "hullBody": "Kim loại",
+  "rule": 50,
+  "itinerary": "Hạ Long - Titop - Hang Sửng Sốt - Hang Luồn",
+  "locationId": {
+    "$oid": "682a9ece81f0fd7069e7403b"
+  },
+  "yachtTypeId": {
+    "$oid": "682aab0481f0fd7069e74045"
+  },
+  "IdCompanys": {
+    "$oid": "682ab2c581f0fd7069e74058"
+  },
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "682add964fffc4ea6a39d732"
+  },
+  "name": "Du thuyền Paradise Elegance",
+  "image": "/images/yacht-6.jpg",
+  "launch": "2013",
+  "description": "Du thuyền Paradise Elegance mang đến trải nghiệm sang trọng và hiện đại giữa kỳ quan thiên nhiên Vịnh Hạ Long.",
+  "hullBody": "Thép",
+  "rule": 40,
+  "itinerary": "Hạ Long - Titop - Hang Sửng Sốt - Hang Luồn",
+  "locationId": {
+    "$oid": "682a9ece81f0fd7069e74030"
+  },
+  "yachtTypeId": {
+    "$oid": "682aab0481f0fd7069e74046"
+  },
+  "IdCompanys": {
+    "$oid": "682ab2c581f0fd7069e74058"
+  },
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "682add964fffc4ea6a39d733"
+  },
+  "name": "Du thuyền Heritage Binh Chuan",
+  "image": "/images/yacht-7.jpg",
+  "launch": "2017",
+  "description": "Du thuyền Heritage Binh Chuan mang đến trải nghiệm sang trọng và hiện đại giữa kỳ quan thiên nhiên Vịnh Hạ Long.",
+  "hullBody": "Titan",
+  "rule": 40,
+  "itinerary": "Hạ Long - Titop - Hang Sửng Sốt - Hang Luồn",
+  "locationId": {
+    "$oid": "682a9ece81f0fd7069e74032"
+  },
+  "yachtTypeId": {
+    "$oid": "682aab0481f0fd7069e74041"
+  },
+  "IdCompanys": {
+    "$oid": "682ab2c581f0fd7069e74056"
+  },
+  "isDeleted": false
+},
+{
+  "_id": {
+    "$oid": "682add964fffc4ea6a39d734"
+  },
+  "name": "Du thuyền Starlight Elegance",
+  "image": "/images/yacht-8.jpg",
+  "launch": "2024",
+  "description": "Du thuyền Starlight Elegance mang đậm phong cách sang trọng với nội thất chạm trổ tinh xảo, hành trình khám phá các địa danh tuyệt đẹp như Đảo Ngọc Vừng và Hang Đầu Gỗ.",
+  "hullBody": "Sợi thủy tinh cao cấp",
+  "rule": 28,
+  "itinerary": "Tuần Châu - Đảo Ngọc Vừng - Hang Đầu Gỗ - Làng chài Cửa Vạn",
+  "locationId": {
+    "$oid": "682a9ece81f0fd7069e7403a"
+  },
+  "yachtTypeId": {
+    "$oid": "682aab0481f0fd7069e74041"
+  },
+  "IdCompanys": {
+    "$oid": "682ab2c581f0fd7069e74058"
+  },
+  "isDeleted": false
+}]

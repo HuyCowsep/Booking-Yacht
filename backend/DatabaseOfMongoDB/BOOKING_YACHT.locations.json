@@ -1,0 +1,84 @@
+[{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e74030"
+  },
+  "name": "Vịnh Hạ Long"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e74031"
+  },
+  "name": "Vịnh Bái Tử Long"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e74032"
+  },
+  "name": "Đảo Ti Tốp"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e74033"
+  },
+  "name": "Hang Sửng Sốt"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e74034"
+  },
+  "name": "Đảo Soi Sim"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e74035"
+  },
+  "name": "Làng chài Cửa Vạn"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e74036"
+  },
+  "name": "Đảo Cô Tô"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e74037"
+  },
+  "name": "Đảo Tuần Châu"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e74038"
+  },
+  "name": "Hang Đầu Gỗ"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e74039"
+  },
+  "name": "Đảo Bồ Hòn"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e7403a"
+  },
+  "name": "Đảo Ngọc Vừng"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e7403b"
+  },
+  "name": "Đảo Quan Lạn"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e7403c"
+  },
+  "name": "Đảo Rều"
+},
+{
+  "_id": {
+    "$oid": "682a9ece81f0fd7069e7403d"
+  },
+  "name": "Đảo Ba Trái Đào"
+}]

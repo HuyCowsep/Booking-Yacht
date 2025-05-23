@@ -1,0 +1,87 @@
+[{
+  "_id": {
+    "$oid": "68278caa91575c93cecc4c9c"
+  },
+  "username": "huycowsep",
+  "password": "123123",
+  "roles": "CUSTOMER",
+  "status": 1
+},
+{
+  "_id": {
+    "$oid": "68278cb491575c93cecc4c9e"
+  },
+  "username": "nguyenvana",
+  "password": "123123",
+  "roles": "CUSTOMER",
+  "status": 1
+},
+{
+  "_id": {
+    "$oid": "68278cbb91575c93cecc4ca0"
+  },
+  "username": "company1",
+  "password": "123123",
+  "roles": "COMPANY",
+  "status": 1
+},
+{
+  "_id": {
+    "$oid": "682aae7fda6806431c449b97"
+  },
+  "username": "company2",
+  "password": "123123",
+  "roles": "COMPANY",
+  "status": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682aaea4da6806431c449b9c"
+  },
+  "username": "company3",
+  "password": "123123",
+  "roles": "COMPANY",
+  "status": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682aaf09da6806431c449ba1"
+  },
+  "username": "company4",
+  "password": "123123",
+  "roles": "COMPANY",
+  "status": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682c26e0c2a6cecd3daaf1e9"
+  },
+  "username": "duongtran",
+  "password": "123123",
+  "roles": "CUSTOMER",
+  "status": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682c2705c2a6cecd3daaf1ee"
+  },
+  "username": "thuctd29",
+  "password": "123123",
+  "roles": "CUSTOMER",
+  "status": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682c2731c2a6cecd3daaf1f3"
+  },
+  "username": "phamtuan",
+  "password": "123123",
+  "roles": "CUSTOMER",
+  "status": 1,
+  "__v": 0
+}]

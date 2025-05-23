@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "682ab2c581f0fd7069e74055"
+  },
+  "name": "Công Ty Du Thuyền Việt Star Cruise",
+  "address": "Số 1 Đường Hạ Long, Bãi Cháy, Hạ Long, Quảng Ninh",
+  "logo": "public/images/logo-company-1.png",
+  "email": "company1@gmail.com",
+  "exist": 1,
+  "accountId": {
+    "$oid": "68278cbb91575c93cecc4ca0"
+  }
+},
+{
+  "_id": {
+    "$oid": "682ab2c581f0fd7069e74056"
+  },
+  "name": "Công ty Du Thuyền Royal Caribbean",
+  "address": "Số 2 Đường Hạ Long, Cái Dăm, Hạ Long, Quảng Ninh",
+  "logo": "public/images/logo-company-2.png",
+  "email": "company2@gmail.com",
+  "exist": 1,
+  "accountId": {
+    "$oid": "682aae7fda6806431c449b97"
+  }
+},
+{
+  "_id": {
+    "$oid": "682ab2c581f0fd7069e74057"
+  },
+  "name": "Công ty Du Thuyền Carnival Cruise Line",
+  "address": "Số 3 Đường Hoàng Quốc Việt, Hùng Thắng, Hạ Long",
+  "logo": "public/images/logo-company-3.png",
+  "email": "company3@gmail.com",
+  "exist": 1,
+  "accountId": {
+    "$oid": "682aaea4da6806431c449b9c"
+  }
+},
+{
+  "_id": {
+    "$oid": "682ab2c581f0fd7069e74058"
+  },
+  "name": "Công ty Du Thuyền Princess Cruises",
+  "address": "Số 4 Đường Hạ Long, Tuần Châu, Hạ Long",
+  "logo": "public/images/logo-company-4.png",
+  "email": "company4@gmail.com",
+  "exist": 1,
+  "accountId": {
+    "$oid": "682aaf09da6806431c449ba1"
+  }
+}]
