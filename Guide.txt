@@ -1,0 +1,26 @@
+//*) Cách check redis xem có hoạt động không
+- Mở terminal cmd laptop và chạy: docker exec -it sweet_matsumoto redis-cli
+- Gõ ping ; Phản hồi "PONG" là chạy
+
+//*) Mở docker desktop và chạy 2 icon start ở cột ACTION
+- Xem container đang chạy: docker ps
+- Xem tất cả container (bao gồm đã dừng): docker ps -a
+- Tạo và chạy container Redis mới: docker run -d -p 6379:6379 --name redis redis
+
+- Kiểm tra docker Network: docker network ls
+                           docker network inspect bridge
+
+- Test kết nối REDIS: redis-cli -h localhost -p 6379 ping
+- Kiểm tra OTP trong redis: KEYS otp:*
+                            GET otp:<username>
+
+- Kiểm tra cổng REDIS: netstat -aon | findstr :6379
+
+- Mở cổng REDIS trên tường lửa: netsh advfirewall firewall add rule name="Redis 6379" dir=in action=allow protocol=TCP localport=6379
+//*) Kiểm tra OTP nếu gửi thành công tại http://localhost:8025/ của MailHog
+
+                                                ******* Ghi chú thêm *******
+
+- Redis container: Mặc định chạy trên localhost:6379. Nếu đổi cổng, cập nhật utils/redis.js (url: redis://localhost:<port>).
+- MailHog: Check email OTP tại http://localhost:8025. Container chạy trên 1025 (SMTP) và 8025 (Web UI).
+- Debug: Nếu Redis lỗi ECONNREFUSED, kiểm tra docker ps, cổng 6379, và log trong utils/redis.js.
