@@ -13,7 +13,7 @@ const lightPalette = {
   },
   text: {
     primary: '#243139',
-    secondary: '#97c0ad',
+    secondary: '#5f8c78',
   },
   
 };

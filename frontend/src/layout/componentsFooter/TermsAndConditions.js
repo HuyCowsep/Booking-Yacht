@@ -25,7 +25,7 @@ export default function TermsAndConditions() {
       </Typography>
 
       <Typography paragraph sx={{ color: "text.secondary" }}>
-        Website này thuộc quyền sở hữu và quản lý của Công ty TNHH Du lịch và dịch vụ LongWave. Khi truy cập và sử dụng website này, bạn đồng ý rằng đã đọc và hiểu các điều khoản và điều kiện dưới đây. Vui lòng đọc kỹ trước khi tiếp tục.
+        Website này thuộc quyền sở hữu và quản lý của Công ty TNHH Du lịch và dịch vụ 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Khi truy cập và sử dụng website này, bạn đồng ý rằng đã đọc và hiểu các điều khoản và điều kiện dưới đây. Vui lòng đọc kỹ trước khi tiếp tục.
       </Typography>
 
       <Typography variant="h6" fontWeight={600} gutterBottom sx={{ color: "text.primary" }}>
@@ -33,7 +33,7 @@ export default function TermsAndConditions() {
       </Typography>
       <Typography paragraph sx={{ color: "text.secondary" }}>
         <strong style={{ color: "text.primary" }}>1.1. Đồng ý với các điều khoản sử dụng:</strong><br />
-        Khi sử dụng Website thương mại điện tử LongWave.com (“Website”), Quý khách mặc nhiên chấp thuận các điều khoản và điều kiện sử dụng (“Điều kiện sử dụng”) được quy định dưới đây. Quý khách nên thường xuyên kiểm tra để cập nhật các thay đổi. Chúng tôi có quyền thay đổi hoặc điều chỉnh Điều kiện sử dụng bất cứ lúc nào. Việc Quý khách tiếp tục sử dụng sau các thay đổi đồng nghĩa với việc Quý khách chấp thuận các thay đổi đó.
+        Khi sử dụng Website thương mại điện tử 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮.com (“Website”), Quý khách mặc nhiên chấp thuận các điều khoản và điều kiện sử dụng (“Điều kiện sử dụng”) được quy định dưới đây. Quý khách nên thường xuyên kiểm tra để cập nhật các thay đổi. Chúng tôi có quyền thay đổi hoặc điều chỉnh Điều kiện sử dụng bất cứ lúc nào. Việc Quý khách tiếp tục sử dụng sau các thay đổi đồng nghĩa với việc Quý khách chấp thuận các thay đổi đó.
       </Typography>
 
       <Typography paragraph sx={{ color: "text.secondary" }}>
@@ -45,14 +45,14 @@ export default function TermsAndConditions() {
         2. Chính sách bảo hành/bảo trì:
       </Typography>
       <Typography paragraph sx={{ color: "text.secondary" }}>
-        Sản phẩm giao dịch giữa LongWave.com và khách hàng là dịch vụ, do đó không áp dụng chính sách bảo hành hoặc bảo trì.
+        Sản phẩm giao dịch giữa 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮.com và khách hàng là dịch vụ, do đó không áp dụng chính sách bảo hành hoặc bảo trì.
       </Typography>
 
       <Typography variant="h6" fontWeight={600} gutterBottom sx={{ color: "text.primary" }}>
         3. Miễn trừ trách nhiệm:
       </Typography>
       <Typography paragraph sx={{ color: "text.secondary" }}>
-        LongWave.com và các Nhà cung cấp từ chối trách nhiệm về các lỗi vận hành, an toàn, gián đoạn hay đảm bảo về tính chính xác, đầy đủ, kịp thời của thông tin hiển thị. Khi truy cập website, Quý khách đồng ý rằng LongWave, Nhà cung cấp và đối tác liên kết không chịu trách nhiệm cho các thiệt hại, khiếu kiện hay tổn hại trực tiếp hoặc gián tiếp phát sinh từ:
+        𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮.com và các Nhà cung cấp từ chối trách nhiệm về các lỗi vận hành, an toàn, gián đoạn hay đảm bảo về tính chính xác, đầy đủ, kịp thời của thông tin hiển thị. Khi truy cập website, Quý khách đồng ý rằng 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮, Nhà cung cấp và đối tác liên kết không chịu trách nhiệm cho các thiệt hại, khiếu kiện hay tổn hại trực tiếp hoặc gián tiếp phát sinh từ:
       </Typography>
       <Typography component="div" sx={{ pl: 2, color: "text.secondary" }}>
         a. Việc sử dụng thông tin trên website<br />
@@ -76,7 +76,7 @@ export default function TermsAndConditions() {
       </Typography>
       <Typography paragraph sx={{ color: "text.secondary" }}>
         <strong style={{ color: "text.primary" }}>4.2 Vé máy bay:</strong><br />
-        Vé máy bay sẽ được gửi tới email đăng ký sau khi thanh toán. Nếu không nhận được vé, vui lòng liên hệ hotline 0922 222 016 hoặc email info@longwave.com để được hỗ trợ.<br />
+        Vé máy bay sẽ được gửi tới email đăng ký sau khi thanh toán. Nếu không nhận được vé, vui lòng liên hệ hotline 0922 222 016 hoặc email huyndhe176876@fpt.edu.vn để được hỗ trợ.<br />
         Mọi yêu cầu thay đổi hoặc hoàn vé vui lòng liên hệ hotline hoặc email hỗ trợ.
       </Typography>
 
@@ -94,7 +94,7 @@ export default function TermsAndConditions() {
         6. Nghĩa vụ của khách hàng khi sử dụng website:
       </Typography>
       <Typography paragraph sx={{ color: "text.secondary" }}>
-        Khách hàng phải cung cấp đầy đủ thông tin chính xác khi đặt dịch vụ: họ tên, số điện thoại, email. LongWave không chịu trách nhiệm nếu thông tin sai gây lỗi trong quá trình đặt dịch vụ hoặc thanh toán.<br />
+        Khách hàng phải cung cấp đầy đủ thông tin chính xác khi đặt dịch vụ: họ tên, số điện thoại, email. 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 không chịu trách nhiệm nếu thông tin sai gây lỗi trong quá trình đặt dịch vụ hoặc thanh toán.<br />
         Tuyệt đối không sử dụng công cụ hay hình thức phá hoại website. Mọi vi phạm sẽ bị xử lý theo pháp luật.
       </Typography>
     </Box>

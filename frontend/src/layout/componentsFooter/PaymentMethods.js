@@ -49,12 +49,12 @@ export default function PaymentMethods() {
           <Grid item xs={7}>
             <CardContent>
               <Typography variant="body3" color="text.secondary">
-                Tên người nhận: Long Wave - Group 4 WDP301<br />
-                Ngân hàng: MB Bank<br />
-                Số tài khoản: 226456789<br />
+                Tên người nhận: HuyCowsep - Nguyễn Đức Huy<br />
+                Ngân hàng: MB Bank (Ngân hàng quân đội)<br />
+                Số tài khoản: 3863 666 889 666<br />
                 Nội dung chuyển khoản: Mã đơn hàng - Họ tên<br />
-                Ví dụ: 123456 - Nguyễn Văn A<br />
-                Thời gian xử lý: Trong vòng 30 phút sau khi thanh toán thành công
+                Ví dụ: 123456 - Nguyễn Văn A chuyển khoản<br />
+                Thời gian xử lý: Trong vòng 30 phút sau khi thanh toán thành công!
               </Typography>
             </CardContent>
           </Grid>
@@ -66,19 +66,19 @@ export default function PaymentMethods() {
         2. Thanh toán bằng chuyển khoản ngân hàng
       </Typography>
       <Typography sx={{ color: "text.secondary", whiteSpace: "pre-line" }}>
-        Tên tài khoản: Công ty TNHH Du lịch và dịch vụ Long Wave{"\n"}
-        Số tài khoản: 226456789{"\n"}
+        Tên tài khoản: Công ty TNHH Du lịch và dịch vụ 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮{"\n"}
+        Số tài khoản: 3863666898666{"\n"}
         Tại: Ngân hàng TMCP Quân đội – MB Bank{"\n"}
         Chi nhánh: Chi nhánh Hoàng Quốc Việt
       </Typography>
 
       {/* 3. Thanh toán trực tiếp tại văn phòng */}
       <Typography variant="h6" gutterBottom sx={{ mt: 4, color: "text.primary" }}>
-        3. Thanh toán tại văn phòng của Long Wave
+        3. Thanh toán tại văn phòng của 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮
       </Typography>
       <Typography sx={{ color: "text.secondary", whiteSpace: "pre-line" }}>
         Địa chỉ: Số nhà 25 – Ngõ 38 – Phố Yên Lãng – Phường Láng Hạ – Quận Đống Đa – Thành phố Hà Nội – Việt Nam{"\n"}
-        Số điện thoại hotline: 0922 222 016{"\n"}
+        Số điện thoại hotline: 0912 202 885{"\n"}
         Giờ làm việc: 9h00 – 17h30 (từ thứ 2 – đến thứ 6){"\n"}
         và 9h00 – 12h00 (thứ 7)
       </Typography>

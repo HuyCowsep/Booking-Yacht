@@ -21,7 +21,6 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 export default function Login() {
-  // State để lưu trữ thông tin đăng nhập
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -29,27 +28,25 @@ export default function Login() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [showTransition, setShowTransition] = useState(false);
+  const [step, setStep] = useState("login"); // login, forgot, otp, reset
+  const [otp, setOtp] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-  if (showTransition) {
-    // Disable scroll
-    document.body.style.overflow = "hidden";
-    document.body.style.pointerEvents = "none"; // Ngăn tương tác luôn
-  } else {
-    // Enable scroll lại
-    document.body.style.overflow = "";
-    document.body.style.pointerEvents = "";
-  }
+    if (showTransition) {
+      document.body.style.overflow = "hidden";
+      document.body.style.pointerEvents = "none";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.pointerEvents = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.pointerEvents = "";
+    };
+  }, [showTransition]);
 
-  // Cleanup nếu component unmount
-  return () => {
-    document.body.style.overflow = "";
-    document.body.style.pointerEvents = "";
-  };
-}, [showTransition]);
-
-  // Hàm xử lý thay đổi input
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({
@@ -62,24 +59,71 @@ export default function Login() {
     e.preventDefault();
     setError("");
     setSuccess("");
-
     try {
       const response = await axios.post("http://localhost:9999/api/v1/customers/login", formData);
-
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("customer", JSON.stringify(response.data.customer));
-
-      setShowTransition(true); //hiện thị hiệu ứng chuyển tiếp bằng logo
+      setShowTransition(true);
       setTimeout(() => {
         navigate("/");
         window.location.reload();
       }, 1500);
     } catch (err) {
-      const errorMessage = err.response?.data?.message || "Đã có lỗi xảy ra, vui lòng thử lại.";
-      setError(errorMessage);
+      setError(err.response?.data?.message || "Đã có lỗi xảy ra, vui lòng thử lại.");
     }
   };
-  // Hiện thị Logo LongWave trong 1 giây
+
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+    try {
+      const response = await axios.post("http://localhost:9999/api/v1/customers/forgot-password", {
+        username: formData.username,
+      });
+      setSuccess(response.data.message);
+      setStep("otp");
+    } catch (err) {
+      setError(err.response?.data?.message || "Lỗi server");
+    }
+  };
+
+  const handleVerifyOtp = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+    try {
+      const response = await axios.post("http://localhost:9999/api/v1/customers/verify-otp", {
+        username: formData.username,
+        otp,
+      });
+      setSuccess(response.data.message);
+      setStep("reset");
+    } catch (err) {
+      setError(err.response?.data?.message || "Lỗi server");
+    }
+  };
+
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+    try {
+      const response = await axios.post("http://localhost:9999/api/v1/customers/reset-password", {
+        username: formData.username,
+        newPassword,
+      });
+      setSuccess(response.data.message);
+      setShowTransition(true);
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 1500);
+    } catch (err) {
+      setError(err.response?.data?.message || "Lỗi server");
+    }
+  };
+
   if (showTransition) {
     return (
       <Box
@@ -178,10 +222,9 @@ export default function Login() {
             mb={3}
             sx={{ fontSize: "2rem", fontWeight: "bold" }}
           >
-            Đăng nhập
+            {step === "login" ? "Đăng nhập" : step === "forgot" ? "Quên Mật Khẩu" : step === "otp" ? "Nhập OTP" : "Đặt Lại Mật Khẩu"}
           </Typography>
 
-          {/* Hiển thị thông báo lỗi hoặc thành công */}
           {error && (
             <Typography color="error" align="center" sx={{ mb: 2 }}>
               {error}
@@ -193,136 +236,286 @@ export default function Login() {
             </Typography>
           )}
 
-          <Box component="form" onSubmit={handleSubmit}>
-            <Box className="form-group" sx={{ mb: 2 }}>
-              <Typography
-                component="label"
-                htmlFor="username"
-                color="text.primary"
-                sx={{ mb: 1, fontSize: "1rem" }}
-              >
-                Tên đăng nhập
+          <Box component="form" onSubmit={step === "login" ? handleSubmit : step === "forgot" ? handleForgotPassword : step === "otp" ? handleVerifyOtp : handleResetPassword}>
+            {step === "login" && (
+              <>
+                <Box className="form-group" sx={{ mb: 2 }}>
+                  <Typography
+                    component="label"
+                    htmlFor="username"
+                    color="text.primary"
+                    sx={{ mb: 1, fontSize: "1rem" }}
+                  >
+                    Tên đăng nhập
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    id="username"
+                    type="text"
+                    placeholder="Nhập tên đăng nhập của bạn"
+                    variant="outlined"
+                    value={formData.username}
+                    onChange={handleChange}
+                    margin="normal"
+                    sx={{
+                      mt: 1,
+                      "& .MuiOutlinedInput-root": {
+                        background: "rgba(255, 255, 255, 0.2)",
+                        "& input": { color: "white" },
+                        "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
+                      },
+                      "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
+                    }}
+                  />
+                </Box>
+                <Box className="form-group" sx={{ mb: 2 }}>
+                  <Typography
+                    component="label"
+                    htmlFor="password"
+                    color="text.primary"
+                    sx={{ mb: 1, fontSize: "1rem" }}
+                  >
+                    Mật khẩu
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    id="password"
+                    type="password"
+                    placeholder="Nhập mật khẩu"
+                    variant="outlined"
+                    value={formData.password}
+                    onChange={handleChange}
+                    margin="normal"
+                    sx={{
+                      mt: 1,
+                      "& .MuiOutlinedInput-root": {
+                        background: "rgba(255, 255, 255, 0.2)",
+                        "& input": { color: "white" },
+                        "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
+                      },
+                      "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
+                    }}
+                  />
+                </Box>
+                <Box
+                  className="form-options"
+                  sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", my: 2 }}
+                >
+                  <FormControlLabel
+                    control={<Checkbox color="primary" />}
+                    label="Ghi nhớ đăng nhập"
+                    sx={{ color: "text.secondary", "& .MuiTypography-root": { fontSize: "0.9rem" } }}
+                  />
+                  <Typography
+                    color="primary"
+                    sx={{
+                      cursor: "pointer",
+                      fontSize: "0.9rem",
+                      "&:hover": { textDecoration: "underline" },
+                    }}
+                    onClick={() => {
+                      setStep("forgot");
+                      setError("");
+                      setSuccess("");
+                    }}
+                  >
+                    Quên mật khẩu?
+                  </Typography>
+                </Box>
+                <StyledButton type="submit">Đăng nhập</StyledButton>
+              </>
+            )}
+            {step === "forgot" && (
+              <>
+                <Box className="form-group" sx={{ mb: 2 }}>
+                  <Typography
+                    component="label"
+                    htmlFor="username"
+                    color="text.primary"
+                    sx={{ mb: 1, fontSize: "1rem" }}
+                  >
+                    Tên đăng nhập
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    id="username"
+                    type="text"
+                    placeholder="Nhập tên đăng nhập của bạn"
+                    variant="outlined"
+                    value={formData.username}
+                    onChange={handleChange}
+                    margin="normal"
+                    sx={{
+                      mt: 1,
+                      "& .MuiOutlinedInput-root": {
+                        background: "rgba(255, 255, 255, 0.2)",
+                        "& input": { color: "white" },
+                        "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
+                      },
+                      "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
+                    }}
+                  />
+                </Box>
+                <StyledButton type="submit">Gửi OTP</StyledButton>
+                <Typography
+                  align="center"
+                  color="text.secondary"
+                  mt={2}
+                  sx={{ fontSize: "0.9rem", cursor: "pointer" }}
+                  onClick={() => setStep("login")}
+                >
+                  Quay lại đăng nhập
+                </Typography>
+              </>
+            )}
+            {step === "otp" && (
+              <>
+                <Box className="form-group" sx={{ mb: 2 }}>
+                  <Typography
+                    component="label"
+                    htmlFor="otp"
+                    color="text.primary"
+                    sx={{ mb: 1, fontSize: "1rem" }}
+                  >
+                    Mã OTP
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    id="otp"
+                    type="text"
+                    placeholder="Nhập mã OTP"
+                    variant="outlined"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    margin="normal"
+                    sx={{
+                      mt: 1,
+                      "& .MuiOutlinedInput-root": {
+                        background: "rgba(255, 255, 255, 0.2)",
+                        "& input": { color: "white" },
+                        "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
+                      },
+                      "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
+                    }}
+                  />
+                </Box>
+                <StyledButton type="submit">Xác Thực OTP</StyledButton>
+                <Typography
+                  align="center"
+                  color="text.secondary"
+                  mt={2}
+                  sx={{ fontSize: "0.9rem", cursor: "pointer" }}
+                  onClick={() => setStep("login")}
+                >
+                  Quay lại đăng nhập
+                </Typography>
+              </>
+            )}
+            {step === "reset" && (
+              <>
+                <Box className="form-group" sx={{ mb: 2 }}>
+                  <Typography
+                    component="label"
+                    htmlFor="newPassword"
+                    color="text.primary"
+                    sx={{ mb: 1, fontSize: "1rem" }}
+                  >
+                    Mật khẩu mới
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    id="newPassword"
+                    type="password"
+                    placeholder="Nhập mật khẩu mới"
+                    variant="outlined"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    margin="normal"
+                    sx={{
+                      mt: 1,
+                      "& .MuiOutlinedInput-root": {
+                        background: "rgba(255, 255, 255, 0.2)",
+                        "& input": { color: "white" },
+                        "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
+                      },
+                      "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
+                    }}
+                  />
+                </Box>
+                <StyledButton type="submit">Đặt Lại Mật Khẩu</StyledButton>
+                <Typography
+                  align="center"
+                  color="text.secondary"
+                  mt={2}
+                  sx={{ fontSize: "0.9rem", cursor: "pointer" }}
+                  onClick={() => setStep("login")}
+                >
+                  Quay lại đăng nhập
+                </Typography>
+              </>
+            )}
+            {error && (
+              <Typography color="error" align="center" sx={{ mt: 2 }}>
+                {error}
               </Typography>
-              <TextField
-                fullWidth
-                id="username"
-                type="text"
-                placeholder="Nhập tên đăng nhập của bạn"
-                variant="outlined"
-                value={formData.username}
-                onChange={handleChange}
-                margin="normal"
-                sx={{
-                  mt: 1,
-                  "& .MuiOutlinedInput-root": {
-                    background: "rgba(255, 255, 255, 0.2)",
-                    "& input": { color: "white" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
-                  },
-                  "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
-                }}
-              />
-            </Box>
-            <Box className="form-group" sx={{ mb: 2 }}>
-              <Typography
-                component="label"
-                htmlFor="password"
-                color="text.primary"
-                sx={{ mb: 1, fontSize: "1rem" }}
-              >
-                Mật khẩu
+            )}
+            {success && (
+              <Typography color="success.main" align="center" sx={{ mt: 2 }}>
+                {success}
               </Typography>
-              <TextField
-                fullWidth
-                id="password"
-                type="password"
-                placeholder="Nhập mật khẩu"
-                variant="outlined"
-                value={formData.password}
-                onChange={handleChange}
-                margin="normal"
-                sx={{
-                  mt: 1,
-                  "& .MuiOutlinedInput-root": {
-                    background: "rgba(255, 255, 255, 0.2)",
-                    "& input": { color: "white" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
-                  },
-                  "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
-                }}
-              />
-            </Box>
-            <Box
-              className="form-options"
-              sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", my: 2 }}
-            >
-              <FormControlLabel
-                control={<Checkbox color="primary" />}
-                label="Ghi nhớ đăng nhập"
-                sx={{ color: "text.secondary", "& .MuiTypography-root": { fontSize: "0.9rem" } }}
-              />
-              <Typography
-                component="a"
-                href="#"
-                color="primary"
-                sx={{
-                  textDecoration: "none",
-                  fontSize: "0.9rem",
-                  "&:hover": { textDecoration: "underline" },
-                }}
-              >
-                Quên mật khẩu?
-              </Typography>
-            </Box>
-            <StyledButton type="submit">Đăng nhập</StyledButton>
+            )}
           </Box>
-          <Box className="social-login" sx={{ mt: 3 }}>
-            <Typography align="center" color="text.secondary" sx={{ mb: 2, fontSize: "0.9rem" }}>
-              Hoặc đăng nhập bằng
-            </Typography>
-            <Stack direction="row" spacing={2} justifyContent="center" mt={2}>
-              <Button
-                className="social-btn google-btn"
-                sx={{
-                  bgcolor: "#db4437",
-                  color: "#fff",
-                  textTransform: "none",
-                  px: 3,
-                  py: 1,
-                  "&:hover": { bgcolor: "#c1352b" },
-                }}
+          {step === "login" && (
+            <>
+              <Box className="social-login" sx={{ mt: 3 }}>
+                <Typography align="center" color="text.secondary" sx={{ mb: 2, fontSize: "0.9rem" }}>
+                  Hoặc đăng nhập bằng
+                </Typography>
+                <Stack direction="row" spacing={2} justifyContent="center" mt={2}>
+                  <Button
+                    className="social-btn google-btn"
+                    sx={{
+                      bgcolor: "#db4437",
+                      color: "#fff",
+                      textTransform: "none",
+                      px: 3,
+                      py: 1,
+                      "&:hover": { bgcolor: "#c1352b" },
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faGoogle} className="icon" style={{ marginRight: "8px" }} />
+                    Google
+                  </Button>
+                  <Button
+                    className="social-btn facebook-btn"
+                    sx={{
+                      bgcolor: "#4267b2",
+                      color: "#fff",
+                      textTransform: "none",
+                      px: 3,
+                      py: 1,
+                      "&:hover": { bgcolor: "#365899" },
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faFacebookF} className="icon" style={{ marginRight: "8px" }} />
+                    Facebook
+                  </Button>
+                </Stack>
+              </Box>
+              <Typography
+                align="center"
+                color="text.secondary"
+                mt={2}
+                className="switch-form"
+                sx={{ fontSize: "0.9rem" }}
               >
-                <FontAwesomeIcon icon={faGoogle} className="icon" style={{ marginRight: "8px" }} />
-                Google
-              </Button>
-              <Button
-                className="social-btn facebook-btn"
-                sx={{
-                  bgcolor: "#4267b2",
-                  color: "#fff",
-                  textTransform: "none",
-                  px: 3,
-                  py: 1,
-                  "&:hover": { bgcolor: "#365899" },
-                }}
-              >
-                <FontAwesomeIcon icon={faFacebookF} className="icon" style={{ marginRight: "8px" }} />
-                Facebook
-              </Button>
-            </Stack>
-          </Box>
-          <Typography
-            align="center"
-            color="text.secondary"
-            mt={2}
-            className="switch-form"
-            sx={{ fontSize: "0.9rem" }}
-          >
-            Bạn chưa có tài khoản?{" "}
-            <Link to="/register" style={{ color: "#68bfb5", textDecoration: "none" }}>
-              Đăng ký
-            </Link>
-          </Typography>
+                Bạn chưa có tài khoản?{" "}
+                <Link to="/register" style={{ color: "#68bfb5", textDecoration: "none" }}>
+                  Đăng ký
+                </Link>
+              </Typography>
+            </>
+          )}
         </Box>
       </Box>
     </Box>

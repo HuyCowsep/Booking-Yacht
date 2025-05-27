@@ -28,7 +28,7 @@ export default function PrivacyPolicy() {
         I. Chính sách quyền riêng tư:
       </Typography>
       <Typography paragraph sx={{ color: "text.secondary" }}>
-        Chúng tôi đánh giá cao sự tin tưởng của quý khách trong việc chọn Longwave cho dịch vụ đặt phòng  trực tuyến của bạn. Chính vì vậy, chúng tôi sẽ giữ gìn và bảo vệ sự riêng tư và kín đáo của các chi tiết cá nhân cho quý khách một cách kịp thời và cẩn trọng.
+        Chúng tôi đánh giá cao sự tin tưởng của quý khách trong việc chọn 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 cho dịch vụ đặt phòng  trực tuyến của bạn. Chính vì vậy, chúng tôi sẽ giữ gìn và bảo vệ sự riêng tư và kín đáo của các chi tiết cá nhân cho quý khách một cách kịp thời và cẩn trọng.
       </Typography>
       <Typography paragraph sx={{ color: "text.secondary" }}>
         Chính sách an toàn và bảo mật này áp dụng cho tất cả các dịch vụ của chúng tôi (bao gồm cả dịch vụ du thuyền Hạ Long, Resort).
@@ -38,7 +38,7 @@ export default function PrivacyPolicy() {
         1. Mục đích thu thập thông tin của khách hàng:
       </Typography>
       <Typography paragraph sx={{ color: "text.secondary" }}>
-        Website Longwave.com thu thập thông tin khách hàng phục vụ cho việc cung cấp dịch vụ, tour du lịch, vé Resort cho khách hàng. Đặc biệt, việc thu thập thông tin này rất cần thiết để hỗ trợ sau mua cho khách hàng.
+        Website 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮.com thu thập thông tin khách hàng phục vụ cho việc cung cấp dịch vụ, tour du lịch, vé Resort cho khách hàng. Đặc biệt, việc thu thập thông tin này rất cần thiết để hỗ trợ sau mua cho khách hàng.
       </Typography>
 
       <Typography variant="h6" gutterBottom sx={{ color: "text.primary" }}>
@@ -79,10 +79,10 @@ export default function PrivacyPolicy() {
         6. Đơn vị thu thập thông tin:
       </Typography>
       <Typography paragraph sx={{ color: "text.secondary" }}>
-        - Công ty TNHH Du lịch và dịch vụ Longwave<br />
+        - Công ty TNHH Du lịch và dịch vụ 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮<br />
         - Địa chỉ: Số nhà 25, ngõ 38, phố Yên Lãng, phường Láng Hạ, quận Đống Đa, TP Hà Nội.<br />
-        - Điện thoại: 0922 222 016<br />
-        - Email: info@longwave.com
+        - Điện thoại:  0912 202 885<br />
+        - Email: huyndhe176876@fpt.edu.vn
       </Typography>
       <Typography paragraph sx={{ color: "text.secondary" }}>
         Nếu quý khách phát hiện thông tin cá nhân bị sử dụng sai mục đích, vui lòng liên hệ hotline hoặc gửi email cùng bằng chứng để chúng tôi xử lý trong vòng 24h.
@@ -116,7 +116,7 @@ export default function PrivacyPolicy() {
         III. Các đường liên kết (link):
       </Typography>
       <Typography paragraph sx={{ color: "text.secondary" }}>
-        Website Longwave có thể chứa liên kết đến website khác. Chính sách quyền riêng tư của chúng tôi không áp dụng cho các website đó. Vui lòng tham khảo chính sách của bên thứ ba khi truy cập.
+        Website 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 có thể chứa liên kết đến website khác. Chính sách quyền riêng tư của chúng tôi không áp dụng cho các website đó. Vui lòng tham khảo chính sách của bên thứ ba khi truy cập.
       </Typography>
 
       <Typography variant="body2" sx={{ mt: 2, fontStyle: "italic", color: "text.secondary" }}>

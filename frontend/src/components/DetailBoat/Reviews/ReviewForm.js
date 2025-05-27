@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Send } from "lucide-react";
 import StarRating from "./StarRating";
-import InputField from "./InputField";
 import { TextField } from "@mui/material";
 
 const ReviewForm = () => {

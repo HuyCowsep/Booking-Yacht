@@ -45,7 +45,7 @@ export default function ContactSection() {
             Khám phá Hạ Long thông qua Du thuyền
           </Typography>
           <Typography variant="body1" sx={{ mb: 3, color: "text.secondary" }}>
-            Khám phá Hạ Long qua Du thuyền cùng LongWave – Hãy liên hệ ngay để trải nghiệm hành trình tuyệt vời!
+            Khám phá Hạ Long qua Du thuyền cùng 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 – Hãy liên hệ ngay để trải nghiệm hành trình tuyệt vời!
           </Typography>
 
           <Grid container spacing={2}>
@@ -142,7 +142,7 @@ export default function ContactSection() {
               "&:hover": { bgcolor: "primary.dark" },
             }}
           >
-            Liên hệ với LongWave →
+            Liên hệ với 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 →
           </Button>
         </Paper>
       </Box>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Link as MuiLink, Grid, Stack } from "@mui/material";
+import { Box, Typography, Link as MuiLink, Grid, Stack, colors } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Fab } from "@mui/material";
@@ -112,10 +112,10 @@ export default function Footer() {
               Liên hệ
             </Typography>
             <Typography variant="body3" color="text.secondary">
-              Hotline: 0123456789
+              Hotline: 0912 202 885
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Email: info@longwave.example
+              Email: huyndhe176876@fpt.edu.vn
             </Typography>
             <Box
               component="img"
@@ -126,10 +126,9 @@ export default function Footer() {
           </Grid>
         </Grid>
         <Box textAlign="center" mt={6} sx={{ opacity: 0.7 }}>
-          <Typography fontSize={12} color="text.primary">
+          <Typography fontSize={14} color="text.primary" fontWeight="bold">
             &copy; 2025 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Bản quyền thuộc về 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Đã đăng ký bản quyền.
-            <br />
-            Thiết kế bởi WDP301 - Group 4.
+            Thiết kế bởi <span style={{color:"red"}}>HuyCowsep</span>
           </Typography>
         </Box>
       </Box>

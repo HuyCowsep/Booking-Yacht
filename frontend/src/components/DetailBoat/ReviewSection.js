@@ -15,7 +15,7 @@ export default function ReviewSection() {
     <div className="my-6 pt-6">
       {/* Header */}
       <ReviewHeader totalReviews={ratingData.total} />
-      <Image src={"./images/heading-border.webp"} className="pt-5 " />
+      <Image src={"./images/room-4.jpg"} className="pt-5 " />
       <div className=" border-gray-300 mb-6 pt-4">
         {/* Rating overview */}
         <RatingOverview ratingData={ratingData} />

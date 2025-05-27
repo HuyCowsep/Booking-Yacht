@@ -37,7 +37,7 @@ export default function UserGuide() {
         <li>Tìm kiếm du thuyền phù hợp với yêu cầu của quý khách</li>
         <li>
           Nhập phòng và du thuyền cần đặt cùng với họ và tên, số điện thoại, địa chỉ email để nhân viên tư vấn
-          của Longwave liên hệ
+          của 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 liên hệ
         </li>
         <li>Chọn "Đặt ngay" để đặt dịch vụ</li>
         <li>Thông tin của khách hàng được gửi về trung tâm xử lý dữ liệu của website</li>
@@ -64,7 +64,7 @@ export default function UserGuide() {
         </li>
         <li>Thanh toán bằng mã QR cùng số tiền hiển thị trên màn hình</li>
         <li>
-          Vé xuất sẽ được gửi về địa chỉ email của quý khách hàng và email info@longwave.com của website
+          Vé xuất sẽ được gửi về địa chỉ email của quý khách hàng và email huyndhe176876@fpt.edu.vn của website
         </li>
         <li>
           Nhân viên tư vấn sẽ kiểm tra lại vé đã được gửi đến quý khách hàng hay chưa để hỗ trợ kịp thời
@@ -82,8 +82,8 @@ export default function UserGuide() {
       </Typography>
       <Typography component="ul" sx={{ color: "text.secondary", pl: 3 }}>
         <li>Gửi yêu cầu theo form “liên hệ” trên website</li>
-        <li>Gửi thông tin tới địa chỉ email: info@longwave.com</li>
-        <li>Gọi điện thoại tới số điện thoại: 0922 222 016</li>
+        <li>Gửi thông tin tới địa chỉ email: huyndhe176876@fpt.edu.vn</li>
+        <li>Gọi điện thoại tới số điện thoại:  0912 202 885</li>
         <li>Liên hệ với nhân viên phụ trách đơn hàng của quý khách</li>
       </Typography>
 
@@ -105,15 +105,15 @@ export default function UserGuide() {
       </Typography>
       <Typography component="ul" sx={{ color: "text.secondary", pl: 3 }}>
         <li>
-          Longwave luôn có trách nhiệm tiếp nhận và xử lý khiếu nại của khách hàng liên quan đến giao dịch
-          tại: longwave.com
+          𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 luôn có trách nhiệm tiếp nhận và xử lý khiếu nại của khách hàng liên quan đến giao dịch
+          tại: 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮.com
         </li>
         <li>
-          Khi có tranh chấp xảy ra, quý khách hàng liên hệ ngay với Longwave theo số hotline: 0922 222 016
-          hoặc gửi email: info@longwave.com. Chúng tôi sẽ liên hệ lại ngay để giải quyết
+          Khi có tranh chấp xảy ra, quý khách hàng liên hệ ngay với 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 theo số hotline: 0912 202 885
+          hoặc gửi email: info@𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮.com. Chúng tôi sẽ liên hệ lại ngay để giải quyết
         </li>
         <li>
-          Mọi tranh chấp giữa Longwave và khách hàng sẽ được giải quyết trên cơ sở thương lượng. Nếu không đạt
+          Mọi tranh chấp giữa 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 và khách hàng sẽ được giải quyết trên cơ sở thương lượng. Nếu không đạt
           thỏa thuận, các bên có thể đưa vụ việc ra Tòa án kinh tế
         </li>
         <li>

@@ -15,15 +15,15 @@ const AboutUs = () => {
       <Box sx={{ maxWidth: 1080, mx: "auto", p: { xs: "48px 16px 0 16px", md: "48px 16px 0 16px" } }}>
         {/* Heading */}
         <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, color: "text.primary" }}>
-          Về LongWave
+          Về 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮
         </Typography>
         {/* Section 1 */}
         <Box sx={{ mb: 4.5 }}>
           <Typography component="span" sx={{ fontSize: 18, fontWeight: "bold", color: "text.primary" }}>
-            1. Chúng tôi là LongWave
+            1. Chúng tôi là 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮
           </Typography>
           <Typography sx={{ mt: 1.5, color: "text.secondary", maxWidth: 850, lineHeight: 1.7 }}>
-            LongWave.com là sản phẩm chính thức của Công ty TNHH Du lịch và dịch vụ Long Wave. Với niềm đam mê du lịch, ưa khám phá, chúng tôi đã cùng nhau xây dựng một website – nơi mà khách hàng sẽ dễ dàng lựa chọn cho mình cũng như những người thân yêu chuyến nghỉ dưỡng đáng nhớ. Long Wave chọn lọc các du thuyền, khách sạn và liên kết với các hãng hàng không nhằm cung cấp những dịch vụ đa dạng và tốt nhất cho du khách.
+            𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮.com là sản phẩm chính thức của Công ty TNHH Du lịch và dịch vụ 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Với niềm đam mê du lịch, ưa khám phá, chúng tôi đã cùng nhau xây dựng một website – nơi mà khách hàng sẽ dễ dàng lựa chọn cho mình cũng như những người thân yêu chuyến nghỉ dưỡng đáng nhớ. 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 chọn lọc các du thuyền, khách sạn và liên kết với các hãng hàng không nhằm cung cấp những dịch vụ đa dạng và tốt nhất cho du khách.
           </Typography>
         </Box>
         {/* Section 2 */}
@@ -32,7 +32,7 @@ const AboutUs = () => {
             2. Tại sao chọn chúng tôi?
           </Typography>
           <Typography sx={{ mt: 1.5, color: "text.secondary", maxWidth: 850, lineHeight: 1.7 }}>
-            Chúng tôi mong muốn du khách tận hưởng các dịch vụ du lịch chất lượng bằng sự trải nghiệm thực tế của chính đội ngũ của Long Wave. Các video về du thuyền, khách sạn hay những chuyến bay mà chúng tôi đã ghi lại cũng sẽ được chúng tôi giới thiệu tới du khách. Chính từ những hình ảnh này, quý khách có thể chọn lựa cho mình hay gia đình, bạn bè, đồng nghiệp những chuyến đi ý nghĩa nhất. Chúng tôi chắc chắn sẽ mang lại cho du khách những kỳ nghỉ đáng nhớ với:
+            Chúng tôi mong muốn du khách tận hưởng các dịch vụ du lịch chất lượng bằng sự trải nghiệm thực tế của chính đội ngũ của 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Các video về du thuyền, khách sạn hay những chuyến bay mà chúng tôi đã ghi lại cũng sẽ được chúng tôi giới thiệu tới du khách. Chính từ những hình ảnh này, quý khách có thể chọn lựa cho mình hay gia đình, bạn bè, đồng nghiệp những chuyến đi ý nghĩa nhất. Chúng tôi chắc chắn sẽ mang lại cho du khách những kỳ nghỉ đáng nhớ với:
           </Typography>
 
           {/* Box grid */}
@@ -101,7 +101,7 @@ const AboutUs = () => {
                 <Typography sx={{ color: "text.secondary", lineHeight: 1.6, fontSize: 15 }}>
                   Tại địa chỉ website:{" "}
                   <Link href="https://noexist_example.com" sx={{ color: "primary.main" }}>
-                    https://LongWave.com
+                    https://𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮.com
                   </Link>{" "}
                   của chúng tôi, du khách có thể dễ dàng tìm thấy một du thuyền sang trọng, một chuyến bay khứ hồi hay một khu nghỉ dưỡng tuyệt đẹp ở mọi miền đất nước. Chúng tôi cũng đưa ra những thông tin đầy đủ, hình ảnh thực tế về các dịch vụ chất lượng. Qua đó, du khách sẽ chọn lựa cho mình hoặc cho gia đình bạn bè, đồng nghiệp một chuyến đi phù hợp, an lành, hạnh phúc.
                 </Typography>
@@ -132,7 +132,7 @@ const AboutUs = () => {
                   Mức giá hấp dẫn
                 </Typography>
                 <Typography sx={{ color: "text.secondary", lineHeight: 1.6, fontSize: 15 }}>
-                  Long Wave luôn cam kết sẽ đem đến các dịch vụ chất lượng với các mức giá tốt nhất. Chúng tôi tin chắc rằng chi phí mà quý khách thanh toán là hoàn toàn xứng đáng. Bên cạnh đó, quý khách cũng có thể tìm thấy nhiều món quà hấp dẫn trong những đợt khuyến mại trên website của chúng tôi.
+                  𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 luôn cam kết sẽ đem đến các dịch vụ chất lượng với các mức giá tốt nhất. Chúng tôi tin chắc rằng chi phí mà quý khách thanh toán là hoàn toàn xứng đáng. Bên cạnh đó, quý khách cũng có thể tìm thấy nhiều món quà hấp dẫn trong những đợt khuyến mại trên website của chúng tôi.
                 </Typography>
               </Box>
             </Box>
@@ -161,7 +161,7 @@ const AboutUs = () => {
                   Bảo mật thông tin
                 </Typography>
                 <Typography sx={{ color: "text.secondary", lineHeight: 1.6, fontSize: 15 }}>
-                  Chúng tôi cam kết toàn bộ mọi thông tin cá nhân của khách hàng sẽ được giữ bảo mật tuyệt đối. Quý khách có thể toàn yên tâm trải nghiệm dịch vụ thực sự thoải mái và riêng tư. Hy vọng LongWave.com sẽ là một địa chỉ tin cậy trong mỗi chuyến đi, mỗi kỳ nghỉ của quý khách.
+                  Chúng tôi cam kết toàn bộ mọi thông tin cá nhân của khách hàng sẽ được giữ bảo mật tuyệt đối. Quý khách có thể toàn yên tâm trải nghiệm dịch vụ thực sự thoải mái và riêng tư. Hy vọng 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮.com sẽ là một địa chỉ tin cậy trong mỗi chuyến đi, mỗi kỳ nghỉ của quý khách.
                 </Typography>
               </Box>
             </Box>
@@ -174,7 +174,7 @@ const AboutUs = () => {
             3. Sản phẩm dịch vụ
           </Typography>
           <Typography sx={{ mt: 1.5, color: "text.secondary", maxWidth: 850, lineHeight: 1.7 }}>
-            Long Wave cung cấp nhiều dịch vụ du lịch phong phú và đa dạng giúp du khách có nhiều lựa chọn:
+            𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 cung cấp nhiều dịch vụ du lịch phong phú và đa dạng giúp du khách có nhiều lựa chọn:
           </Typography>
           <Box component="ul" sx={{ lineHeight: 1.7, mb: 1, color: "text.secondary" }}>
             <li>Du thuyền Hạ Long với đa dạng du thuyền, phù hợp với từng nhu cầu của du khách</li>
@@ -219,7 +219,7 @@ const AboutUs = () => {
               </Link>
             </Box>
             <Typography sx={{ fontSize: 15, color: "text.secondary", lineHeight: 1.7 }}>
-              FARES., JSC cung cấp các giải pháp toàn diện về chuyển đổi số cho doanh nghiệp: Phát triển phần mềm theo yêu cầu, xây dựng hệ thống thông tin, xử lý và phân tích dữ liệu lớn phục vụ chiến lược Marketing, kinh doanh & quản lý. Với đội ngũ chuyên gia tài năng và kinh nghiệm, FARES., JSC cam kết mang đến những giải pháp tối ưu và sáng tạo, giúp khách hàng tận dụng tối đa tiềm năng của công nghệ để nâng cao hiệu suất kinh doanh và tạo cơ sở cạnh tranh trong môi trường kinh doanh ngày càng phức tạp. FARES., JSC đã hỗ trợ và đồng hành cùng LongWave trong việc xây dựng hệ thống website, nhằm mang lại cho khách hàng những thông tin nhanh và tin cậy nhất.
+              FARES., JSC cung cấp các giải pháp toàn diện về chuyển đổi số cho doanh nghiệp: Phát triển phần mềm theo yêu cầu, xây dựng hệ thống thông tin, xử lý và phân tích dữ liệu lớn phục vụ chiến lược Marketing, kinh doanh & quản lý. Với đội ngũ chuyên gia tài năng và kinh nghiệm, FARES., JSC cam kết mang đến những giải pháp tối ưu và sáng tạo, giúp khách hàng tận dụng tối đa tiềm năng của công nghệ để nâng cao hiệu suất kinh doanh và tạo cơ sở cạnh tranh trong môi trường kinh doanh ngày càng phức tạp. FARES., JSC đã hỗ trợ và đồng hành cùng 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 trong việc xây dựng hệ thống website, nhằm mang lại cho khách hàng những thông tin nhanh và tin cậy nhất.
             </Typography>
           </Box>
           {/* Zestif partner box */}
@@ -276,8 +276,8 @@ const AboutUs = () => {
             }}
           >
             <Typography component="span" sx={{ fontWeight: "bold", color: "text.primary" }}>
-              CÔNG TY TNHH DU LỊCH VÀ DỊCH VỤ Long Wave
-              <br /> Long Wave TRAVEL AND SERVICE COMPANY LIMITED
+              CÔNG TY TNHH DU LỊCH VÀ DỊCH VỤ 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮
+              <br /> 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 TRAVEL AND SERVICE COMPANY LIMITED
             </Typography>
             <Box sx={{ mt: 2, mb: 0.5, color: "text.secondary" }}>
               Mã số thuế: 88888888888
@@ -290,9 +290,9 @@ const AboutUs = () => {
             <Box sx={{ mt: 1.25, mb: 0.5, color: "text.secondary" }}>
               Hà Nội: Km29 Đại học FPT, khu CNC Hoà Lạc, huyện Thạch Thất, TP. Hà Nội
               <br />
-              Điện thoại: 0123456789
+              Điện thoại: 0912 202 885
               <br />
-              Địa chỉ email: info@LongWave.com
+              Địa chỉ email: huyndhe176876@fpt.edu.vn
             </Box>
           </Box>
         </Box>
