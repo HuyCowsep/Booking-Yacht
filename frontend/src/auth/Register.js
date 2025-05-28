@@ -278,35 +278,7 @@ export default function Register() {
                 }}
               />
             </Box>
-            <Box className="form-group" sx={{ mb: 2 }}>
-              <Typography
-                component="label"
-                htmlFor="address"
-                color="text.primary"
-                sx={{ mb: 1, fontSize: "1rem" }}
-              >
-                Địa chỉ
-              </Typography>
-              <TextField
-                fullWidth
-                id="address"
-                type="text"
-                placeholder="Nhập địa chỉ"
-                variant="outlined"
-                margin="normal"
-                value={formData.address}
-                onChange={handleChange}
-                sx={{
-                  mt: 1,
-                  "& .MuiOutlinedInput-root": {
-                    background: "rgba(255, 255, 255, 0.2)",
-                    "& input": { color: "white" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
-                  },
-                  "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
-                }}
-              />
-            </Box>
+            
             <Grid container spacing={2} sx={{ mb: 2 }}>
               <Grid item xs={12} sm={6}>
                 <Typography

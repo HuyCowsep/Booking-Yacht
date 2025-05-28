@@ -121,7 +121,7 @@ export default function Footer() {
               component="img"
               src="/images/logo-bo-cong-thuong.png"
               alt="Đã thông báo Bộ Công thương"
-              sx={{ height: 48, mt: 2 }}
+              sx={{ height: 75, width: 200, mt: 2 }}
             />
           </Grid>
         </Grid>

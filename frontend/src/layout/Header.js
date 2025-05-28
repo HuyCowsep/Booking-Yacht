@@ -147,7 +147,7 @@ export default function Header({ toggleTheme, mode }) {
           {customer ? (
             <>
               <Typography variant="body1" color="text.primary" sx={{ fontWeight: 500 }}>
-                Xin chào, {customer.fullName}!
+                Xin chào, {customer.fullName || customer.username}
               </Typography>
               <Button
                 variant="outlined"

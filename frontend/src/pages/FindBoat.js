@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Box, Container, Grid, Stack, Typography, TextField, InputAdornment, MenuItem, Paper } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+  TextField,
+  InputAdornment,
+  MenuItem,
+  Paper,
+  Button,
+} from "@mui/material";
 import FilterAltOutlined from "@mui/icons-material/FilterAltOutlined";
 import axios from "axios";
 import SearchBar from "../components/FindBoat/SearchBar";
@@ -235,154 +246,186 @@ const FindBoat = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      {/* SearchBar */}
-      <Paper
-        sx={{
-          p: 3,
-          mb: 3,
-          borderRadius: "32px",
-          border: "1px solid",
-          borderColor: (theme) => theme.palette.divider,
-          bgcolor: (theme) => theme.palette.background.paper,
-          boxShadow: (theme) => theme.shadows[1],
-        }}
-      >
-        <Typography
-          variant="h4"
-          align="center"
-          fontWeight="bold"
-          sx={{ my: 3, fontFamily: "Archivo, sans-serif", color: "text.primary" }}
-        >
-          Bạn lựa chọn du thuyền Hạ Long nào?
-        </Typography>
-        <Typography
-          align="center"
-          color="text.secondary"
-          sx={{ mb: 2, fontFamily: "Archivo, sans-serif", opacity: 0.6 }}
-        >
-          Hơn 100 tour du thuyền hạng sang giá tốt đang chờ bạn
-        </Typography>
-        <SearchBar
-          uniqueDeparturePoints={uniqueDeparturePoints}
-          priceRanges={priceRanges}
-          setCurrentPage={(page) => dispatch(setCurrentPage(page))}
-        />
-      </Paper>
-
-      {/* Results count and sort */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          mb: 3,
-          mt: 10,
-          fontFamily: (theme) => theme.typography.fontFamily,
-        }}
-      >
-        <Box
-          sx={(theme) => ({
-            display: "flex",
-            flexDirection: "column",
-            bgcolor: theme.palette.background.paper,
-            borderRadius: 32,
-            p: theme.spacing(0.625, 2.5),
-          })}
+    <Box
+      sx={(theme) => ({
+        py: 4,
+        px: { xs: 2, md: 4 }, // padding ngang cho responsive
+        backgroundImage: theme.palette.mode === "light" ? 'url("/images/background-findboat.jpg")' : "none",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+      })}
+    >
+      <Container maxWidth="lg" sx={{ py: 4 }}>
+        {/* SearchBar */}
+        <Paper
+          sx={{
+            p: 3,
+            mb: 3,
+            borderRadius: "32px",
+            border: "1px solid",
+            borderColor: (theme) => theme.palette.divider,
+            bgcolor: (theme) => theme.palette.background.paper,
+            boxShadow: (theme) => theme.shadows[1],
+          }}
         >
           <Typography
             variant="h4"
-            sx={{
-              color: "text.primary",
-              fontWeight: "bold",
-            }}
+            align="center"
+            fontWeight="bold"
+            sx={{ my: 3, fontFamily: "Archivo, sans-serif", color: "text.primary" }}
           >
-            Tìm thấy {sortedYachts.length} kết quả
+            Bạn lựa chọn du thuyền Hạ Long nào?
           </Typography>
-          <Box
-            sx={{
-              width: "48px",
-              height: "2px",
-              backgroundColor: "primary.main",
-              ml: "4px",
-            }}
+          <Typography
+            align="center"
+            color="text.secondary"
+            sx={{ mb: 2, fontFamily: "Archivo, sans-serif", opacity: 0.6 }}
+          >
+            Hơn 100 tour du thuyền hạng sang giá tốt đang chờ bạn
+          </Typography>
+          <SearchBar
+            uniqueDeparturePoints={uniqueDeparturePoints}
+            priceRanges={priceRanges}
+            setCurrentPage={(page) => dispatch(setCurrentPage(page))}
           />
+        </Paper>
+
+        {/* Results count and sort */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mb: 3,
+            mt: 10,
+            fontFamily: (theme) => theme.typography.fontFamily,
+          }}
+        >
+          <Box
+            sx={(theme) => ({
+              display: "flex",
+              flexDirection: "column",
+              bgcolor: theme.palette.background.paper,
+              borderRadius: 32,
+              p: theme.spacing(0.625, 2.5),
+            })}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                color: "text.primary",
+                fontWeight: "bold",
+              }}
+            >
+              Tìm thấy {sortedYachts.length} kết quả
+            </Typography>
+            <Box
+              sx={{
+                width: "48px",
+                height: "2px",
+                backgroundColor: "primary.main",
+                ml: "4px",
+              }}
+            />
+          </Box>
+
+          <TextField
+            select
+            value={sortOption}
+            onChange={(e) => dispatch(setSortOption(e.target.value))}
+            SelectProps={{ displayEmpty: true }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <FilterAltOutlined color="action" />
+                </InputAdornment>
+              ),
+            }}
+            size="small"
+            sx={(theme) => ({
+              minWidth: 180,
+              bgcolor: theme.palette.background.paper,
+              borderRadius: 32,
+              "& .MuiOutlinedInput-root": {
+                borderRadius: 32,
+                height: 50,
+                fontFamily: theme.typography.fontFamily,
+                fontWeight: 500,
+                border: 0,
+              },
+            })}
+          >
+            {sortOptions.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
         </Box>
 
-        <TextField
-          select
-          value={sortOption}
-          onChange={(e) => dispatch(setSortOption(e.target.value))}
-          SelectProps={{ displayEmpty: true }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <FilterAltOutlined color="action" />
-              </InputAdornment>
-            ),
-          }}
-          size="small"
-          sx={(theme) => ({
-            minWidth: 180,
-            bgcolor: theme.palette.background.paper,
-            borderRadius: 32,
-            "& .MuiOutlinedInput-root": {
-              borderRadius: 32,
-              height: 50,
-              fontFamily: theme.typography.fontFamily,
-              fontWeight: 500,
-              border: 0,
-            },
-          })}
-        >
-          {sortOptions.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-      </Box>
+        {/* Main content */}
+        <Grid container spacing={3}>
+          {/* FilterSidebar */}
+          <Grid item xs={12} md={3}>
+            <FilterSidebar
+              availableServices={availableServices}
+              availableDurations={availableDurations}
+              serviceShowCount={serviceShowCount}
+              setServiceShowCount={setServiceShowCount}
+              setCurrentPage={(page) => dispatch(setCurrentPage(page))}
+              onClearFilters={handleClearFilters}
+            />
+          </Grid>
 
-      {/* Main content */}
-      <Grid container spacing={3}>
-        {/* FilterSidebar */}
-        <Grid item xs={12} md={3}>
-          <FilterSidebar
-            availableServices={availableServices}
-            availableDurations={availableDurations}
-            serviceShowCount={serviceShowCount}
-            setServiceShowCount={setServiceShowCount}
-            setCurrentPage={(page) => dispatch(setCurrentPage(page))}
-            onClearFilters={handleClearFilters}
-          />
+          {/* Cruise cards và Phân trang */}
+          <Grid item xs={12} md={9}>
+            <Stack spacing={3}>
+              {loading ? (
+                <Typography align="center">Đang tải...</Typography>
+              ) : error ? (
+                <Typography color="error" align="center">
+                  {error}
+                </Typography>
+              ) : currentYachts.length === 0 ? (
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  alignItems="center"
+                  justifyContent="center"
+                  textAlign="center"
+                >
+                  <img
+                    src="/images/sad.jpg"
+                    alt="Không tìm thấy"
+                    style={{ width: "650px", marginBottom: "16px", borderRadius: "20px" }}
+                  />
+                  <Typography variant="h4" gutterBottom>
+                    Rất tiếc, 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 không tìm thấy kết quả nào cho bạn 😭 
+                  </Typography>
+                  <Typography variant="body1" gutterBottom>
+                    Nhấn "Ok" để quay lại trang tìm kiếm. Hoặc xoá bộ lọc để xem lại tất cả
+                  </Typography>
+                  <Button variant="contained" color="primary" href="/find-boat" sx={{ mt: 2, width: 150 }}>
+                    Ok →
+                  </Button>
+                </Box>
+              ) : (
+                currentYachts.map((yacht) => <CruiseCard key={yacht._id} cruise={yacht} />)
+              )}
+            </Stack>
+
+            {/* PaginationSection */}
+            <PaginationSection
+              totalPages={totalPages}
+              filteredYachts={sortedYachts}
+              indexOfFirstItem={indexOfFirstItem}
+              indexOfLastItem={indexOfLastItem}
+            />
+          </Grid>
         </Grid>
-
-        {/* Cruise cards và Phân trang */}
-        <Grid item xs={12} md={9}>
-          <Stack spacing={3}>
-            {loading ? (
-              <Typography align="center">Đang tải...</Typography>
-            ) : error ? (
-              <Typography color="error" align="center">
-                {error}
-              </Typography>
-            ) : currentYachts.length === 0 ? (
-              <Typography align="center">Không tìm thấy du thuyền nào.</Typography>
-            ) : (
-              currentYachts.map((yacht) => <CruiseCard key={yacht._id} cruise={yacht} />)
-            )}
-          </Stack>
-
-          {/* PaginationSection */}
-          <PaginationSection
-            totalPages={totalPages}
-            filteredYachts={sortedYachts}
-            indexOfFirstItem={indexOfFirstItem}
-            indexOfLastItem={indexOfLastItem}
-          />
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </Box>
   );
 };
 
