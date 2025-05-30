@@ -15,7 +15,7 @@ const Schedule = require('./schedule');
 const ScheduleTask = require('./scheduleTask');
 const Service = require('./service');
 const Transaction = require('./transaction');
-const YachtImages = require('./yachtImages');
+const YachtImage = require('./yachtImages');
 const YachtSchedule = require('./yachtSchedule');
 const YachtSchema = require('./yachtSchema');
 const YachtService = require('./yachtService');
@@ -39,7 +39,7 @@ module.exports = {
   ScheduleTask,
   Service,
   Transaction,
-  YachtImages,
+  YachtImage,
   YachtSchedule,
   YachtSchema,
   YachtService,

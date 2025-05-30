@@ -3,7 +3,8 @@ const { Schema } = mongoose;
 
 const yachtImageSchema = new Schema({
   yachtId: { type: mongoose.Schema.Types.ObjectId, ref: "Yacht" },
-  imageUrl: String,
+  imageUrl: [String],
 });
 
 module.exports = mongoose.model("YachtImage", yachtImageSchema);
+// done
