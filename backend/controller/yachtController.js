@@ -72,13 +72,14 @@ const searchYachts = async (req, res) => {
 
     // Lọc theo số sao
     if (stars) {
-      const starArray = stars.split(',').map(Number);
+      const starArray = stars.split(",").map(Number);
       yachts = await Promise.all(
         yachts.map(async (yacht) => {
           const feedbacks = await Feedback.find({ yachtId: yacht._id });
-          const avgRating = feedbacks.length > 0
-            ? Math.round(feedbacks.reduce((sum, fb) => sum + fb.starRating, 0) / feedbacks.length)
-            : 0;
+          const avgRating =
+            feedbacks.length > 0
+              ? Math.round(feedbacks.reduce((sum, fb) => sum + fb.starRating, 0) / feedbacks.length)
+              : 0;
           return starArray.includes(avgRating) ? yacht : null;
         })
       );
@@ -87,10 +88,10 @@ const searchYachts = async (req, res) => {
 
     // Lọc theo thời gian
     if (durations) {
-      const durationArray = durations.split(',');
+      const durationArray = durations.split(",");
       yachts = await Promise.all(
         yachts.map(async (yacht) => {
-          const schedules = await YachtSchedule.find({ yachtId: yacht._id }).populate('scheduleId');
+          const schedules = await YachtSchedule.find({ yachtId: yacht._id }).populate("scheduleId");
           const yachtDurations = schedules.map((schedule) => {
             const startDate = new Date(schedule.scheduleId.startDate);
             const endDate = new Date(schedule.scheduleId.endDate);
@@ -105,10 +106,10 @@ const searchYachts = async (req, res) => {
 
     // Lọc theo tiện ích
     if (features) {
-      const featureArray = features.split(',');
+      const featureArray = features.split(",");
       yachts = await Promise.all(
         yachts.map(async (yacht) => {
-          const services = await YachtService.find({ yachtId: yacht._id }).populate('serviceId');
+          const services = await YachtService.find({ yachtId: yacht._id }).populate("serviceId");
           const yachtFeatures = services.map((service) => service.serviceId?.serviceName).filter(Boolean);
           return featureArray.every((f) => yachtFeatures.includes(f)) ? yacht : null;
         })
@@ -173,4 +174,67 @@ const getSchedulesByYacht = async (req, res) => {
   }
 };
 
-module.exports = { getAllYacht, getAllServices, searchYachts, getFeedbacksByYacht, getSchedulesByYacht };
+// Hàm lấy thông tin du thuyền theo id
+const getYachtById = async (req, res) => {
+  try {
+    const yacht = await YachtSchema.findById(req.params.id)
+      .populate("locationId", "-_id name")
+      .populate("yachtTypeId", "-_id name ranking")
+      .populate("IdCompanys", "-_id name address logo");
+
+    if (!yacht) {
+      return res.status(404).json({
+        success: false,
+        message: "Không tìm thấy du thuyền với id này",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Lấy thông tin du thuyền thành công",
+      data: yacht,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Lỗi server khi lấy thông tin du thuyền",
+      error: err.message,
+    });
+  }
+};
+// Hàm lấy tất cả dịch vụ của du thuyền theo id
+const getServicesByYachtId = async (req, res) => {
+  try {
+    const yachtId = req.params.id;
+    const services = await YachtService.find({ yachtId })
+      .populate({ path: "serviceId", select: "-_id serviceName price" })
+      .populate({ path: "yachtId", select: "-_id name" });
+    if (!services || services.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Không tìm thấy dịch vụ cho du thuyền này",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Lấy danh sách dịch vụ thành công",
+      data: services,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Lỗi khi lấy danh sách dịch vụ",
+      error: error.message,
+    });
+  }
+};
+
+module.exports = {
+  getAllYacht,
+  getAllServices,
+  searchYachts,
+  getFeedbacksByYacht,
+  getSchedulesByYacht,
+  getYachtById,
+  getServicesByYachtId,
+};

@@ -26,9 +26,13 @@ app.use("/api/v1/accounts", require("./routers/accountRouter"));
 app.use("/api/v1/customers", require("./routers/customerRouter"));
 // COMPANIES ROUTES
 app.use("/api/v1/companies", require("./routers/companyRouter"));
-
 // YACHTS ROUTES
 app.use("/api/v1/yachts", require("./routers/yachtRouter"));
+app.use("/api/v1/yachtImages", require("./routers/yachtImageRouter"));
+// ROOMS ROUTES
+app.use("/api/v1/rooms", require("./routers/roomRouter"));
+//FEEDBACK ROUTES
+app.use("/api/v1/feedback", require("./routers/feedbackRouter"));
 
 const PORT = process.env.PORT || 9999;
 

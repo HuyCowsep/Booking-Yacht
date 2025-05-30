@@ -39,7 +39,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/find-boat" element={<FindBoat />} />
-          <Route path="/boat-detail" element={<DetailBoat />} />
+          <Route path="/boat-detail/:id" element={<DetailBoat />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/ve-chung-toi" element={<AboutUs />} />

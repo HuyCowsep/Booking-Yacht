@@ -1,5 +1,68 @@
 [{
   "_id": {
+    "$oid": "68303eea1bcac249a1aaa868"
+  },
+  "serviceName": "Chèo thuyền Kayak",
+  "price": 200000
+},
+{
+  "_id": {
+    "$oid": "68303eea1bcac249a1aaa869"
+  },
+  "serviceName": "Lặn biển ngắm san hô",
+  "price": 800000
+},
+{
+  "_id": {
+    "$oid": "68303eea1bcac249a1aaa86a"
+  },
+  "serviceName": "Tham quan hang động",
+  "price": 150000
+},
+{
+  "_id": {
+    "$oid": "68303eea1bcac249a1aaa86b"
+  },
+  "serviceName": "Lớp học nấu ăn",
+  "price": 350000
+},
+{
+  "_id": {
+    "$oid": "68303eea1bcac249a1aaa86c"
+  },
+  "serviceName": "Câu mực đêm",
+  "price": 400000
+},
+{
+  "_id": {
+    "$oid": "68303eea1bcac249a1aaa86d"
+  },
+  "serviceName": "Tiệc BBQ trên boong",
+  "price": 700000
+},
+{
+  "_id": {
+    "$oid": "68303eea1bcac249a1aaa86e"
+  },
+  "serviceName": "Yoga buổi sáng",
+  "price": 100000
+},
+{
+  "_id": {
+    "$oid": "68303eea1bcac249a1aaa86f"
+  },
+  "serviceName": "Dịch vụ đưa đón sân bay",
+  "price": 600000
+},
+{
+  "_id": {
+    "$oid": "68303eea1bcac249a1aaa870"
+  },
+  "serviceName": "Thuê trang phục truyền thống",
+  "price": 250000
+},
+{
+  "_id": {
     "$oid": "682aac9a81f0fd7069e74049"
   },
   "serviceName": "Spa & Massage",
@@ -9,7 +72,7 @@
   "_id": {
     "$oid": "682aac9a81f0fd7069e7404a"
   },
-  "serviceName": "Bữa tối lãng mạn tại boong tàu",
+  "serviceName": "Bữa tối lãng mạn",
   "price": 1000000
 },
 {

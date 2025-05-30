@@ -79,7 +79,7 @@ const CruiseCard = ({ cruise }) => {
   console.log(`CruiseCard ${name}:`, { services, durations, selectedDurations, durationDisplay });
 
   return (
-    <Link to="/boat-detail" style={{ textDecoration: "none" }}>
+    <Link to={`/boat-detail/${yachtId}`} style={{ textDecoration: "none" }}>
     <Card
       key={id}
       sx={{

@@ -1,0 +1,104 @@
+[{
+  "_id": {
+    "$oid": "683add964fffc4ea6a39d800"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  },
+  "imageUrl": [
+    "https://images.pexels.com/photos/843633/pexels-photo-843633.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/1223649/pexels-photo-1223649.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/271681/pexels-photo-271681.jpeg?auto=compress&cs=tinysrgb&w=600"
+  ]
+},
+{
+  "_id": {
+    "$oid": "683add964fffc4ea6a39d801"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "imageUrl": [
+    "/images/yacht-2.jpg",
+    "/images/yacht-7.jpg",
+    "/images/yacht-3.jpg"
+  ]
+},
+{
+  "_id": {
+    "$oid": "683add964fffc4ea6a39d802"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72f"
+  },
+  "imageUrl": [
+    "/images/yacht-3.jpg",
+    "/images/yacht-6.jpg",
+    "/images/yacht-4.jpg"
+  ]
+},
+{
+  "_id": {
+    "$oid": "683add964fffc4ea6a39d803"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d730"
+  },
+  "imageUrl": [
+    "/images/yacht-4.jpg",
+    "/images/yacht-2.jpg",
+    "/images/yacht-1.jpg"
+  ]
+},
+{
+  "_id": {
+    "$oid": "683add964fffc4ea6a39d804"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d731"
+  },
+  "imageUrl": [
+    "/images/yacht-5.jpg",
+    "/images/yacht-7.jpg",
+    "/images/yacht-8.jpg"
+  ]
+},
+{
+  "_id": {
+    "$oid": "683add964fffc4ea6a39d805"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d732"
+  },
+  "imageUrl": [
+    "/images/yacht-6.jpg",
+    "/images/yacht-4.jpg",
+    "/images/yacht-3.jpg"
+  ]
+},
+{
+  "_id": {
+    "$oid": "683add964fffc4ea6a39d806"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d733"
+  },
+  "imageUrl": [
+    "/images/yacht-7.jpg",
+    "/images/yacht-5.jpg",
+    "/images/yacht-2.jpg"
+  ]
+},
+{
+  "_id": {
+    "$oid": "683add964fffc4ea6a39d807"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d734"
+  },
+  "imageUrl": [
+    "/images/yacht-8.jpg",
+    "/images/yacht-6.jpg",
+    "/images/yacht-7.jpg"
+  ]
+}]

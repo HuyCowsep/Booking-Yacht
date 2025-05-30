@@ -128,7 +128,7 @@ export default function Footer() {
         <Box textAlign="center" mt={6} sx={{ opacity: 0.7 }}>
           <Typography fontSize={14} color="text.primary" fontWeight="bold">
             &copy; 2025 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Bản quyền thuộc về 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Đã đăng ký bản quyền.
-            Thiết kế bởi <span style={{color:"red"}}>HuyCowsep</span>
+            Thiết kế bởi HuyCowsep
           </Typography>
         </Box>
       </Box>

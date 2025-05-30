@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const feedbackSchema = new Schema({
-  starRating: Number,
-  description: String,
+  starRating: { type: Number, required: true },
+  description: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
-  idBooking: { type: String, unique: true },
-  customerId: { type: mongoose.Schema.Types.ObjectId, ref: "Customer" },
-  yachtId: { type: mongoose.Schema.Types.ObjectId, ref: "Yacht" },
+  customerId: { type: mongoose.Schema.Types.ObjectId, ref: "Customer", required: true },
+  yachtId: { type: mongoose.Schema.Types.ObjectId, ref: "Yacht", required: true },
 });
 
 module.exports = mongoose.model("Feedback", feedbackSchema, "feedbacks");

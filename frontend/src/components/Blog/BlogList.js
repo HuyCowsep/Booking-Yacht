@@ -59,7 +59,7 @@ export default function BlogList() {
       }}
     >
       <Container maxWidth="lg">
-        <Typography variant="h4" gutterBottom fontWeight="bold">
+        <Typography variant="h4" gutterBottom fontWeight="bold" color="primary.main" textAlign="center" py={3}>
           Bài viết mới nhất
         </Typography>
 

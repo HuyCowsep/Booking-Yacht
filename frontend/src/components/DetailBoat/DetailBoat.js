@@ -493,7 +493,7 @@ function DetailBoat() {
                         <FaAnchor size={20} />
                         <p class="font-normal">Hạ Thủy</p>
                       </div>
-                      <p class="text-gray-900 font-medium">2018</p>
+                      <p class="text-gray-900 font-medium">9999</p>
                     </div>
                     <div class="item flex gap-6 items-start">
                       <div class="icon-text text-gray-600 flex gap-2 items-center">
