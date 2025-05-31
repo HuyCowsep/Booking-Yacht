@@ -1,28 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import { Box, Typography, Divider, Stack, CircularProgress, Chip, Link } from "@mui/material";
+import { Image } from "react-bootstrap";
+import { setReviewSearchTerm, setReviewCurrentPage } from "../../redux/action";
+import { fetchReviews } from "../../redux/asyncActions";
 import ReviewHeader from "./Reviews/ReviewHeader";
 import ReviewList from "./Reviews/ReviewList";
 import ReviewForm from "./Reviews/ReviewForm";
 import ReviewPagination from "./Reviews/ReviewPagination";
 import RatingOverview from "./Reviews/RatingOverview";
-import { Image } from "react-bootstrap";
-import { setReviewSearchTerm, setReviewCurrentPage } from "../../redux/action";
-import { fetchReviews } from "../../redux/asyncActions";
 
 export default function ReviewSection({ yachtId }) {
   const dispatch = useDispatch();
-  const {
-    reviews,
-    ratingData,
-    currentPage,
-    totalPages,
-    searchTerm,
-    loading,
-    error,
-  } = useSelector((state) => state.reviews);
+  const { reviews, ratingData, currentPage, totalPages, searchTerm, loading, error } = useSelector(
+    (state) => state.reviews
+  );
+  const formRef = useRef(null); // Ref cho ReviewForm
+  const loginMessageRef = useRef(null); // Ref cho thông báo đăng nhập
   const { isAuthenticated, customer } = useSelector((state) => state.auth);
+
+  // Hàm cuộn đến ReviewForm hoặc thông báo đăng nhập
+  const scrollToForm = () => {
+    const targetRef = isAuthenticated ? formRef : loginMessageRef;
+    if (targetRef.current) {
+      targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Điều chỉnh offset để bù cho sticky header (Tabs có top: 100px)
+      setTimeout(() => {
+        window.scrollBy({ top: -120, behavior: "smooth" }); // Bù 120px cho header
+      }, 0);
+    }
+  };
 
   useEffect(() => {
     if (yachtId) {
@@ -36,54 +44,91 @@ export default function ReviewSection({ yachtId }) {
   };
 
   return (
-    <div className="my-6 pt-6">
+    <Box sx={{ my: 6, pt: 6 }}>
       <ReviewHeader
-        totalReviews={ratingData.total}
+        totalReviews={ratingData.total || 0}
         onSearch={handleSearch}
         isAuthenticated={isAuthenticated}
+        scrollToForm={scrollToForm}
       />
-      <Image src="../icons/heading-border.webp" className="pt-5" />
-      <div className="border-gray-300 mb-6 pt-4">
-        {loading && <div>Đang tải đánh giá...</div>}
-        {error && <div className="text-red-500">{error}</div>}
+      <Box sx={{ pt: 5 }}>
+        <Image src="/images/border.jpg" />
+      </Box>
+      <Box sx={{ mb: 6, pt: 4 }}>
+        {loading && (
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", py: 4 }}>
+            <CircularProgress size={24} sx={{ mr: 2 }} />
+            <Typography variant="body1" color="text.secondary">
+              Đang tải đánh giá...
+            </Typography>
+          </Box>
+        )}
+        {error && (
+          <Typography variant="body1" color="error.main" align="center" sx={{ py: 4 }}>
+            {error}
+          </Typography>
+        )}
         <RatingOverview ratingData={ratingData} />
         <ReviewList reviews={reviews} />
-        <div className="flex items-center justify-between">
-          <Box
-            className="text-sm"
-            sx={{ color: (theme) => theme.palette.text.secondary }}
-          >
-            Đang xem:{" "}
-            <span className="font-medium rounded-full border-2 border-gray-300 px-3 py-2">
-              {reviews.length}
-            </span>{" "}
-            của <span className="font-medium">{ratingData.total}</span>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mt: 4 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, color: "text.secondary" }}>
+            <Typography variant="body2">Đang xem:</Typography>
+            <Chip
+              label={reviews.length}
+              sx={{
+                fontWeight: "medium",
+                bgcolor: "background.paper",
+                border: 2,
+                borderColor: "divider",
+                borderRadius: "16px",
+              }}
+            />
+            <Typography variant="body2">kết quả trong tổng</Typography>
+            <Typography variant="body1" fontWeight="medium">
+              {ratingData.total}
+            </Typography>
+            <Typography variant="body2">đánh giá</Typography>
           </Box>
           <ReviewPagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={(page) => dispatch(setReviewCurrentPage(page))}
           />
-        </div>
-        <hr className="p-2" />
+        </Box>
+        <Divider sx={{ my: 4, borderColor: "divider" }} />
+        {/* Phần chứa ReviewForm hoặc thông báo đăng nhập */}
         {isAuthenticated ? (
-          <ReviewForm
-            yachtId={yachtId}
-            customer={customer}
-            onSubmitSuccess={() =>
-              dispatch(fetchReviews(yachtId, 1, searchTerm))
-            }
-          />
+          <div ref={formRef}>
+            <ReviewForm
+              yachtId={yachtId}
+              customer={customer}
+              onSubmitSuccess={() => dispatch(fetchReviews(yachtId, 1, searchTerm))}
+            />
+          </div>
         ) : (
-          <div className="text-center text-gray-600 py-4">
-            Vui lòng{" "}
-            <Link to="/login" className="text-teal-500 underline">
-              đăng nhập
-            </Link>{" "}
-            để gửi đánh giá.
+          <div ref={loginMessageRef}>
+            <Box sx={{ textAlign: "center", py: 4 }}>
+              <Typography variant="body1" color="text.secondary">
+                Vui lòng{" "}
+                <Link
+                  component={RouterLink}
+                  to="/login"
+                  sx={{
+                    textDecoration: "underline",
+                    "&:hover": {
+                      color: "red",
+                      textDecoration: "underline",
+                    },
+                  }}
+                >
+                  đăng nhập
+                </Link>{" "}
+                để gửi đánh giá.
+              </Typography>
+            </Box>
           </div>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

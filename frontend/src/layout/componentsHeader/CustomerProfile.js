@@ -187,7 +187,7 @@ export default function CustomerProfile() {
           />
           {editMode ? (
             <Stack direction="row" spacing={2}>
-              <StyledButton type="submit">Lưu</StyledButton>
+              <StyledButton type="submit">Lưu thay đổi</StyledButton>
               <Button
                 variant="outlined"
                 color="secondary"
@@ -207,7 +207,7 @@ export default function CustomerProfile() {
               </Button>
             </Stack>
           ) : (
-            <StyledButton onClick={() => setEditMode(true)}>Chỉnh sửa</StyledButton>
+            <StyledButton onClick={() => setEditMode(true)}>Chỉnh sửa thông tin</StyledButton>
           )}
         </Stack>
       </Box>

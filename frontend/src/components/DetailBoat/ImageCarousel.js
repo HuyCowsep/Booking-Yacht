@@ -1,19 +1,14 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import {
-  setCurrentImageIndex,
-  nextSlide,
-  prevSlide,
-  setImageHovering,
-} from "../../redux/action";
+import { setCurrentImageIndex, nextSlide, prevSlide, setImageHovering } from "../../redux/action";
 import { fetchYachtImages } from "../../redux/asyncActions";
+import { Box, IconButton, useTheme } from "@mui/material";
 
 function ImageCarousel({ yachtId }) {
   const dispatch = useDispatch();
-  const { images, currentIndex, isHovering } = useSelector(
-    (state) => state.images
-  );
+  const { images, currentIndex, isHovering } = useSelector((state) => state.images);
+  const theme = useTheme();
 
   useEffect(() => {
     if (yachtId) {
@@ -33,93 +28,167 @@ function ImageCarousel({ yachtId }) {
   const showNavigation = images.length > 1;
 
   return (
-    <div className="w-full mt-10 overflow-hidden">
-      <div className="flex px-6">
-        <div className="w-1/6 relative flex items-center justify-center">
-          <img
+    <Box sx={{ width: "100%", mt: 5, overflow: "hidden" }}>
+      <Box sx={{ display: "flex", px: 3 }}>
+        {/* Cột trái */}
+        <Box
+          sx={{
+            width: "16.67%", // 1/6
+            position: "relative",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            component="img"
             src={images.length > 0 ? images[0].src : "./images/yacht-8.jpg"}
             alt={images.length > 0 ? images[0].alt : "Default Yacht Image"}
-            className="object-cover w-full rounded-l-3xl h-[300px]"
+            sx={{
+              objectFit: "cover",
+              width: "100%",
+              borderTopLeftRadius: 24,
+              borderBottomLeftRadius: 24,
+              height: "500px",
+            }}
           />
           {showNavigation && (
-            <button
+            <IconButton
               onClick={() => dispatch(prevSlide())}
-              className="absolute z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-colors"
+              sx={{
+                position: "absolute",
+                zIndex: 10,
+                bgcolor: "background.paper",
+                "&:hover": { bgcolor: "action.hover" },
+                boxShadow: theme.shadows[1],
+              }}
               aria-label="Previous slide"
             >
-              <ChevronLeft className="h-6 w-6 text-gray-700" />
-            </button>
+              <ChevronLeft style={{ height: 24, width: 24, color: theme.palette.text.primary }} />
+            </IconButton>
           )}
-        </div>
-        <div
-          className="w-4/6 relative flex items-center justify-center"
+        </Box>
+
+        {/* Cột giữa (carousel chính) */}
+        <Box
+          sx={{
+            width: "66.67%", // 4/6
+            position: "relative",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
           onMouseEnter={() => dispatch(setImageHovering(true))}
           onMouseLeave={() => dispatch(setImageHovering(false))}
         >
           {images.map((image, index) => (
-            <div
+            <Box
               key={index}
-              className={`absolute top-0 left-0 w-full px-6 transition-opacity duration-500 ease-in-out ${
-                index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                px: 3,
+                transition: "opacity 0.5s ease-in-out",
+                opacity: index === currentIndex ? 1 : 0,
+                zIndex: index === currentIndex ? 10 : 0,
+              }}
             >
-              <img
+              <Box
+                component="img"
                 src={image.src}
                 alt={image.alt}
-                className="object-cover w-full h-[300px]"
+                sx={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "500px",
+                }}
               />
-            </div>
+            </Box>
           ))}
-          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: 2,
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 30,
+              display: "flex",
+              gap: 1,
+            }}
+          >
             {images.map((thumb, index) => (
-              <div
+              <Box
                 key={index}
                 onClick={() => dispatch(setCurrentImageIndex(index))}
-                className={`h-16 w-16 overflow-hidden cursor-pointer border-2 rounded-xl ${
-                  index === currentIndex
-                    ? "border-white"
-                    : "border-transparent opacity-80"
-                }`}
+                sx={{
+                  height: 64,
+                  width: 64,
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  border: 2,
+                  borderColor: index === currentIndex ? "primary.contrastText" : "transparent",
+                  borderRadius: 3,
+                  opacity: index === currentIndex ? 1 : 0.8,
+                }}
               >
-                <img
+                <Box
+                  component="img"
                   src={thumb.src}
                   alt={`Thumbnail ${index + 1}`}
-                  className="object-cover w-full rounded-xl h-full"
+                  sx={{
+                    objectFit: "cover",
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: 3,
+                  }}
                 />
-              </div>
+              </Box>
             ))}
-          </div>
-        </div>
-        <div className="w-1/6 relative flex items-center justify-center">
-          <img
-            src={
-              images.length > 1
-                ? images[1].src
-                : images.length > 0
-                ? images[0].src
-                : "./images/yacht-8.jpg"
-            }
-            alt={
-              images.length > 1
-                ? images[1].alt
-                : images.length > 0
-                ? images[0].alt
-                : "Default Yacht Image"
-            }
-            className="object-cover w-full rounded-r-3xl h-[300px]"
+          </Box>
+        </Box>
+
+        {/* Cột phải */}
+        <Box
+          sx={{
+            width: "16.67%", // 1/6
+            position: "relative",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            component="img"
+            src={images.length > 1 ? images[1].src : images.length > 0 ? images[0].src : "./images/yacht-8.jpg"}
+            alt={images.length > 1 ? images[1].alt : images.length > 0 ? images[0].alt : "Default Yacht Image"}
+            sx={{
+              objectFit: "cover",
+              width: "100%",
+              borderTopRightRadius: 24,
+              borderBottomRightRadius: 24,
+              height: "500px",
+            }}
           />
           {showNavigation && (
-            <button
+            <IconButton
               onClick={() => dispatch(nextSlide())}
-              className="absolute z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-colors"
+              sx={{
+                position: "absolute",
+                zIndex: 10,
+                bgcolor: "background.paper",
+                "&:hover": { bgcolor: "action.hover" },
+                boxShadow: theme.shadows[1],
+              }}
               aria-label="Next slide"
             >
-              <ChevronRight className="h-6 w-6 text-gray-700" />
-            </button>
+              <ChevronRight style={{ height: 24, width: 24, color: theme.palette.text.primary }} />
+            </IconButton>
           )}
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 }
 

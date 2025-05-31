@@ -89,7 +89,7 @@ function RoomSelector({ yachtId, yachtData = {} }) {
       <h2 className="text-4xl font-bold light:text-gray-900">
         Các loại phòng & giá
       </h2>
-      <img src="../icons/heading-border.webp" alt="Divider" className="my-6" />
+      <img src="/images/border.jpg" alt="Divider" className="my-6" />
       <Box
         sx={{
           backgroundImage: "url('../images/background2.jpg')",

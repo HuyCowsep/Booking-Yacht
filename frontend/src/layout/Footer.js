@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Link as MuiLink, Grid, Stack, colors } from "@mui/material";
+import { Box, Typography, Link as MuiLink, Grid, Stack } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Fab } from "@mui/material";
@@ -57,9 +57,10 @@ export default function Footer() {
         pb: 2,
       }}
     >
-      <Box maxWidth={1100} mx="auto" px={2}>
+      <Box maxWidth={1250} mx="auto" px={0}>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={4}>
+          {/* Cột 1: Logo và thông tin công ty */}
+          <Grid item xs={12} sm={6} md={3}>
             <Stack
               direction="row"
               alignItems="center"
@@ -82,7 +83,9 @@ export default function Footer() {
               Mã số doanh nghiệp: AAAAAAAAAAAA do Sở KHĐT TP Hà Nội cấp ngày 05/06/2023
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={6} md={4}>
+
+          {/* Cột 2: Các thông tin liên kết */}
+          <Grid item xs={12} sm={6} md={3}>
             <Typography variant="subtitle1" mb={1} fontWeight={700} color="text.primary">
               Thông tin
             </Typography>
@@ -107,7 +110,27 @@ export default function Footer() {
               </MuiLink>
             </Stack>
           </Grid>
-          <Grid item xs={12} md={4}>
+
+          {/* 🆕 Cột 3: Du Thuyền */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Typography variant="subtitle1" mb={1} fontWeight={700} color="text.primary">
+              Du Thuyền
+            </Typography>
+            <Stack spacing={0.5}>
+              <MuiLink href="/blog" color="inherit" underline="hover">
+                Blog
+              </MuiLink>
+              <MuiLink href="/quy-dinh-chung-va-luu-y" color="inherit" underline="hover">
+                Quy định chung và lưu ý
+              </MuiLink>
+              <MuiLink href="/cau-hoi-thuong-gap" color="inherit" underline="hover">
+                Các câu hỏi thường gặp
+              </MuiLink>
+            </Stack>
+          </Grid>
+
+          {/* Cột 4: Liên hệ và logo Bộ Công thương */}
+          <Grid item xs={12} md={3}>
             <Typography variant="subtitle1" mb={1} fontWeight={700} color="text.primary">
               Liên hệ
             </Typography>
@@ -127,8 +150,7 @@ export default function Footer() {
         </Grid>
         <Box textAlign="center" mt={6} sx={{ opacity: 0.7 }}>
           <Typography fontSize={14} color="text.primary" fontWeight="bold">
-            &copy; 2025 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Bản quyền thuộc về 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Đã đăng ký bản quyền.
-            Thiết kế bởi HuyCowsep
+            &copy; 2025 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Bản quyền thuộc về 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Đã đăng ký bản quyền. Thiết kế bởi HuyCowsep
           </Typography>
         </Box>
       </Box>

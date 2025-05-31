@@ -17,7 +17,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import { AiOutlineMoon, AiOutlineSun } from "react-icons/ai";
+import { AiOutlineMoon, AiOutlineSun, AiFillPhone } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -119,9 +119,37 @@ export default function Header({ toggleTheme, mode }) {
                 {link.label}
               </Button>
             ))}
-            <Typography fontSize={19} color="text.secondary">
-              <b>Hotline: </b>0123456789
-            </Typography>
+
+            {/* Nút gọi hotline desktop */}
+            <Button
+              startIcon={<AiFillPhone />}
+              onClick={() => {
+                Swal.fire({
+                  title: "Mở ứng dụng gọi?",
+                  text: "Bạn có muốn gọi đến số hotline: 0912202885",
+                  icon: "question",
+                  showCancelButton: true,
+                  confirmButtonText: "Gọi ngay 📞",
+                  cancelButtonText: "Đóng",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    window.location.href = "tel:0912202885";
+                  }
+                });
+              }}
+              sx={{
+                fontWeight: 500,
+                fontSize: 18,
+                lineHeight: "24px",
+                textTransform: "none",
+                color: "text.secondary",
+                "&:hover": {
+                  color: "primary.main",
+                },
+              }}
+            >
+              Hotline: 0912202885
+            </Button>
           </Stack>
         ) : (
           <>
@@ -140,10 +168,31 @@ export default function Header({ toggleTheme, mode }) {
                   {link.label}
                 </MenuItem>
               ))}
-              <MenuItem disabled>
-                <Typography fontSize={14} color="text.secondary" ml={1}>
-                  <b>Hotline:</b> 0123456789
-                </Typography>
+
+              {/* Hotline trên mobile - có thể ấn gọi */}
+              <MenuItem
+                onClick={() => {
+                  Swal.fire({
+                    title: "Mở ứng dụng gọi?",
+                    text: "Bạn có muốn gọi đến số hotline: 0912202885",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonText: "Gọi ngay 📞",
+                    cancelButtonText: "Đóng",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = "tel:0912202885";
+                    }
+                  });
+                  handleMenuClose();
+                }}
+              >
+                <Stack direction="row" alignItems="center" spacing={1}>
+                  <AiFillPhone size={18} />
+                  <Typography fontSize={14} color="text.secondary">
+                    <b>Hotline:</b> 0912202885
+                  </Typography>
+                </Stack>
               </MenuItem>
             </Menu>
           </>

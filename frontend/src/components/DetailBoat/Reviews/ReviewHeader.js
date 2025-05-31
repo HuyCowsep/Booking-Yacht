@@ -1,22 +1,22 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Search, Star } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Box, Input } from "@mui/material";
+import { Box, Input, useTheme, Button, Typography } from "@mui/material";
 import { setReviewSearchTerm } from "../../../redux/action";
 import { useEffect } from "react";
 import { fetchCustomerIdFromStorage } from "../../../redux/asyncActions";
 
-const ReviewHeader = ({ totalReviews, isAuthenticated }) => {
+const ReviewHeader = ({ totalReviews, isAuthenticated, scrollToForm }) => {
   const dispatch = useDispatch();
+  const theme = useTheme();
   const searchTerm = useSelector((state) => state.reviews.searchTerm);
   const customer = useSelector((state) => state.auth.customer);
 
   const handleSearchChange = (e) => {
-    const value = e.target.value;
-    dispatch(setReviewSearchTerm(value));
+    dispatch(setReviewSearchTerm(e.target.value));
   };
 
-  // Function để lấy thông tin customer từ localStorage
+  // Fallback lấy customer từ localStorage nếu Redux chưa có
   const getCustomerFromStorage = () => {
     try {
       const customerData = localStorage.getItem("customer");
@@ -24,7 +24,7 @@ const ReviewHeader = ({ totalReviews, isAuthenticated }) => {
         const parsedCustomer = JSON.parse(customerData);
         return {
           accountId: parsedCustomer.accountId || parsedCustomer._id,
-          customerId: parsedCustomer.id, // ID của customer để đánh giá
+          customerId: parsedCustomer.id,
           fullName: parsedCustomer.fullName,
           username: parsedCustomer.username,
         };
@@ -37,52 +37,81 @@ const ReviewHeader = ({ totalReviews, isAuthenticated }) => {
   };
 
   useEffect(() => {
-    // Dispatch để đảm bảo customer data được load vào Redux
     if (!customer) {
       dispatch(fetchCustomerIdFromStorage());
     }
   }, [dispatch, customer]);
 
-  // Lấy customer info từ Redux hoặc fallback về localStorage
   const currentCustomer = customer || getCustomerFromStorage();
 
   return (
-    <div className="flex items-center justify-between mb-4">
-      <p className="font-bold light:text-gray-900 text-4xl">
-        Đánh giá ({totalReviews})
-      </p>
-      <div className="flex items-center space-x-4">
-        <div className="relative items-center">
+    <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
+      <Typography variant="h4" fontWeight="bold" color={theme.palette.text.primary}>
+        Có ({totalReviews}) đánh giá
+      </Typography>
+
+      <Box display="flex" alignItems="center" gap={2}>
+        <Box position="relative">
           <Input
             type="text"
             placeholder="Tìm đánh giá"
             value={searchTerm}
             onChange={handleSearchChange}
-            className="!pl-8 !pr-4 !py-2 !rounded-full !text-sm !w-56"
             sx={{
-              bgcolor: (theme) => theme.palette.background.paper,
+              bgcolor: theme.palette.background.paper,
+              pl: 5,
+              pr: 2,
+              py: 1,
+              borderRadius: 999,
+              fontSize: 14,
+              boxShadow: 1,
             }}
           />
-          <div className="absolute left-3 top-[12px] text-gray-400">
+          <Box position="absolute" top="50%" left={14} sx={{ transform: "translateY(-50%)", color: "gray" }}>
             <Search size={20} />
-          </div>
-        </div>
+          </Box>
+        </Box>
 
         {isAuthenticated ? (
-          <button className="bg-teal-500 hover:bg-[#0e4f4f] border-2 hover:border-teal-500 text-white px-4 py-2 rounded-full text-sm flex items-center">
-            <Star fill="white" size={16} className="mr-1" /> Gửi đánh giá
-          </button>
-        ) : (
-          <Link
-            to="/login"
-            className="bg-gray-300 text-gray-600 px-4 py-2 rounded-full text-sm flex items-center cursor-pointer"
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={scrollToForm}
+            sx={{
+              borderRadius: 999,
+              textTransform: "none",
+              px: 2.5,
+              py: 1,
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              fontSize: 14,
+            }}
           >
-            <Star fill="gray" size={16} className="mr-1" /> Đăng nhập để gửi
-            đánh giá
+            <Star fill="white" size={16} /> Gửi đánh giá
+          </Button>
+        ) : (
+          <Link to="/login">
+            <Button
+              variant="outlined"
+              color="inherit"
+              sx={{
+                borderRadius: 999,
+                textTransform: "none",
+                px: 2.5,
+                py: 1,
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                fontSize: 14,
+              }}
+            >
+              <Star fill="gray" size={16} /> Đăng nhập để gửi đánh giá
+            </Button>
           </Link>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

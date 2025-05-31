@@ -17,9 +17,11 @@ import ContactSection from "./layout/componentsFooter/ContactSection";
 import Enterprise from "./components/Enterprise/Enterprise";
 import BlogDetail from "./components/Blog/BlogDetail";
 import BlogList from "./components/Blog/BlogList";
-import DetailBoat from "./components/DetailBoat/DetailBoat";
+import DetailBoat from "./pages/DetailBoat";
 import ChangePassword from "./layout/componentsHeader/ChangePassword";
 import CustomerProfile from "./layout/componentsHeader/CustomerProfile";
+import FAQ from "./layout/componentsFooter/FAQ";
+import RulesAndNotes from "./layout/componentsFooter/RulesAndNotes";
 
 function App() {
   const [mode, setMode] = useState(localStorage.getItem("themeMode") || "light");
@@ -51,6 +53,8 @@ function App() {
           <Route path="/huong-dan-su-dung" element={<UserGuide />} />
           <Route path="/hinh-thuc-thanh-toan" element={<PaymentMethods />} />
           <Route path="/lien-he-tu-van" element={<ContactSection />} />
+          <Route path="/cau-hoi-thuong-gap" element={<FAQ />} />
+          <Route path="/quy-dinh-chung-va-luu-y" element={<RulesAndNotes />} />
           <Route path="/doanh-nghiep" element={<Enterprise />} />
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
