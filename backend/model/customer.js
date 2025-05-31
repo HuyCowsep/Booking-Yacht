@@ -3,9 +3,10 @@ const { Schema } = mongoose;
 
 const customerSchema = new Schema({
   fullName: String,
-  phoneNumber: String,
+  phoneNumber: { type: String, default: "" }, // Thêm default là "" để phục vụ cho login bằng google
   email: String,
-  accountId: { type: mongoose.Schema.Types.ObjectId, ref: "Account", unique: true, required: true },
+  avatar: { type: String, default: null },
+  accountId: { type: mongoose.Schema.Types.ObjectId, ref: "Account", unique: true, required: false },
   googleId: { type: String, unique: true, sparse: true },
 });
 

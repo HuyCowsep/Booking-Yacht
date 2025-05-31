@@ -18,6 +18,9 @@ import Enterprise from "./components/Enterprise/Enterprise";
 import BlogDetail from "./components/Blog/BlogDetail";
 import BlogList from "./components/Blog/BlogList";
 import DetailBoat from "./components/DetailBoat/DetailBoat";
+import ChangePassword from "./layout/componentsHeader/ChangePassword";
+import CustomerProfile from "./layout/componentsHeader/CustomerProfile";
+
 function App() {
   const [mode, setMode] = useState(localStorage.getItem("themeMode") || "light");
 
@@ -51,7 +54,8 @@ function App() {
           <Route path="/doanh-nghiep" element={<Enterprise />} />
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
-          {/* Add thêm nếu có thêm */}
+          <Route path="/view-profile" element={<CustomerProfile />} />
+          <Route path="/change-password" element={<ChangePassword />} />
         </Routes>
         <Footer />
       </Router>

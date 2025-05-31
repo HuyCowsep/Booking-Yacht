@@ -21,6 +21,9 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
+// Phục vụ file tĩnh từ thư mục uploads
+app.use("/uploads", express.static("uploads"));
+
 // ACCOUNTS ROUTES
 app.use("/api/v1/accounts", require("./routers/accountRouter"));
 app.use("/api/v1/customers", require("./routers/customerRouter"));

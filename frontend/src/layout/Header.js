@@ -11,8 +11,10 @@ import {
   Stack,
   Menu,
   MenuItem,
+  Avatar,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { AiOutlineMoon, AiOutlineSun } from "react-icons/ai";
@@ -30,11 +32,11 @@ export default function Header({ toggleTheme, mode }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [anchorEl, setAnchorEl] = useState(null);
+  const [userAnchorEl, setUserAnchorEl] = useState(null);
   const [customer, setCustomer] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Lấy thông tin customer từ localStorage khi component mount
     const storedCustomer = localStorage.getItem("customer");
     if (storedCustomer) {
       setCustomer(JSON.parse(storedCustomer));
@@ -46,6 +48,13 @@ export default function Header({ toggleTheme, mode }) {
   };
   const handleMenuClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleUserMenuOpen = (event) => {
+    setUserAnchorEl(event.currentTarget);
+  };
+  const handleUserMenuClose = () => {
+    setUserAnchorEl(null);
   };
 
   const handleLogout = () => {
@@ -74,7 +83,7 @@ export default function Header({ toggleTheme, mode }) {
           <Box component="img" src="/images/logo.png" alt="LongWave Logo" sx={{ height: 80, mr: 2 }} />
           <Typography
             variant="h6"
-            color="primary"
+            color="primary.main"
             fontWeight={700}
             fontFamily="'Pacifico', cursive"
             fontSize={35}
@@ -142,22 +151,63 @@ export default function Header({ toggleTheme, mode }) {
           </>
         )}
 
-        {/* Login/Register/Theme Toggle hoặc Welcome/Logout/Theme Toggle */}
+        {/* User Menu hoặc Login/Register */}
         <Stack direction="row" spacing={1} ml={3} alignItems="center">
           {customer ? (
             <>
               <Typography variant="body1" color="text.primary" sx={{ fontWeight: 500 }}>
                 Xin chào, {customer.fullName || customer.username}
               </Typography>
-              <Button
-                variant="outlined"
-                color="primary"
-                size="small"
-                onClick={handleLogout}
-                sx={{ borderRadius: 20, textTransform: "none" }}
+              <IconButton onClick={handleUserMenuOpen}>
+                <Avatar
+                  src={customer.avatar || ""}
+                  alt={customer.fullName || customer.username}
+                  sx={{ width: 32, height: 32 }}
+                />
+                <ArrowDropDownIcon />
+              </IconButton>
+              <Menu
+                anchorEl={userAnchorEl}
+                open={Boolean(userAnchorEl)}
+                onClose={handleUserMenuClose}
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                transformOrigin={{ vertical: "top", horizontal: "right" }}
               >
-                Đăng xuất
-              </Button>
+                <MenuItem onClick={handleUserMenuClose} component={Link} to="/view-profile">
+                  Xem trang cá nhân
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    toggleTheme();
+                    handleUserMenuClose();
+                  }}
+                >
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography>Đổi sang màn hình</Typography>
+                    {mode === "light" ? <AiOutlineMoon size={20} /> : <AiOutlineSun size={20} />}
+                  </Stack>
+                </MenuItem>
+                <MenuItem
+                  onClick={handleUserMenuClose}
+                  component={Link}
+                  to="/change-password"
+                  disabled={!customer.accountId}
+                  sx={{
+                    color: !customer.accountId ? "text.disabled" : "text.primary",
+                    "&.Mui-disabled": { color: "text.disabled" },
+                  }}
+                >
+                  Đổi mật khẩu
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleLogout();
+                    handleUserMenuClose();
+                  }}
+                >
+                  Đăng xuất
+                </MenuItem>
+              </Menu>
             </>
           ) : (
             <>
@@ -183,11 +233,11 @@ export default function Header({ toggleTheme, mode }) {
               >
                 Đăng ký
               </Button>
+              <IconButton onClick={toggleTheme} color="inherit" sx={{ p: 1 }}>
+                {mode === "light" ? <AiOutlineMoon size={24} /> : <AiOutlineSun size={24} />}
+              </IconButton>
             </>
           )}
-          <IconButton onClick={toggleTheme} color="inherit" sx={{ p: 1 }}>
-            {mode === "light" ? <AiOutlineMoon size={24} /> : <AiOutlineSun size={24} />}
-          </IconButton>
         </Stack>
       </Toolbar>
     </AppBar>

@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Button, TextField, Typography, Checkbox, FormControlLabel, Stack } from "@mui/material";
 import styled from "@emotion/styled";
