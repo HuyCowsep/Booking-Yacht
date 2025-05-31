@@ -15,7 +15,6 @@ const yachtSchema = new Schema(
     IdCompanys: { type: mongoose.Schema.Types.ObjectId, ref: "Company" }, //công ty sở hữu hoặc điều hành du thuyền
     isDeleted: { type: Boolean, default: true },
   },
-  { timestamps: true }
 );
 
 module.exports = mongoose.model("Yacht", yachtSchema, "yachts");

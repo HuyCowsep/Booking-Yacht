@@ -1,7 +1,4 @@
-const Room = require("../model/roomSchema");
-const BookingRoom = require("../model/bookingRoom");
-const BookingOrder = require("../model/bookingOrder");
-const RoomType = require("../model/roomType");
+const {Room, BookingRoom, BookingOrder, RoomType} = require("../model/roomSchema");
 
 const getRoomsWithTypes = async (req, res) => {
   try {

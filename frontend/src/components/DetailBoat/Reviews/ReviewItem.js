@@ -1,19 +1,38 @@
-// components/ReviewItem.jsx
+import { Box } from "@mui/material";
 import StarRating from "./StarRating";
 
 const ReviewItem = ({ review }) => {
+  // Kiểm tra xem review có tồn tại khô
+  if (!review) {
+    return <div>Không có dữ liệu đánh giá</div>;
+  }
+
   return (
-    <div className="p-7 rounded-3xl shadow-lg bg-slate-50 border border-gray-200  mb-4">
+    <Box
+      className="p-7 rounded-3xl shadow-lg mb-4"
+      sx={{
+        bgcolor: (theme) => theme.palette.background.paper,
+        borderColor: (theme) => theme.palette.divider,
+        boxShadow: (theme) => theme.shadows[1],
+        color: (theme) => theme.palette.text.primary,
+        "&:hover": {
+          boxShadow: (theme) => theme.shadows[3],
+        },
+        transition: "box-shadow 0.3s ease",
+      }}
+    >
       <div className="flex items-center mb-2">
-        <StarRating rating={review.rating} />
+        <StarRating rating={review.rating || 0} />
       </div>
-      <div className="font-medium my-3 text-gray-800">{review.userName}</div>
-      {review.tag && (
-        <div className="text-sm text-gray-600 mb-1">{review.tag}</div>
-      )}
-      <div className="text-sm my-3 text-gray-700 mb-1">{review.comment}</div>
-      <div className="text-xs text-gray-500">{review.date}</div>
-    </div>
+      <div className="font-medium my-3">
+        {review.userName || "Khách ẩn danh"}
+      </div>
+      {review.tag && <div className="text-sm mb-1">{review.tag}</div>}
+      <div className="text-sm my-3 mb-1">
+        {review.comment || "Không có bình luận"}
+      </div>
+      <div className="text-xs">{review.date || "N/A"}</div>
+    </Box>
   );
 };
 

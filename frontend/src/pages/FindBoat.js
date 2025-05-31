@@ -400,8 +400,8 @@ const FindBoat = () => {
                     alt="Không tìm thấy"
                     style={{ width: "650px", marginBottom: "16px", borderRadius: "20px" }}
                   />
-                  <Typography variant="h4" gutterBottom>
-                    Rất tiếc, 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 không tìm thấy kết quả nào cho bạn 😭 
+                  <Typography variant="h4" gutterBottom color="primary.main">
+                    Rất tiếc, 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 không tìm thấy kết quả nào cho bạn 😭
                   </Typography>
                   <Typography variant="body1" gutterBottom>
                     Nhấn "Ok" để quay lại trang tìm kiếm. Hoặc xoá bộ lọc để xem lại tất cả

@@ -87,8 +87,6 @@ export default function Header({ toggleTheme, mode }) {
             fontWeight={700}
             fontFamily="'Pacifico', cursive"
             fontSize={35}
-            component={Link}
-            to="/"
             sx={{
               textDecoration: "none",
               "&:hover": {
