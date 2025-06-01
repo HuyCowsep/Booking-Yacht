@@ -58,3 +58,9 @@ npm install
 GitHub: HuyCowsep
 Email: huyndhe176876@fpt.edu.vn
 Website: LongWave Booking Yacht
+
+
+---
+👉 Nếu bạn muốn bản README này có **ảnh minh họa, badge, hoặc thêm hướng dẫn deploy (Vercel/Render)** thì bảo mình phát, mình custom thêm cho đủ combo "rich developer vibes" nhé 😎
+"Code không chỉ để chạy, code để kể chuyện."
+LongWave là không gian để code kể một câu chuyện về biển, du thuyền và trải nghiệm sống đỉnh cao.
