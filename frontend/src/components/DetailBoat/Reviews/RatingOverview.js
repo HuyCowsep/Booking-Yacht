@@ -42,7 +42,9 @@ const RatingOverview = ({ ratingData }) => {
         p: 2,
         mb: 4,
         bgcolor: "background.paper",
-        borderRadius: 3.5,
+        borderRadius: 2,
+        boxShadow: theme.shadows[4],
+        border: 1,
         transition: "box-shadow 0.3s",
         "&:hover": {
           boxShadow: theme.shadows[6],

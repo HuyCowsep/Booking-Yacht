@@ -29,7 +29,7 @@ function Tabs() {
       sx={{
         display: "flex",
         overflowX: "auto",
-        py: 2,
+        py: 1,
         bgcolor: "background.paper",
         borderBottom: 1,
         borderColor: "divider",
@@ -62,7 +62,7 @@ function Tabs() {
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Typography variant="body2">{tab.label}</Typography>
+            <Typography variant="body1">{tab.label}</Typography>
             {tab.label === "Đánh giá" && totalReviews > 0 && (
               <Typography
                 variant="caption"
