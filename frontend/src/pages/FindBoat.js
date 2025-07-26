@@ -264,7 +264,7 @@ const FindBoat = () => {
         </Typography>
         <Typography
           align="center"
-          color="text.secondary"
+          color="text.primary"
           sx={{ mb: 2, fontFamily: "Archivo, sans-serif", opacity: 0.6 }}
         >
           Hơn 100 tour du thuyền hạng sang giá tốt đang chờ bạn

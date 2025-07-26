@@ -130,10 +130,10 @@ export default function ChangePassword() {
           m: 2,
           borderRadius: 2,
           backgroundColor: "#fff3cd",
-          border: "1px solid #ffeeba",
+          border: "1px solid #feeba",
           color: "#856404",
           boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-          height: "450px",
+          height: "550px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -150,8 +150,8 @@ export default function ChangePassword() {
   }
 
   return (
-    <Box sx={{ p: 4, maxWidth: 600, mx: "auto" }}>
-      <Typography variant="h4" align="center" gutterBottom color="primary.main">
+    <Box sx={{ p: 4, maxWidth: 600, mx: "auto", height: "550px" }}>
+      <Typography variant="h3" align="center" gutterBottom color="primary.main" sx={{ mb: 4, mt: 4 }}>
         Đổi mật khẩu
       </Typography>
 

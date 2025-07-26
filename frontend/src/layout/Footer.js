@@ -57,7 +57,7 @@ export default function Footer() {
         pb: 2,
       }}
     >
-      <Box maxWidth={1250} mx="auto" px={0}>
+      <Box maxWidth={1450} mx="auto" px={0}>
         <Grid container spacing={3}>
           {/* Cột 1: Logo và thông tin công ty */}
           <Grid item xs={12} sm={6} md={3}>
@@ -70,25 +70,72 @@ export default function Footer() {
               to="/"
               sx={{ textDecoration: "none", cursor: "pointer" }}
             >
-              <Box component="img" src="/images/logo.png" alt="Logo 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮" sx={{ height: 60 }} />
-              <Typography variant="h4" fontWeight={600} color="primary.main">
+              <Box
+                component="img"
+                src="/images/logo.png"
+                alt="Logo 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮"
+                sx={{
+                  height: 60,
+                  transition: "transform 0.3s ease-in-out",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                  },
+                }}
+              />
+              <Typography
+                variant="h4"
+                fontWeight={600}
+                color="primary.main"
+                sx={{
+                  fontFamily: "Pacifico, cursive",
+                  letterSpacing: "1px",
+                  userSelect: "none",
+                }}
+              >
                 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮
               </Typography>
             </Stack>
-            <Typography variant="body2" color="text.secondary">
-              Công ty TNHH Du Lịch và Dịch Vụ 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮
+
+            <Typography
+              variant="body2"
+              sx={{
+                color: "text.secondary",
+                lineHeight: 1.8,
+                fontSize: "14.5px",
+                fontWeight: 400,
+                bgcolor: (theme) => (theme.palette.mode === "dark" ? "#1e1e1e" : "#f9f9f9"),
+                px: 2,
+                py: 1.5,
+                borderRadius: 2,
+                border: `1px solid`,
+                borderColor: (theme) => theme.palette.divider,
+              }}
+            >
+              <strong style={{ color: "#5c6bc0" }}>Công ty TNHH Du Lịch và Dịch Vụ 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮</strong>
               <br />
-              Toà nhà Delta-314, Km29 Đại học FPT, khu CNC Hoà Lạc, huyện Thạch Thất, TP. Hà Nội
+              <strong style={{ color: "#26a69a" }}>Mã số doanh nghiệp: NDH31032003</strong> 
               <br />
-              Mã số doanh nghiệp: AAAAAAAAAAAA do Sở KHĐT TP Hà Nội cấp ngày 05/06/2023
+              Do Sở KHĐT TP Hà Nội cấp ngày 05/06/2022
+              <br/>
+              <strong style={{ color: "#5c6bc0" }}>Văn Phú - Hà Đông - Hà Nội</strong>
             </Typography>
           </Grid>
 
           {/* Cột 2: Các thông tin liên kết */}
           <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="subtitle1" mb={1} fontWeight={700} color="text.primary">
+            <Typography
+              variant="h4"
+              mb={1.5}
+              fontWeight={800}
+              color="text.primary"
+              sx={{
+                letterSpacing: "0.5px",
+                fontFamily: "Archivo, sans-serif",
+              }}
+            >
               Thông tin
             </Typography>
+
             <Stack spacing={0.5}>
               <MuiLink href="/ve-chung-toi" color="inherit" underline="hover">
                 Về chúng tôi
@@ -113,8 +160,17 @@ export default function Footer() {
 
           {/* 🆕 Cột 3: Du Thuyền */}
           <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="subtitle1" mb={1} fontWeight={700} color="text.primary">
-              Du Thuyền
+            <Typography
+              variant="h4"
+              mb={1.5}
+              fontWeight={800}
+              color="text.primary"
+              sx={{
+                letterSpacing: "0.5px",
+                fontFamily: "Archivo, sans-serif",
+              }}
+            >
+              Du thuyền
             </Typography>
             <Stack spacing={0.5}>
               <MuiLink href="/blog" color="inherit" underline="hover">
@@ -131,7 +187,16 @@ export default function Footer() {
 
           {/* Cột 4: Liên hệ và logo Bộ Công thương */}
           <Grid item xs={12} md={3}>
-            <Typography variant="subtitle1" mb={1} fontWeight={700} color="text.primary">
+            <Typography
+              variant="h4"
+              mb={1.5}
+              fontWeight={800}
+              color="text.primary"
+              sx={{
+                letterSpacing: "0.5px",
+                fontFamily: "Archivo, sans-serif",
+              }}
+            >
               Liên hệ
             </Typography>
             <Typography variant="body3" color="text.secondary">
