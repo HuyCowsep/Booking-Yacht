@@ -1,14 +1,25 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { setCurrentImageIndex, nextSlide, prevSlide, setImageHovering } from "../../redux/action";
+import {
+  setCurrentImageIndex,
+  nextSlide,
+  prevSlide,
+  setImageHovering,
+} from "../../redux/actions";
 import { fetchYachtImages } from "../../redux/asyncActions";
-import { Box, IconButton, useTheme } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
+import { initialState } from "../../redux/reducers/imageReducer"; // Import initialState
 
 function ImageCarousel({ yachtId }) {
   const dispatch = useDispatch();
-  const { images, currentIndex, isHovering } = useSelector((state) => state.images);
-  const theme = useTheme();
+  const {
+    images = [],
+    currentIndex = 0,
+    isHovering = false,
+    loading,
+    error,
+  } = useSelector((state) => state.images || initialState); // Sử dụng initialState làm fallback
 
   useEffect(() => {
     if (yachtId) {
@@ -27,56 +38,112 @@ function ImageCarousel({ yachtId }) {
 
   const showNavigation = images.length > 1;
 
+  const leftIndex = (currentIndex - 1 + images.length) % images.length;
+  const rightIndex = (currentIndex + 1) % images.length;
+
+  const getThumbnailIndexes = () => {
+    if (images.length <= 5) {
+      // Nếu số ảnh <= 5, chỉ hiện đúng số lượng ảnh
+      return images.map((_, idx) => idx);
+    }
+    // Nếu nhiều hơn 5 ảnh, lấy 5 thumbnail xung quanh currentIndex
+    const thumbIndexes = [];
+    thumbIndexes.push((currentIndex - 2 + images.length) % images.length);
+    thumbIndexes.push((currentIndex - 1 + images.length) % images.length);
+    thumbIndexes.push(currentIndex);
+    thumbIndexes.push((currentIndex + 1) % images.length);
+    thumbIndexes.push((currentIndex + 2) % images.length);
+    return thumbIndexes;
+  };
+
+  const thumbnailIndexes = getThumbnailIndexes();
+
+  if (loading)
+    return (
+      <Box sx={{ width: "100%", mt: 5, textAlign: "center" }}>
+        Đang tải ảnh...
+      </Box>
+    );
+  if (error)
+    return (
+      <Box sx={{ width: "100%", mt: 5, textAlign: "center" }}>Lỗi: {error}</Box>
+    );
+  if (!images || images.length === 0) {
+    return (
+      <Box sx={{ width: "100%", mt: 5, textAlign: "center" }}>
+        Không có ảnh để hiển thị. Kiểm tra dữ liệu từ API fetchYachtImages.
+      </Box>
+    );
+  }
+
   return (
     <Box sx={{ width: "100%", mt: 5, overflow: "hidden" }}>
-      <Box sx={{ display: "flex", px: 3 }}>
-        {/* Cột trái */}
+      <Box sx={{ display: "flex", px: 2 }}>
         <Box
           sx={{
-            width: "16.67%", // 1/6
+            width: "16.67%",
             position: "relative",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            minHeight: "500px",
           }}
         >
-          <Box
-            component="img"
-            src={images.length > 0 ? images[0].src : "./images/yacht-8.jpg"}
-            alt={images.length > 0 ? images[0].alt : "Default Yacht Image"}
-            sx={{
-              objectFit: "cover",
-              width: "100%",
-              borderTopLeftRadius: 24,
-              borderBottomLeftRadius: 24,
-              height: "500px",
-            }}
-          />
+          {images.map((image, index) => (
+            <Box
+              key={index}
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                transition: "opacity 0.5s ease-in-out",
+                opacity: index === leftIndex ? 1 : 0,
+                zIndex: index === leftIndex ? 10 : 0,
+              }}
+            >
+              <Box
+                component="img"
+                src={image.src}
+                alt={image.alt}
+                sx={{
+                  objectFit: "cover",
+                  width: "100%",
+                  borderTopLeftRadius: (theme) => theme.shape.borderRadius / 2,
+                  borderBottomLeftRadius: (theme) =>
+                    theme.shape.borderRadius / 2,
+                  height: "500px",
+                }}
+              />
+            </Box>
+          ))}
           {showNavigation && (
             <IconButton
               onClick={() => dispatch(prevSlide())}
               sx={{
                 position: "absolute",
-                zIndex: 10,
+                zIndex: 20,
                 bgcolor: "background.paper",
                 "&:hover": { bgcolor: "action.hover" },
-                boxShadow: theme.shadows[1],
+                boxShadow: (theme) => theme.shadows[1],
               }}
               aria-label="Previous slide"
             >
-              <ChevronLeft style={{ height: 24, width: 24, color: theme.palette.text.primary }} />
+              <ChevronLeft
+                sx={{ height: 24, width: 24, color: "text.primary" }}
+              />
             </IconButton>
           )}
         </Box>
 
-        {/* Cột giữa (carousel chính) */}
         <Box
           sx={{
-            width: "66.67%", // 4/6
+            width: "66.67%",
             position: "relative",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            minHeight: "500px",
           }}
           onMouseEnter={() => dispatch(setImageHovering(true))}
           onMouseLeave={() => dispatch(setImageHovering(false))}
@@ -89,7 +156,7 @@ function ImageCarousel({ yachtId }) {
                 top: 0,
                 left: 0,
                 width: "100%",
-                px: 3,
+                px: 2,
                 transition: "opacity 0.5s ease-in-out",
                 opacity: index === currentIndex ? 1 : 0,
                 zIndex: index === currentIndex ? 10 : 0,
@@ -118,30 +185,34 @@ function ImageCarousel({ yachtId }) {
               gap: 1,
             }}
           >
-            {images.map((thumb, index) => (
+            {thumbnailIndexes.map((thumbIndex, displayIndex) => (
               <Box
-                key={index}
-                onClick={() => dispatch(setCurrentImageIndex(index))}
+                key={displayIndex}
+                onClick={() => dispatch(setCurrentImageIndex(thumbIndex))}
                 sx={{
                   height: 64,
                   width: 64,
                   overflow: "hidden",
                   cursor: "pointer",
-                  border: 2,
-                  borderColor: index === currentIndex ? "primary.contrastText" : "transparent",
-                  borderRadius: 3,
-                  opacity: index === currentIndex ? 1 : 0.8,
+                  border: 3,
+                  borderColor:
+                    thumbIndex === currentIndex
+                      ? "primary.contrastText"
+                      : "transparent",
+                  borderRadius: (theme) => theme.shape.borderRadius / 2,
+                  opacity: thumbIndex === currentIndex ? 1 : 0.6,
+                  transition: "opacity 0.5s ease-in-out",
                 }}
               >
                 <Box
                   component="img"
-                  src={thumb.src}
-                  alt={`Thumbnail ${index + 1}`}
+                  src={images[thumbIndex].src}
+                  alt={`Thumbnail ${thumbIndex + 1}`}
                   sx={{
                     objectFit: "cover",
                     width: "100%",
                     height: "100%",
-                    borderRadius: 3,
+                    borderRadius: (theme) => theme.shape.borderRadius / 4,
                   }}
                 />
               </Box>
@@ -149,41 +220,61 @@ function ImageCarousel({ yachtId }) {
           </Box>
         </Box>
 
-        {/* Cột phải */}
         <Box
           sx={{
-            width: "16.67%", // 1/6
+            width: "16.67%",
             position: "relative",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            minHeight: "500px",
           }}
         >
-          <Box
-            component="img"
-            src={images.length > 1 ? images[1].src : images.length > 0 ? images[0].src : "./images/yacht-8.jpg"}
-            alt={images.length > 1 ? images[1].alt : images.length > 0 ? images[0].alt : "Default Yacht Image"}
-            sx={{
-              objectFit: "cover",
-              width: "100%",
-              borderTopRightRadius: 24,
-              borderBottomRightRadius: 24,
-              height: "500px",
-            }}
-          />
+          {images.map((image, index) => (
+            <Box
+              key={index}
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+
+                transition: "opacity 0.5s ease-in-out",
+                opacity: index === rightIndex ? 1 : 0,
+                zIndex: index === rightIndex ? 10 : 0,
+              }}
+            >
+              <Box
+                component="img"
+                src={image.src}
+                alt={image.alt}
+                sx={{
+                  objectFit: "cover",
+                  width: "100%",
+                  borderTopRightRadius: (theme) => theme.shape.borderRadius / 2,
+                  borderBottomRightRadius: (theme) =>
+                    theme.shape.borderRadius / 2,
+                  height: "500px",
+                }}
+              />
+            </Box>
+          ))}
           {showNavigation && (
             <IconButton
               onClick={() => dispatch(nextSlide())}
               sx={{
                 position: "absolute",
-                zIndex: 10,
+                zIndex: 20,
+
                 bgcolor: "background.paper",
                 "&:hover": { bgcolor: "action.hover" },
-                boxShadow: theme.shadows[1],
+                boxShadow: (theme) => theme.shadows[1],
               }}
               aria-label="Next slide"
             >
-              <ChevronRight style={{ height: 24, width: 24, color: theme.palette.text.primary }} />
+              <ChevronRight
+                sx={{ height: 24, width: 24, color: "text.primary" }}
+              />
             </IconButton>
           )}
         </Box>

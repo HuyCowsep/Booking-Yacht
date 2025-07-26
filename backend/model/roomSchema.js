@@ -6,9 +6,20 @@ const roomSchema = new Schema({
   description: String,
   area: Number,
   avatar: String,
-  max_people: Number,
+  max_people: {
+    type: Number,
+    required: true,
+    min: 1,
+    max: 10,
+    default: 2,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+  }, // số lượng của phòng có
   roomTypeId: { type: mongoose.Schema.Types.ObjectId, ref: "RoomType" },
   yachtId: { type: mongoose.Schema.Types.ObjectId, ref: "Yacht" },
+  quantity: Number,
 });
 
-module.exports = mongoose.model("Room", roomSchema);
+module.exports = mongoose.model("Room", roomSchema, "rooms");

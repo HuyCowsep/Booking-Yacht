@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, TextField, Typography, Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import styled from "@emotion/styled";
+import Swal from "sweetalert2";
 import axios from "axios";
 
 const StyledButton = styled(Button)(({ theme }) => ({
@@ -20,11 +21,12 @@ const StyledButton = styled(Button)(({ theme }) => ({
 const ForgotPassword = ({ initialUsername, onBackToLogin, setShowTransition, navigate }) => {
   const [step, setStep] = useState("forgot"); // forgot, otp, reset
   const [username, setUsername] = useState(initialUsername || "");
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState(""); // Lưu OTP từ email
   const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [otpSent, setOtpSent] = useState(false); // Theo dõi OTP đã gửi thành công chưa
+  const [receivedOtp, setReceivedOtp] = useState(""); // Lưu OTP từ server
 
   const handleForgotPassword = async (e) => {
     e.preventDefault();
@@ -34,6 +36,7 @@ const ForgotPassword = ({ initialUsername, onBackToLogin, setShowTransition, nav
       const response = await axios.post("http://localhost:9999/api/v1/customers/forgot-password", {
         username,
       });
+      setReceivedOtp(response.data.otp); // Lưu OTP từ response
       setSuccess(response.data.message);
       setStep("otp");
       setOtpSent(true); // OTP đã gửi thành công, hiển thị nút "Gửi lại"
@@ -49,6 +52,7 @@ const ForgotPassword = ({ initialUsername, onBackToLogin, setShowTransition, nav
       const response = await axios.post("http://localhost:9999/api/v1/customers/forgot-password", {
         username,
       });
+      setReceivedOtp(response.data.otp); // Cập nhật OTP mới
       setSuccess("OTP đã được gửi lại!");
     } catch (err) {
       setError(err.response?.data?.message || "Lỗi gửi OTP");
@@ -60,6 +64,10 @@ const ForgotPassword = ({ initialUsername, onBackToLogin, setShowTransition, nav
     setError("");
     setSuccess("");
     try {
+      if (otp !== receivedOtp) {
+        setError("Mã OTP không đúng, vui lòng kiểm tra email của bạn.");
+        return;
+      }
       const response = await axios.post("http://localhost:9999/api/v1/customers/verify-otp", {
         username,
         otp,
@@ -80,14 +88,21 @@ const ForgotPassword = ({ initialUsername, onBackToLogin, setShowTransition, nav
         username,
         newPassword,
       });
-      setSuccess(response.data.message);
+      Swal.fire({
+        icon: "success",
+        title: "Thành công!",
+        text: response.data.message || "Đặt lại mật khẩu thành công!",
+        timer: 1800,
+        timerProgressBar: true,
+        showConfirmButton: false,
+      });
       setShowTransition(true);
       setTimeout(() => {
         navigate("/login");
         window.location.reload();
       }, 1500);
     } catch (err) {
-      setError(err.response?.data?.message || "Lỗi server");
+      setError(err.response?.data?.message);
     }
   };
 

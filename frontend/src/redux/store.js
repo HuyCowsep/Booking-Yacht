@@ -1,37 +1,23 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { applyMiddleware, createStore } from "redux";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
-import {
-  yachtReducer,
-  imageReducer,
-  uiReducer,
-  bookingReducer,
-  reviewsReducer,
-  filtersReducer,
-  consultationReducer,
-  authReducer,
-  reviewFormReducer,
-  servicerReducer,
-} from "./reducers";
+import rootReducer from "./rootReducer";
 
-const rootReducer = combineReducers({
-  yacht: yachtReducer,
-  images: imageReducer,
-  ui: uiReducer,
-  booking: bookingReducer,
-  reviews: reviewsReducer,
-  filters: filtersReducer,
-  consultation: consultationReducer,
-  reviewForm: reviewFormReducer,
-  auth: authReducer,
-  services: servicerReducer,
-});
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["account", "admin"], // chọn reducer muốn lưu (tuỳ bạn), vừa thêm cả admin
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  persistedReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(thunk)
 );
-//LOG STATE ban đầu để dễ dàng kiểm tra, sau khi xong thì có thể xóa đi
-console.log("Redux Store initialized:", store.getState());
 
-export default store;
+const persistor = persistStore(store);
+
+export { persistor, store };

@@ -1,11 +1,11 @@
-const { Location } = require("../models");
+const Location = require("../model/location");
 
 const getLocations = async (req, res) => {
   try {
-    const locations = await Location.find().limit(3); // Giới hạn 3
-    res.status(200).json(locations);
+    const locations = await Location.find();
+    res.status(200).json({ data: locations }); 
   } catch (err) {
-    res.status(500).json({ message: "Lỗi khi lấy danh sách địa điểm" });
+    res.status(500).json({ message: "Lỗi khi lấy danh sách địa điểm: " + err });
   }
 };
 

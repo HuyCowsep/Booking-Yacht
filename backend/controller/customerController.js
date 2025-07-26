@@ -1,8 +1,7 @@
 const { Customer, Account } = require("../model");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { sendOTP } = require("../utils/mailer");
-const redisClient = require("../utils/redis");
+const { sendOTP } = require("../utils/sendMail");
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -14,12 +13,16 @@ const register = async (req, res) => {
   try {
     const { username, email, fullName, phoneNumber, password } = req.body;
     if (!username || !email || !fullName || !phoneNumber || !password) {
-      return res.status(400).json({ message: "Vui lòng điền đầy đủ thông tin" });
+      return res
+        .status(400)
+        .json({ message: "Vui lòng điền đầy đủ thông tin" });
     }
 
     const existing = await Account.findOne({ username });
     if (existing) {
-      return res.status(400).json({ message: "Tên đăng nhập đã tồn tại, vui lòng dùng tên đăng nhập khác!" });
+      return res.status(400).json({
+        message: "Tên đăng nhập đã tồn tại, vui lòng dùng tên đăng nhập khác!",
+      });
     }
 
     // Hash mật khẩu
@@ -53,7 +56,6 @@ const register = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error("Đăng ký bị lỗi:", error);
     res.status(500).json({ message: "Lỗi server khi đăng ký, thử lại sau" });
   }
 };
@@ -64,53 +66,67 @@ const login = async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
-      return res.status(400).json({ message: "Hãy điền tên đăng nhập và mật khẩu" });
+      return res
+        .status(400)
+        .json({ message: "Hãy điền tên đăng nhập và mật khẩu" });
     }
 
     const account = await Account.findOne({ username });
     if (!account) {
-      console.log(`Không tìm thấy tài khoản với username: ${username}`);
-      return res.status(400).json({ message: "Tên đăng nhập hoặc mật khẩu không đúng" });
+      return res
+        .status(400)
+        .json({ message: "Tên đăng nhập hoặc mật khẩu không đúng" });
     }
 
     const isMatch = await bcryptjs.compare(password, account.password);
     if (!isMatch) {
-      console.log(`Mật khẩu không khớp cho username: ${username}`);
-      return res.status(400).json({ message: "Tên đăng nhập hoặc mật khẩu không đúng" });
+      return res
+        .status(400)
+        .json({ message: "Tên đăng nhập hoặc mật khẩu không đúng" });
     }
 
-    const customer = await Customer.findOne({ accountId: account._id });
-    if (!customer) {
-      console.log(`Không tìm thấy khách hàng với accountId: ${account._id}`);
-      return res.status(404).json({ message: "Không tìm thấy thông tin khách hàng" });
+    // Sinh JWT token
+    const token = jwt.sign(
+      { _id: account._id, role: account.roles },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    );
+
+    // Nếu là CUSTOMER thì cố gắng lấy thêm thông tin hồ sơ
+    let customerInfo = null;
+    if (account.roles === "CUSTOMER") {
+      const customer = await Customer.findOne({ accountId: account._id });
+
+      if (customer) {
+        const avatar = customer.avatar
+          ? customer.avatar.startsWith("http")
+            ? customer.avatar
+            : `${BASE_URL}${customer.avatar}`
+          : null;
+
+        customerInfo = {
+          fullName: customer.fullName,
+          email: customer.email,
+          phoneNumber: customer.phoneNumber,
+          avatar,
+          accountId: customer.accountId,
+        };
+      }
     }
 
-    const token = jwt.sign({ _id: account._id, role: account.roles }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
-    });
-
-    // Nếu avatar tồn tại, thêm BASE_URL vào trước đường dẫn (trừ khi avatar là URL từ Google)
-    const avatar = customer.avatar
-      ? customer.avatar.startsWith("http")
-        ? customer.avatar
-        : `${BASE_URL}${customer.avatar}`
-      : null;
-
+    // Response trả về gồm thông tin chung + thông tin riêng nếu có
     res.json({
       message: "Đăng nhập thành công",
       token,
       customer: {
-        id: customer._id,
-        fullName: customer.fullName,
-        email: customer.email,
-        phoneNumber: customer.phoneNumber,
+        id: account._id,
         username: account.username,
-        avatar: avatar,
-        accountId: customer.accountId,
+        role: account.roles,
+        ...customerInfo, // nếu null thì không thêm gì, nếu có thì merge vào
       },
     });
   } catch (error) {
-    console.error("Login error:", error);
+    console.error("❌ Lỗi login backend:", error);
     res.status(500).json({ message: "Lỗi server khi đăng nhập" });
   }
 };
@@ -145,7 +161,11 @@ const googleLogin = async (req, res) => {
       }
     }
 
-    const jwtToken = jwt.sign({ _id: customer._id, role: "CUSTOMER" }, process.env.JWT_SECRET, { expiresIn: "7d" });
+    const jwtToken = jwt.sign(
+      { _id: customer._id, role: "CUSTOMER" },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    );
 
     res.status(200).json({
       message: "Đăng nhập bằng Google thành công",
@@ -157,6 +177,7 @@ const googleLogin = async (req, res) => {
         email: customer.email,
         phoneNumber: customer.phoneNumber,
         avatar: customer.avatar, // URL từ Google
+        googleId: customer.googleId,
       },
       requiresPhoneNumber: !customer.phoneNumber,
     });
@@ -166,90 +187,10 @@ const googleLogin = async (req, res) => {
   }
 };
 
-// Hàm quên mật khẩu
-const forgotPassword = async (req, res) => {
-  const { username } = req.body;
-  if (!username) {
-    return res.status(400).json({ message: "Vui lòng nhập username" });
-  }
-
-  try {
-    const account = await Account.findOne({ username, roles: "CUSTOMER" });
-    if (!account) {
-      return res.status(404).json({ message: "Tài khoản không tồn tại hoặc không phải khách hàng" });
-    }
-
-    const customer = await Customer.findOne({ accountId: account._id });
-    if (!customer || !customer.email) {
-      return res.status(404).json({ message: "Không tìm thấy email của khách hàng" });
-    }
-
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    await redisClient.setEx(`otp:${username}`, 10 * 60, otp);
-
-    const sent = await sendOTP(customer.email, otp);
-    if (!sent) {
-      return res.status(500).json({ message: "Lỗi gửi email OTP" });
-    }
-
-    res.status(200).json({ message: "OTP đã được gửi đến email của bạn" });
-  } catch (error) {
-    console.error("Error in forgot-password:", error);
-    res.status(500).json({ message: "Lỗi server" });
-  }
-};
-
-// Hàm xác thực OTP
-const verifyOtp = async (req, res) => {
-  const { username, otp } = req.body;
-  if (!username || !otp) {
-    return res.status(400).json({ message: "Vui lòng nhập username và OTP" });
-  }
-
-  try {
-    const storedOtp = await redisClient.get(`otp:${username}`);
-    if (!storedOtp || storedOtp !== otp) {
-      return res.status(400).json({ message: "OTP không hợp lệ hoặc đã hết hạn" });
-    }
-
-    await redisClient.del(`otp:${username}`);
-    res.status(200).json({ message: "Xác thực OTP thành công" });
-  } catch (error) {
-    console.error("Error in verify-otp:", error);
-    res.status(500).json({ message: "Lỗi server" });
-  }
-};
-
-// Hàm đặt lại mật khẩu
-const resetPassword = async (req, res) => {
-  const { username, newPassword } = req.body;
-  if (!username || !newPassword) {
-    return res.status(400).json({ message: "Vui lòng nhập username và mật khẩu mới" });
-  }
-
-  if (newPassword.length < 6) {
-    return res.status(400).json({ message: "Mật khẩu mới phải có ít nhất 6 ký tự" });
-  }
-
-  try {
-    const account = await Account.findOne({ username, roles: "CUSTOMER" });
-    if (!account) {
-      return res.status(404).json({ message: "Tài khoản không tồn tại hoặc không phải khách hàng" });
-    }
-
-    account.password = newPassword;
-    await account.save();
-
-    return res.status(200).json({ message: "Đặt lại mật khẩu thành công" });
-  } catch (error) {
-    console.error("Error in reset-password:", error);
-    return res.status(500).json({ message: "Lỗi server khi đặt lại mật khẩu" });
-  }
-};
-
+// Hàm cập nhật thông tin khách hàng
 const updateCustomer = async (req, res) => {
   const { id } = req.params;
-  const { fullName, phoneNumber } = req.body;
+  const { fullName, email, phoneNumber } = req.body;
 
   try {
     const customer = await Customer.findById(id);
@@ -257,17 +198,34 @@ const updateCustomer = async (req, res) => {
       return res.status(404).json({ message: "Không tìm thấy khách hàng" });
     }
 
+    // Kiểm tra nếu tài khoản là Google (có googleId) thì không cho sửa email
+    if (customer.googleId && email) {
+      return res
+        .status(400)
+        .json({ message: "Không thể sửa email cho tài khoản Google" });
+    }
+
     if (fullName) customer.fullName = fullName;
+    if (email && !customer.googleId) {
+      // Chỉ cập nhật email nếu không phải tài khoản Google
+      customer.email = email;
+    }
     if (phoneNumber) {
-      if (!/^\d{10,11}$/.test(phoneNumber)) {
-        return res.status(400).json({ message: "Số điện thoại không hợp lệ (phải có 10-11 chữ số)" });
+      if (
+        !/^(?:\+84|0)(3[2-9]|5[6-9]|7[0-9]|8[1-9]|9[0-9])[0-9]{7}$/.test(
+          phoneNumber
+        )
+      ) {
+        return res.status(400).json({
+          message:
+            "Số điện thoại không hợp lệ (phải bắt đầu bằng 0 hoặc +84, theo sau là đầu số hợp lệ và 7 chữ số)",
+        });
       }
       customer.phoneNumber = phoneNumber;
     }
 
     await customer.save();
 
-    // Nếu avatar tồn tại, thêm BASE_URL vào trước đường dẫn (trừ khi avatar là URL từ Google)
     const avatar = customer.avatar
       ? customer.avatar.startsWith("http")
         ? customer.avatar
@@ -286,10 +244,14 @@ const updateCustomer = async (req, res) => {
     });
   } catch (error) {
     console.error("Error in update-customer:", error);
-    res.status(500).json({ message: "Lỗi server khi cập nhật thông tin khách hàng", error: error.message });
+    res.status(500).json({
+      message: "Lỗi server khi cập nhật thông tin khách hàng",
+      error: error.message,
+    });
   }
 };
 
+// Hàm upload avatar cho khách hàng
 const uploadCustomerAvatar = async (req, res) => {
   const { id } = req.params;
 
@@ -321,54 +283,165 @@ const uploadCustomerAvatar = async (req, res) => {
     });
   } catch (error) {
     console.error("Error in upload-customer-avatar:", error);
-    res.status(500).json({ message: "Lỗi server khi upload avatar", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Lỗi server khi upload avatar", error: error.message });
   }
 };
 
+// Hàm đổi mật khẩu khi đã login, không cần otp
 const changePassword = async (req, res) => {
-  const { username, oldPassword, newPassword, confirmPassword } = req.body;
+  const { oldPassword, newPassword, confirmPassword } = req.body;
+  const userId = req.user._id;
 
-  if (!username || !oldPassword || !newPassword || !confirmPassword) {
+  if (!oldPassword || !newPassword || !confirmPassword) {
     return res.status(400).json({ message: "Vui lòng điền đầy đủ thông tin" });
   }
-
   if (newPassword !== confirmPassword) {
-    return res.status(400).json({ message: "Mật khẩu mới và xác nhận mật khẩu không khớp" });
+    return res
+      .status(400)
+      .json({ message: "Mật khẩu mới và xác nhận mật khẩu không khớp" });
+  }
+  if (newPassword.length < 6) {
+    return res
+      .status(400)
+      .json({ message: "Mật khẩu mới phải có ít nhất 6 ký tự" });
   }
 
-  if (newPassword.length < 6) {
-    return res.status(400).json({ message: "Mật khẩu mới phải có ít nhất 6 ký tự" });
+  try {
+    const account = await Account.findOne({ _id: userId, roles: "CUSTOMER" });
+    if (!account) {
+      return res.status(404).json({
+        message: "Tài khoản không tồn tại hoặc không phải khách hàng",
+      });
+    }
+    const isMatch = await bcryptjs.compare(oldPassword, account.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Mật khẩu cũ không đúng" });
+    }
+    account.password = newPassword;
+    await account.save();
+    res.status(200).json({ message: "Đổi mật khẩu thành công" });
+  } catch (error) {
+    res.status(500).json({ message: "Lỗi server khi đổi mật khẩu" });
+  }
+};
+
+// Hàm quên mật khẩu
+const forgotPassword = async (req, res) => {
+  const { username } = req.body;
+  if (!username) {
+    return res.status(400).json({ message: "Vui lòng nhập username" });
   }
 
   try {
     const account = await Account.findOne({ username, roles: "CUSTOMER" });
     if (!account) {
-      return res.status(404).json({ message: "Tài khoản không tồn tại hoặc không phải khách hàng" });
+      return res.status(404).json({
+        message: "Tài khoản không tồn tại hoặc không phải khách hàng",
+      });
     }
 
-    const isMatch = await bcryptjs.compare(oldPassword, account.password);
-    if (!isMatch) {
-      return res.status(400).json({ message: "Mật khẩu cũ không đúng" });
+    const customer = await Customer.findOne({ accountId: account._id });
+    if (!customer || !customer.email) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy email của khách hàng" });
     }
 
-    account.password = newPassword;
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const sent = await sendOTP(customer.email, otp);
+    if (!sent) {
+      return res
+        .status(500)
+        .json({ message: "Lỗi gửi email OTP, vui lòng thử lại" });
+    }
+
+    res.status(200).json({ message: "OTP đã được gửi đến email của bạn", otp }); // Gửi OTP về frontend để lưu
+  } catch (error) {
+    console.error("Error in forgot-password:", error);
+    res.status(500).json({ message: "Lỗi server khi gửi OTP" });
+  }
+};
+
+// Hàm xác thực OTP
+const verifyOtp = async (req, res) => {
+  const { username, otp } = req.body;
+  if (!username || !otp) {
+    return res.status(400).json({ message: "Vui lòng nhập username và OTP" });
+  }
+
+  try {
+    const account = await Account.findOne({ username, roles: "CUSTOMER" });
+    if (!account) {
+      return res.status(404).json({
+        message: "Tài khoản không tồn tại hoặc không phải khách hàng",
+      });
+    }
+
+    const customer = await Customer.findOne({ accountId: account._id });
+    if (!customer) {
+      return res.status(404).json({ message: "Không tìm thấy khách hàng" });
+    }
+
+    // Giả định frontend gửi lại OTP đã nhận từ email
+    if (otp !== req.body.otp) {
+      // So sánh với OTP từ client
+      return res.status(400).json({ message: "OTP không hợp lệ" });
+    }
+
+    res.status(200).json({ message: "Xác thực OTP thành công" });
+  } catch (error) {
+    console.error("Error in verify-otp:", error);
+    res.status(500).json({ message: "Lỗi server khi xác thực OTP" });
+  }
+};
+
+// Hàm đặt lại mật khẩu
+const resetPassword = async (req, res) => {
+  const { username, newPassword } = req.body;
+  if (!username || !newPassword) {
+    return res
+      .status(400)
+      .json({ message: "Vui lòng nhập username và mật khẩu mới" });
+  }
+
+  if (newPassword.length < 6) {
+    return res
+      .status(400)
+      .json({ message: "Mật khẩu mới phải có ít nhất 6 ký tự" });
+  }
+
+  try {
+    const account = await Account.findOne({ username, roles: "CUSTOMER" });
+    if (!account) {
+      return res.status(404).json({
+        message: "Tài khoản không tồn tại hoặc không phải khách hàng",
+      });
+    }
+
+    // Hash mật khẩu mới
+    const salt = await bcryptjs.genSalt(10);
+    const hashedPassword = await bcryptjs.hash(newPassword, salt);
+
+    account.password = hashedPassword;
     await account.save();
 
-    res.status(200).json({ message: "Đổi mật khẩu thành công" });
+    res.status(200).json({ message: "Đặt lại mật khẩu thành công" });
   } catch (error) {
-    console.error("Error in change-password:", error);
-    res.status(500).json({ message: "Lỗi server khi đổi mật khẩu" });
+    console.error("Error in reset-password:", error);
+    res.status(500).json({ message: "Lỗi server khi đặt lại mật khẩu" });
   }
 };
 
 module.exports = {
   register,
   login,
-  forgotPassword,
-  verifyOtp,
-  resetPassword,
   googleLogin,
   updateCustomer,
   uploadCustomerAvatar,
+  forgotPassword,
+  verifyOtp,
+  resetPassword,
   changePassword,
 };

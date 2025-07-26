@@ -150,7 +150,7 @@ export default function Footer() {
         </Grid>
         <Box textAlign="center" mt={6} sx={{ opacity: 0.7 }}>
           <Typography fontSize={14} color="text.primary" fontWeight="bold">
-            &copy; 2025 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Bản quyền thuộc về 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Đã đăng ký bản quyền. Thiết kế bởi HuyCowsep
+            &copy; 2025 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Bản quyền thuộc về 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮. Đã đăng ký bản quyền. Thiết kế bởi WDP301 - Group 4
           </Typography>
         </Box>
       </Box>

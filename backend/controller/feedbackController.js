@@ -1,45 +1,6 @@
-const {Feedback, Customer} = require("../model");
+const Feedback = require("../model/feedback");
+const Customer = require("../model/customer");
 const mongoose = require("mongoose");
-
-exports.getAllFeedback = async (req, res) => {
-  try {
-    const feedbackList = await Feedback.find()
-      .populate({
-        path: "customerId",
-        select: "fullName",
-        model: "Customer",
-      })
-      .populate({
-        path: "yachtId",
-        select: "name", // nếu muốn lấy tên yacht luôn
-        model: "Yacht",
-      })
-      .sort({ createdAt: -1 })
-      .lean();
-
-    const formatted = feedbackList.map((fb) => ({
-      id: fb._id.toString(),
-      rating: fb.starRating,
-      comment: fb.description,
-      date: new Date(fb.createdAt).toLocaleDateString("vi-VN"),
-      userName: fb.customerId?.fullName || "Anonymous",
-      yachtName: fb.yachtId?.name || "Unknown Yacht",
-    }));
-
-    res.status(200).json({
-      success: true,
-      data: formatted,
-      total: formatted.length,
-    });
-  } catch (error) {
-    console.error("Error fetching all feedback:", error);
-    res.status(500).json({
-      success: false,
-      message: "Error fetching all feedback",
-      error: error.message,
-    });
-  }
-};
 
 // Get feedback for a specific yacht with pagination and search
 exports.getFeedbackByYacht = async (req, res) => {

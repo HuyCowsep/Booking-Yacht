@@ -192,16 +192,23 @@ export default function Enterprise() {
             variant="h2"
             sx={{ color: "text.primary", fontWeight: 700, fontSize: 28, mb: 2, lineHeight: 1.2 }}
           >
-            Longwave - Tour Du thuyền Hạ Long: <br />
+            𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 - Tour Du thuyền Hạ Long: <br />
             Kết nối doanh nghiệp, khám phá vẻ đẹp tự nhiên
           </Typography>
-          <Typography sx={{ color: "text.primary", fontSize: 17, lineHeight: 1.7, mb: 2.5 }}>
-            Với sự trải nghiệm thực tế, Công ty TNHH Du lịch và Dịch vụ Longwave mong muốn đưa du thuyền Hạ
-            Long trở thành một lựa chọn đầu tiên cho doanh nghiệp. Nhiều chương trình du lịch hấp dẫn, đa dạng
-            được kết hợp sẽ đem đến cho quý doanh nghiệp sự hài lòng và thuận tiện. Du thuyền Hạ Long cũng sẽ
-            là một món quà tri ân vô cùng ý nghĩa dành cho nhân viên của quý doanh nghiệp. Bên cạnh đó, du
-            thuyền Hạ Long còn rất phù hợp cho những cuộc hội thảo, hợp tác đầu tư hay giao lưu của quý doanh
-            nghiệp.
+          <Typography
+            sx={{
+              color: "text.primary",
+              fontSize: 17,
+              lineHeight: 1.7,
+              mb: 2.5,
+            }}
+            fontFamily={"Archivo, sans-serif"}
+          >
+            Với sự trải nghiệm thực tế, Công ty TNHH Du lịch và Dịch vụ 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 mong muốn đưa du thuyền Hạ Long trở
+            thành một lựa chọn đầu tiên cho doanh nghiệp. Nhiều chương trình du lịch hấp dẫn, đa dạng được kết hợp sẽ
+            đem đến cho quý doanh nghiệp sự hài lòng và thuận tiện. Du thuyền Hạ Long cũng sẽ là một món quà tri ân vô
+            cùng ý nghĩa dành cho nhân viên của quý doanh nghiệp. Bên cạnh đó, du thuyền Hạ Long còn rất phù hợp cho
+            những cuộc hội thảo, hợp tác đầu tư hay giao lưu của quý doanh nghiệp.
           </Typography>
           <Button
             variant="contained"
@@ -221,7 +228,7 @@ export default function Enterprise() {
               "&:hover": { bgcolor: "primary.dark" },
             }}
           >
-            Liên hệ với Longwave <span style={{ fontSize: 20 }}>→</span>
+            Liên hệ với 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 <span style={{ fontSize: 20 }}>→</span>
           </Button>
         </Box>
         {/* Các box nhỏ bên phải + ảnh */}
@@ -319,7 +326,7 @@ export default function Enterprise() {
         </Box>
       </Box>
 
-      {/* Section 3: Khách hàng của Longwave */}
+      {/* Section 3: Khách hàng của 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 */}
       <Box
         sx={{
           mt: 8,
@@ -350,7 +357,7 @@ export default function Enterprise() {
                   color: "text.primary",
                 }}
               >
-                Khách hàng của Longwave
+                Khách hàng của 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮
               </Typography>
             </Box>
 
@@ -369,7 +376,7 @@ export default function Enterprise() {
                   fontWeight: 500,
                 }}
               >
-                Longwave mang đến một trải nghiệm hoàn toàn mới, trải nghiệm đẳng cấp 5 sao cho khách hàng
+                𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 mang đến một trải nghiệm hoàn toàn mới, trải nghiệm đẳng cấp 5 sao cho khách hàng
               </Typography>
             </Box>
           </Box>

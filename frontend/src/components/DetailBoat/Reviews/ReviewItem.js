@@ -31,7 +31,15 @@ const ReviewItem = ({ review }) => {
       <div className="text-sm my-3 mb-1">
         {review.comment || "Không có bình luận"}
       </div>
-      <div className="text-xs">{review.date || "N/A"}</div>
+      <div className="text-xs">
+        {review.date ||
+          review.date.toLocaleTimeString("vi-VN", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          }) ||
+          "N/A"}
+      </div>
     </Box>
   );
 };

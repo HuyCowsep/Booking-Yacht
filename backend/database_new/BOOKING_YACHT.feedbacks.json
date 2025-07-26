@@ -1,0 +1,251 @@
+[{
+  "_id": {
+    "$oid": "682b6e6f4fffc4ea6a39d780"
+  },
+  "starRating": 5,
+  "description": "Trải nghiệm tuyệt vời trên Du thuyền Emerald Dream! Phong cảnh Vịnh Hạ Long rất đẹp, dịch vụ chuyên nghiệp, phòng ốc sạch sẽ và sang trọng.",
+  "createdAt": {
+    "$date": "2024-12-15T14:20:00.000Z"
+  },
+  "customerId": {
+    "$oid": "6829db047869b68f629e55f3"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b6e6f4fffc4ea6a39d781"
+  },
+  "starRating": 4,
+  "description": "Du thuyền Royal Star rất đẹp, nhưng đồ ăn trên tàu hơi ít lựa chọn. Tuy nhiên, nhân viên rất nhiệt tình và thân thiện.",
+  "createdAt": {
+    "$date": "2025-01-10T09:30:00.000Z"
+  },
+  "customerId": {
+    "$oid": "6829db047869b68f629e55f3"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682b6e6f4fffc4ea6a39d782"
+  },
+  "starRating": 3,
+  "description": "Du thuyền Ocean Queen ổn, nhưng phòng hơi nhỏ so với kỳ vọng. Hành trình khám phá Vịnh Hạ Long khá thú vị, đặc biệt là Hang Sửng Sốt.",
+  "createdAt": {
+    "$date": "2025-02-20T16:45:00.000Z"
+  },
+  "customerId": {
+    "$oid": "6829db697869b68f629e55f7"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682c287062ecd845c96a1bdc"
+  },
+  "starRating": 4,
+  "description": "Du thuyền rất đẹp, đồ ăn ngon và nhân viên thân thiện. Tuy nhiên, wifi hơi yếu khi đi ra xa bờ.",
+  "createdAt": {
+    "$date": "2024-12-18T09:00:00.000Z"
+  },
+  "customerId": {
+    "$oid": "6829db697869b68f629e55f7"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  }
+},
+{
+  "_id": {
+    "$oid": "682c287062ecd845c96a1bdd"
+  },
+  "starRating": 5,
+  "description": "Mọi thứ đều hoàn hảo! Cảnh đẹp như tranh vẽ, nhân viên cực kỳ chuyên nghiệp, xứng đáng 5 sao.",
+  "createdAt": {
+    "$date": "2024-12-20T16:45:00.000Z"
+  },
+  "customerId": {
+    "$oid": "682c26e0c2a6cecd3daaf1eb"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  }
+},
+{
+  "_id": {
+    "$oid": "682c287062ecd845c96a1bde"
+  },
+  "starRating": 4,
+  "description": "Phòng ốc sạch sẽ, cảnh đẹp. Nhưng có lúc tàu hơi lắc mạnh, khiến mình hơi mệt. Hy vọng sẽ cải thiện.",
+  "createdAt": {
+    "$date": "2024-12-22T11:30:00.000Z"
+  },
+  "customerId": {
+    "$oid": "682c2705c2a6cecd3daaf1f0"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  }
+},
+{
+  "_id": {
+    "$oid": "682c287062ecd845c96a1bdf"
+  },
+  "starRating": 5,
+  "description": "Lần đầu trải nghiệm du thuyền, cảm thấy rất thư giãn. Đồ ăn phong phú và nhân viên hỗ trợ nhiệt tình.",
+  "createdAt": {
+    "$date": "2024-12-25T14:10:00.000Z"
+  },
+  "customerId": {
+    "$oid": "682c2731c2a6cecd3daaf1f5"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  }
+},
+{
+  "_id": {
+    "$oid": "682c2a3cf154b09d59cadeb1"
+  },
+  "starRating": 5,
+  "description": "Du thuyền mới quá xịn! Nội thất hiện đại, có cả jacuzzi ngoài trời nhìn ra biển, chill cực kỳ.",
+  "createdAt": {
+    "$date": "2025-01-05T08:30:00.000Z"
+  },
+  "customerId": {
+    "$oid": "6829db697869b68f629e55f7"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682c2a3cf154b09d59cadeb2"
+  },
+  "starRating": 4,
+  "description": "Nhân viên lịch sự, decor đẹp. Tuy nhiên hành trình hơi ngắn, mong được đi lâu hơn trong lần sau.",
+  "createdAt": {
+    "$date": "2025-01-06T12:15:00.000Z"
+  },
+  "customerId": {
+    "$oid": "682c26e0c2a6cecd3daaf1eb"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682c2a3cf154b09d59cadeb3"
+  },
+  "starRating": 5,
+  "description": "Không gian thoáng đãng, phòng đẹp nhưng hôm đó biển hơi động nên bị say tàu nhẹ.",
+  "createdAt": {
+    "$date": "2025-01-08T10:00:00.000Z"
+  },
+  "customerId": {
+    "$oid": "682c2705c2a6cecd3daaf1f0"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682c2a3cf154b09d59cadeb4"
+  },
+  "starRating": 5,
+  "description": "Từ check-in tới ăn uống đều được chăm chút kỹ. Không có điểm gì để chê luôn á!",
+  "createdAt": {
+    "$date": "2025-01-10T15:40:00.000Z"
+  },
+  "customerId": {
+    "$oid": "682c2731c2a6cecd3daaf1f5"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72e"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682c2ae66fa80b6436716ac8"
+  },
+  "starRating": 4,
+  "description": "Tàu đẹp, nhân viên nhiệt tình. Có điều wifi hơi yếu, chắc do đang giữa vịnh 😂",
+  "createdAt": {
+    "$date": "2025-01-12T09:00:00.000Z"
+  },
+  "customerId": {
+    "$oid": "682c2705c2a6cecd3daaf1f0"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682c2ae66fa80b6436716ac9"
+  },
+  "starRating": 5,
+  "description": "Không gian đỉnh của chóp! Lên boong ngắm hoàng hôn là hết nước chấm 🧡",
+  "createdAt": {
+    "$date": "2025-01-13T17:45:00.000Z"
+  },
+  "customerId": {
+    "$oid": "682c2731c2a6cecd3daaf1f5"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68357bb187d6964f9c6aa2b2"
+  },
+  "starRating": 5,
+  "description": "Quá tuyệt, sạch và đẹp",
+  "customerId": {
+    "$oid": "6831bbefd87337488dc2fadb"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d72d"
+  },
+  "createdAt": {
+    "$date": "2025-05-27T08:45:37.406Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683590f51fe2141fd04f8f88"
+  },
+  "starRating": 5,
+  "description": "quá tuyệt",
+  "customerId": {
+    "$oid": "6831bbefd87337488dc2fadb"
+  },
+  "yachtId": {
+    "$oid": "682add964fffc4ea6a39d730"
+  },
+  "createdAt": {
+    "$date": "2025-05-27T10:16:21.042Z"
+  },
+  "__v": 0
+}]

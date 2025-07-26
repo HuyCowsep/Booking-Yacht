@@ -1,14 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Card, CardMedia, Box, Typography, Stack, Divider, Button, Chip, Badge } from "@mui/material";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import DirectionsBoatIcon from "@mui/icons-material/DirectionsBoat";
 import StarOutline from "@mui/icons-material/StarOutline";
+import {
+  Badge,
+  Box,
+  Button,
+  Card,
+  CardMedia,
+  Chip,
+  Divider,
+  Stack,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 // Custom HotSaleBadge
-const HotSaleBadge = ({ children, ...props }) => <Badge {...props}>{children}</Badge>;
+const HotSaleBadge = ({ children, ...props }) => (
+  <Badge {...props}>{children}</Badge>
+);
 
 // Custom ServiceChip
 const ServiceChip = (props) => (
@@ -16,7 +27,8 @@ const ServiceChip = (props) => (
     {...props}
     sx={{
       fontFamily: "Archivo, sans-serif",
-      bgcolor: (theme) => (theme.palette.mode === "light" ? "#f0f7f7" : "#2f3b44"),
+      bgcolor: (theme) =>
+        theme.palette.mode === "light" ? "#f0f7f7" : "#2f3b44",
       fontWeight: 600,
       opacity: 0.8,
       ...props.sx,
@@ -27,23 +39,34 @@ const ServiceChip = (props) => (
 const CruiseCard = ({ cruise }) => {
   const [avgRating, setAvgRating] = useState(0);
   const [reviewCount, setReviewCount] = useState(0);
-  const [firstImage, setFirstImage] = useState(null);
+  const [firstImage, setFirstImage] = useState(null); // State for the first image
   const yachtId = cruise?._id;
   const { selectedDurations } = useSelector((state) => state.filters || {});
 
+  // Fetch feedback data (ratings and reviews)
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const feedbacksResponse = await axios.get(`http://localhost:9999/api/v1/yachts/${yachtId}/feedbacks`);
-        const feedbacks = Array.isArray(feedbacksResponse.data?.data) ? feedbacksResponse.data.data : [];
+        const feedbacksResponse = await axios.get(
+          `http://localhost:9999/api/v1/yachts/${yachtId}/feedbacks`
+        );
+        const feedbacks = Array.isArray(feedbacksResponse.data?.data)
+          ? feedbacksResponse.data.data
+          : [];
         const avg =
           feedbacks.length > 0
-            ? (feedbacks.reduce((sum, fb) => sum + (fb.starRating || 0), 0) / feedbacks.length).toFixed(1)
+            ? (
+                feedbacks.reduce((sum, fb) => sum + (fb.starRating || 0), 0) /
+                feedbacks.length
+              ).toFixed(1)
             : 0;
         setAvgRating(avg);
         setReviewCount(feedbacks.length);
       } catch (err) {
-        console.error(`Lỗi khi lấy feedbacks cho yacht ${yachtId}:`, err.message);
+        console.error(
+          `Lỗi khi lấy feedbacks cho yacht ${yachtId}:`,
+          err.message
+        );
       }
     };
 
@@ -56,15 +79,25 @@ const CruiseCard = ({ cruise }) => {
   useEffect(() => {
     const fetchFirstImage = async () => {
       try {
-        const response = await axios.get(`http://localhost:9999/api/v1/yachtImages/yacht/${yachtId}`);
+        const response = await axios.get(
+          `http://localhost:9999/api/v1/yachtImages/yacht/${yachtId}`
+        );
         const images = response.data.data || [];
         if (images.length > 0) {
-          setFirstImage(images[0]);
+          setFirstImage(images[0]); // Set the first image from the imageUrl array
         } else {
-          setFirstImage(`https://via.placeholder.com/300x200?text=${encodeURIComponent(cruise.name)}`); // Fallback placeholder image
+          setFirstImage(
+            `https://via.placeholder.com/300x200?text=${encodeURIComponent(
+              cruise.name
+            )}`
+          ); // Fallback placeholder image
         }
       } catch (err) {
-        setFirstImage(`https://via.placeholder.com/300x200?text=${encodeURIComponent(cruise.name)}`); // Fallback on error
+        setFirstImage(
+          `https://via.placeholder.com/300x200?text=${encodeURIComponent(
+            cruise.name
+          )}`
+        ); // Fallback on error
       }
     };
 
@@ -79,18 +112,14 @@ const CruiseCard = ({ cruise }) => {
     return null;
   }
 
-  const { _id: id, name = "Unknown Cruise", image, cheapestPrice, locationId, durations = [], services = [] } = cruise;
-
-  const priceDisplay = cheapestPrice ? `${cheapestPrice.toLocaleString("vi-VN")}đ` : "Liên hệ";
-  const departurePoint = locationId?.name || "Unknown";
-
-  // Tìm lịch trình khớp với selectedDurations
-  const matchedDuration =
-    selectedDurations.length > 0 ? durations.find((d) => selectedDurations.includes(d)) : durations[0];
-  const durationDisplay = matchedDuration || (durations.length > 0 ? durations[0] : "Liên hệ");
-
-  // Debug log
-  console.log(`CruiseCard ${name}:`, { services, durations, selectedDurations, durationDisplay });
+  const {
+    _id: id,
+    name = "Unknown Cruise",
+    launch,
+    hullBody,
+    maxRoom,
+    services = [],
+  } = cruise;
 
   return (
     <Link to={`/boat-detail/${yachtId}`} style={{ textDecoration: "none" }}>
@@ -100,12 +129,12 @@ const CruiseCard = ({ cruise }) => {
           display: "flex",
           flexDirection: { xs: "row", md: "row" },
           borderRadius: "32px",
-          bgcolor: (theme) => theme.palette.background.paper,
           width: "100%",
           alignItems: "center",
           cursor: "pointer",
           transition: "transform 0.2s",
           border: "1px solid",
+          bgcolor: (theme) => theme.palette.background.paper,
           borderColor: (theme) => theme.palette.divider,
           boxShadow: (theme) => theme.shadows[1],
         }}
@@ -121,7 +150,7 @@ const CruiseCard = ({ cruise }) => {
           <CardMedia
             component="img"
             height={200}
-            image={firstImage}
+            image={cruise.image} // Use the fetched first image
             alt={name}
             sx={{
               width: "352px",
@@ -141,17 +170,23 @@ const CruiseCard = ({ cruise }) => {
               fontFamily: "Archivo, sans-serif",
               left: "28px",
               top: "28px",
-              color: (theme) => (theme.palette.mode === "light" ? "#7a2e0e" : "#fedf89"),
+              color: (theme) =>
+                theme.palette.mode === "light" ? "#7a2e0e" : "#fedf89",
               position: "absolute",
               justifyContent: "center",
               alignItems: "center",
               padding: "2px 8px 2px 6px",
-              backgroundColor: (theme) => (theme.palette.mode === "light" ? "#fedf89" : "#7a2e0e"),
+              backgroundColor: (theme) =>
+                theme.palette.mode === "light" ? "#fedf89" : "#7a2e0e",
               gap: "4px",
             }}
           >
             <StarOutline
-              sx={{ fontSize: "16px", color: (theme) => (theme.palette.mode === "light" ? "#f79009" : "#fedf89") }}
+              sx={{
+                fontSize: "16px",
+                color: (theme) =>
+                  theme.palette.mode === "light" ? "#f79009" : "#fedf89",
+              }}
             />
             {avgRating} ({reviewCount}) đánh giá
           </HotSaleBadge>
@@ -186,7 +221,7 @@ const CruiseCard = ({ cruise }) => {
                 boxShadow: (theme) => theme.shadows[1],
               }}
             >
-              {departurePoint && `Du thuyền ${departurePoint}`}
+              Du thuyền {name}
             </Typography>
             <Typography
               fontFamily="Archivo, sans-serif"
@@ -199,29 +234,28 @@ const CruiseCard = ({ cruise }) => {
             >
               {name}
             </Typography>
-            <Stack direction="row" spacing={3} alignItems="center" sx={{ mb: 1.5 }}>
+            <Stack
+              direction="row"
+              spacing={3}
+              alignItems="center"
+              sx={{ mb: 1.5 }}
+            >
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                <CalendarTodayIcon
+                <DirectionsBoatIcon
                   sx={{
                     fontSize: "1rem",
                     mr: 0.5,
                     color: "text.secondary",
                   }}
                 />
-                <Typography fontFamily="Archivo, sans-serif" variant="body2" color="text.secondary">
-                  {durationDisplay}
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <LocationOnIcon
-                  sx={{
-                    fontSize: "1rem",
-                    mr: 0.5,
-                    color: "text.secondary",
-                  }}
-                />
-                <Typography fontFamily="Archivo, sans-serif" variant="body2" color="text.secondary">
-                  {departurePoint}
+                <Typography
+                  fontFamily="Archivo, sans-serif"
+                  variant="body2"
+                  color="text.secondary"
+                >
+                  Hạ thuỷ: {launch || "Không xác định"} - Thân vỏ:{" "}
+                  {hullBody || "Không xác định"} -{maxRoom || "Không xác định"}{" "}
+                  phòng
                 </Typography>
               </Box>
             </Stack>
@@ -241,10 +275,14 @@ const CruiseCard = ({ cruise }) => {
               {services.slice(0, 5).map((service, index) => (
                 <ServiceChip key={index} label={service} size="small" />
               ))}
-              {services.length > 5 && <ServiceChip label={`+${services.length - 5}`} size="small" />}
+              {services.length > 5 && (
+                <ServiceChip label={`+${services.length - 5}`} size="small" />
+              )}
             </Stack>
           </Box>
-          <Divider sx={{ my: 1, borderColor: (theme) => theme.palette.divider }} />
+          <Divider
+            sx={{ my: 1, borderColor: (theme) => theme.palette.divider }}
+          />
           {/* Bottom section */}
           <Box sx={{ justifyContent: "flex-end" }}>
             <Box
@@ -263,7 +301,7 @@ const CruiseCard = ({ cruise }) => {
                 }}
                 fontFamily="Archivo, sans-serif"
               >
-                {priceDisplay} / khách
+                Liên hệ
               </Typography>
               <Button
                 variant="contained"
@@ -273,7 +311,8 @@ const CruiseCard = ({ cruise }) => {
                   height: "35px",
                   borderRadius: "32px",
                   bgcolor: "primary.main",
-                  color: (theme) => theme.palette.getContrastText(theme.palette.primary.main),
+                  color: (theme) =>
+                    theme.palette.getContrastText(theme.palette.primary.main),
                   "&:hover": { bgcolor: "primary.dark" },
                 }}
               >

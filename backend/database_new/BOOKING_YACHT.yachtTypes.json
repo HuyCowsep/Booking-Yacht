@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "682aab0481f0fd7069e74041"
+  },
+  "name": "Sang trọng",
+  "ranking": 5
+},
+{
+  "_id": {
+    "$oid": "682aab0481f0fd7069e74042"
+  },
+  "name": "Cao cấp",
+  "ranking": 4
+},
+{
+  "_id": {
+    "$oid": "682aab0481f0fd7069e74043"
+  },
+  "name": "Tiêu chuẩn",
+  "ranking": 4
+},
+{
+  "_id": {
+    "$oid": "682aab0481f0fd7069e74044"
+  },
+  "name": "Gia đình",
+  "ranking": 3
+},
+{
+  "_id": {
+    "$oid": "682aab0481f0fd7069e74045"
+  },
+  "name": "Lãng mạn",
+  "ranking": 4
+},
+{
+  "_id": {
+    "$oid": "682aab0481f0fd7069e74046"
+  },
+  "name": "Bình dân",
+  "ranking": 3
+}]

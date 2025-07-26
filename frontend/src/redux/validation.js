@@ -1,20 +1,41 @@
 export const validateBookingForm = (formData) => {
   const errors = {};
 
-  if (!formData.fullName.trim()) {
+  if (!formData.fullName?.trim()) {
     errors.fullName = "Họ và tên là bắt buộc";
+  } else if (formData.fullName.trim().length < 2) {
+    errors.fullName = "Họ và tên phải có ít nhất 2 ký tự";
   }
 
-  if (!formData.phoneNumber.trim()) {
+  if (!formData.phoneNumber?.trim()) {
     errors.phoneNumber = "Số điện thoại là bắt buộc";
-  } else if (!/^[0-9]{10,11}$/.test(formData.phoneNumber.trim())) {
-    errors.phoneNumber = "Số điện thoại không hợp lệ";
+  } else if (
+    !/^(?:\+84|0)(3[2-9]|5[6-9]|7[0-9]|8[1-9]|9[0-9])[0-9]{7}$/.test(
+      formData.phoneNumber.trim()
+    )
+  ) {
+    errors.phoneNumber =
+      "Số điện thoại phải bắt đầu bằng 0 hoặc +84, theo sau là đầu số hợp lệ (03, 05, 07, 08, 09) và 7 chữ số, tổng cộng 10 chữ số";
   }
 
-  if (!formData.email.trim()) {
+  if (!formData.email?.trim()) {
     errors.email = "Email là bắt buộc";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
     errors.email = "Email không hợp lệ";
+  }
+
+  if (!formData.checkInDate) {
+    errors.checkInDate = "Ngày check-in là bắt buộc";
+  } else {
+    const selectedDate = new Date(
+      formData.checkInDate.split("/").reverse().join("-")
+    );
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate < today) {
+      errors.checkInDate = "Ngày check-in không thể là ngày trong quá khứ";
+    }
   }
 
   return {
@@ -23,48 +44,42 @@ export const validateBookingForm = (formData) => {
   };
 };
 
-export const formatPrice = (price) => {
-  return new Intl.NumberFormat("vi-VN", {
-    style: "currency",
-    currency: "VND",
-  }).format(price);
+export const validateRoomSelection = (rooms, selectedSchedule) => {
+  const errors = {};
+
+  if (!selectedSchedule) {
+    errors.schedule = "Vui lòng chọn lịch trình";
+  }
+
+  const selectedRooms = rooms.filter((room) => room.quantity > 0);
+  if (selectedRooms.length === 0) {
+    errors.rooms = "Vui lòng chọn ít nhất một phòng";
+  }
+
+  return {
+    errors,
+    isValid: Object.keys(errors).length === 0,
+  };
 };
-export const validateReviewForm = ({
-  userRating,
-  fullName,
-  description,
-  customerId,
-  yachtId,
-}) => {
-  if (!userRating || userRating < 1 || userRating > 5) {
-    return {
-      isValid: false,
-      errorMessage: "Vui lòng chọn số sao từ 1 đến 5.",
-    };
+
+export function formatPrice(value) {
+  if (typeof value !== "number" || isNaN(value)) return "0 ₫";
+  return value.toLocaleString("vi-VN") + " ₫";
+}
+
+export const formatDate = (dateString) => {
+  try {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("vi-VN");
+  } catch (error) {
+    return "Không xác định";
   }
-  if (!fullName) {
-    return {
-      isValid: false,
-      errorMessage: "Họ và tên không được để trống.",
-    };
-  }
-  if (!description) {
-    return {
-      isValid: false,
-      errorMessage: "Vui lòng nhập nhận xét.",
-    };
-  }
-  if (!customerId) {
-    return {
-      isValid: false,
-      errorMessage: "Thông tin khách hàng không hợp lệ.",
-    };
-  }
-  if (!yachtId) {
-    return {
-      isValid: false,
-      errorMessage: "Yacht ID không hợp lệ.",
-    };
-  }
-  return { isValid: true, errorMessage: "" };
+};
+
+export const isValidEmail = (email) => {
+  return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i.test(email);
+};
+
+export const isValidPhone = (phone) => {
+  return /^(?:\+84|0)(3[2-9]|5[6-9]|7[0-9]|8[1-9]|9[0-9])[0-9]{7}$/.test(phone);
 };

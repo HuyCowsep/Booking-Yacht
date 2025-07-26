@@ -1,15 +1,20 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Typography, Pagination } from "@mui/material";
-import { setCurrentPage } from "../../redux/action";
+import { setCurrentPage } from "../../redux/actions";
 
-const PaginationSection = ({ totalPages, filteredYachts, indexOfFirstItem, indexOfLastItem }) => {
+const PaginationSection = ({
+  totalPages,
+  filteredYachts,
+  indexOfFirstItem,
+  indexOfLastItem,
+}) => {
   const dispatch = useDispatch();
   const { currentPage } = useSelector((state) => state.filters || {});
-  
+
   // Đảm bảo currentPage không vượt quá totalPages hoặc nhỏ hơn 1
   const validPage = Math.max(1, Math.min(currentPage, totalPages));
-  
+
   const startItem = filteredYachts.length === 0 ? 0 : indexOfFirstItem + 1;
   const endItem = Math.min(indexOfLastItem, filteredYachts.length);
 

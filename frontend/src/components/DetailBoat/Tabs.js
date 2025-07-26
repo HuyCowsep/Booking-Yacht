@@ -1,12 +1,13 @@
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setActiveTab } from "../../redux/action";
+import { setActiveTab } from "../../redux/actions/uiActions";
 
 function Tabs() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch({});
   const activeTab = useSelector((state) => state.ui.activeTab);
-  const totalReviews = useSelector((state) => state.reviews.ratingData?.total || 0);
+  const totalReviews = useSelector(
+    (state) => state.reviews.ratingData?.total || 0
+  );
   const tabs = [
     { label: "Đặc điểm", id: "features" },
     { label: "Phòng & giá", id: "rooms" },
@@ -49,20 +50,26 @@ function Tabs() {
             py: 1,
             borderRadius: (theme) => theme.shape.borderRadius,
             textTransform: "none",
+            fontFamily: "Archivo, sans-serif",
             fontWeight: activeTab === index ? "medium" : "regular",
-            color: activeTab === index ? "primary.contrastText" : "text.secondary",
+            color:
+              activeTab === index ? "primary.contrastText" : "text.secondary",
             bgcolor: activeTab === index ? "primary.main" : "transparent",
-            boxShadow: activeTab === index ? (theme) => theme.shadows[1] : "none",
+            boxShadow:
+              activeTab === index ? (theme) => theme.shadows[1] : "none",
             "&:hover": {
               bgcolor: activeTab === index ? "primary.dark" : "action.hover",
-              color: activeTab === index ? "primary.contrastText" : "text.primary",
+              color:
+                activeTab === index ? "primary.contrastText" : "text.primary",
               boxShadow: (theme) => theme.shadows[2],
             },
             transition: "all 0.2s",
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Typography variant="body1">{tab.label}</Typography>
+            <Typography variant="body1" fontFamily={"Archivo, sans-serif"}>
+              {tab.label}
+            </Typography>
             {tab.label === "Đánh giá" && totalReviews > 0 && (
               <Typography
                 variant="caption"

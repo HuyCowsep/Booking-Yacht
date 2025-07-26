@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  IconButton,
-  useMediaQuery,
-  useTheme,
-  Stack,
-  Menu,
-  MenuItem,
-  Avatar,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import LoginIcon from "@mui/icons-material/Login";
+import MenuIcon from "@mui/icons-material/Menu";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import { AiOutlineMoon, AiOutlineSun, AiFillPhone } from "react-icons/ai";
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Button,
+  IconButton,
+  Menu,
+  MenuItem,
+  Stack,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { useState } from "react";
+import { AiFillPhone, AiOutlineMoon, AiOutlineSun } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { doLogout } from "../redux/actions/userAction";
 
 const menuLinks = [
   { label: "Tìm du thuyền", href: "/find-boat" },
-  { label: "Khách sạn", href: "/hotel" },
   { label: "Doanh nghiệp", href: "/doanh-nghiep" },
   { label: "Blog", href: "/blog" },
 ];
@@ -33,15 +34,12 @@ export default function Header({ toggleTheme, mode }) {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [anchorEl, setAnchorEl] = useState(null);
   const [userAnchorEl, setUserAnchorEl] = useState(null);
-  const [customer, setCustomer] = useState(null);
+  const customer = useSelector((state) => {
+    console.log("Redux state.account:", state.account);
+    return state.account.account.customer;
+  }); // Lấy trực tiếp customer từ Redux
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const storedCustomer = localStorage.getItem("customer");
-    if (storedCustomer) {
-      setCustomer(JSON.parse(storedCustomer));
-    }
-  }, []);
+  const dispatch = useDispatch();
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -58,10 +56,9 @@ export default function Header({ toggleTheme, mode }) {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("customer");
-    setCustomer(null);
-
+    dispatch(doLogout());
+    localStorage.removeItem("token"); // Xóa token
+    // Không cần remove "customer" vì Redux persist sẽ xử lý
     Swal.fire({
       icon: "success",
       title: "Đăng xuất thành công!",
@@ -203,7 +200,7 @@ export default function Header({ toggleTheme, mode }) {
           {customer ? (
             <>
               <Typography variant="body1" color="text.primary" sx={{ fontWeight: 500 }}>
-                Xin chào, {customer.fullName || customer.username}
+                Xin chào, {customer.fullName || customer.username} {/* Ưu tiên fullName nếu có, fallback username */}
               </Typography>
               <IconButton onClick={handleUserMenuOpen}>
                 <Avatar
@@ -223,6 +220,9 @@ export default function Header({ toggleTheme, mode }) {
                 <MenuItem onClick={handleUserMenuClose} component={Link} to="/view-profile">
                   Xem trang cá nhân
                 </MenuItem>
+                <MenuItem onClick={handleUserMenuClose} component={Link} to="/booking-history">
+                  Lịch sử booking
+                </MenuItem>
                 <MenuItem
                   onClick={() => {
                     toggleTheme();
@@ -230,7 +230,7 @@ export default function Header({ toggleTheme, mode }) {
                   }}
                 >
                   <Stack direction="row" alignItems="center" spacing={1}>
-                    <Typography>Đổi sang màn hình</Typography>
+                    <Typography>Đổi chế độ</Typography>
                     {mode === "light" ? <AiOutlineMoon size={20} /> : <AiOutlineSun size={20} />}
                   </Stack>
                 </MenuItem>

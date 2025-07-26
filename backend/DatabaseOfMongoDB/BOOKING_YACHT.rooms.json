@@ -6,7 +6,7 @@
   "description": "Phòng tiêu chuẩn với giường đơn, phù hợp cho 1-2 người",
   "area": 20,
   "avatar": "/images/room-2.jpg",
-  "max_people": 2,
+
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85141"
   },
@@ -23,7 +23,6 @@
   "description": "Phòng cao cấp với giường đôi và ban công",
   "area": 30,
   "avatar": "/images/room-1.jpg",
-  "max_people": 3,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85142"
   },
@@ -40,7 +39,7 @@
   "description": "Phòng suite với bồn tắm và ban công lớn",
   "area": 40,
   "avatar": "/images/room-5.jpg",
-  "max_people": 4,
+
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85147"
   },
@@ -57,7 +56,7 @@
   "description": "Phòng tiêu chuẩn với giường đơn",
   "area": 22,
   "avatar": "/images/room-4.jpg",
-  "max_people": 2,
+
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85143"
   },
@@ -74,7 +73,6 @@
   "description": "Phòng suite cao cấp với bồn tắm và ban công lớn",
   "area": 40,
   "avatar": "/images/room-3.jpg",
-  "max_people": 4,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85144"
   },
@@ -91,7 +89,6 @@
   "description": "Phòng cao cấp với giường đôi và ban công",
   "area": 30,
   "avatar": "/images/room-2.jpg",
-  "max_people": 3,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85148"
   },
@@ -108,7 +105,6 @@
   "description": "Phòng tiêu chuẩn với giường đơn",
   "area": 18,
   "avatar": "/images/room-1.jpg",
-  "max_people": 2,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85145"
   },
@@ -125,7 +121,6 @@
   "description": "Phòng cao cấp với giường đôi và ban công",
   "area": 28,
   "avatar": "/images/room-5.jpg",
-  "max_people": 3,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85146"
   },
@@ -142,7 +137,6 @@
   "description": "Phòng tiêu chuẩn với giường đơn",
   "area": 20,
   "avatar": "/images/room-4.jpg",
-  "max_people": 2,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85149"
   },
@@ -159,7 +153,6 @@
   "description": "Phòng cao cấp với giường đôi và ban công",
   "area": 30,
   "avatar": "/images/room-3.jpg",
-  "max_people": 3,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f8514a"
   },
@@ -176,7 +169,6 @@
   "description": "Phòng suite với bồn tắm và ban công lớn",
   "area": 40,
   "avatar": "/images/room-2.jpg",
-  "max_people": 4,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f8514b"
   },
@@ -193,7 +185,6 @@
   "description": "Phòng tiêu chuẩn với giường đơn",
   "area": 20,
   "avatar": "/images/room-1.jpg",
-  "max_people": 2,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f8514c"
   },
@@ -210,7 +201,6 @@
   "description": "Phòng cao cấp với giường đôi và ban công",
   "area": 30,
   "avatar": "/images/room-5.jpg",
-  "max_people": 3,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f8514d"
   },
@@ -227,7 +217,6 @@
   "description": "Phòng VIP với bồn tắm, ban công lớn và quầy bar mini",
   "area": 50,
   "avatar": "/images/room-4.jpg",
-  "max_people": 5,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f8514e"
   },
@@ -244,7 +233,6 @@
   "description": "Phòng tiêu chuẩn với giường đơn",
   "area": 20,
   "avatar": "/images/room-3.jpg",
-  "max_people": 2,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f8514f"
   },
@@ -261,7 +249,6 @@
   "description": "Phòng cao cấp với giường đôi và ban công",
   "area": 30,
   "avatar": "/images/room-2.jpg",
-  "max_people": 3,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85150"
   },
@@ -278,7 +265,6 @@
   "description": "Phòng tiêu chuẩn với giường đơn",
   "area": 18,
   "avatar": "/images/room-1.jpg",
-  "max_people": 2,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85151"
   },
@@ -295,7 +281,6 @@
   "description": "Phòng cao cấp với giường đôi và ban công",
   "area": 28,
   "avatar": "/images/room-5.jpg",
-  "max_people": 3,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85152"
   },
@@ -312,7 +297,6 @@
   "description": "Phòng suite với bồn tắm và ban công lớn",
   "area": 38,
   "avatar": "/images/room-4.jpg",
-  "max_people": 4,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85153"
   },
@@ -329,7 +313,6 @@
   "description": "Phòng tiêu chuẩn với giường đơn",
   "area": 20,
   "avatar": "/images/room-3.jpg",
-  "max_people": 2,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85154"
   },
@@ -346,7 +329,6 @@
   "description": "Phòng cao cấp với giường đôi và ban công",
   "area": 30,
   "avatar": "/images/room-2.jpg",
-  "max_people": 3,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85155"
   },
@@ -363,7 +345,6 @@
   "description": "Phòng VIP với bồn tắm, ban công lớn và quầy bar mini",
   "area": 50,
   "avatar": "/images/room-1.jpg",
-  "max_people": 5,
   "roomTypeId": {
     "$oid": "682b1a1f92e3cd8070f85156"
   },

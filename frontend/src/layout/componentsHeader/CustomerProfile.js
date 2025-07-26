@@ -4,6 +4,8 @@ import styled from "@emotion/styled";
 import axios from "axios";
 import Swal from "sweetalert2";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import { useSelector } from "react-redux"; // Thêm useSelector
+import { isValidPhone, isValidEmail } from "../../redux/validation"; // Import hàm validate
 
 const StyledButton = styled(Button)(({ theme }) => ({
   width: "100%",
@@ -34,19 +36,21 @@ export default function CustomerProfile() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  // Lấy customer và token từ Redux ở cấp component
+  const reduxCustomer = useSelector((state) => state.account.account.customer);
+  const token = useSelector((state) => state.account.account.data);
+
   useEffect(() => {
-    const storedCustomer = localStorage.getItem("customer");
-    if (storedCustomer) {
-      const parsedCustomer = JSON.parse(storedCustomer);
-      setCustomer(parsedCustomer);
+    if (reduxCustomer) {
+      setCustomer(reduxCustomer);
       setFormData({
-        fullName: parsedCustomer.fullName || "",
-        email: parsedCustomer.email || "",
-        phoneNumber: parsedCustomer.phoneNumber || "",
-        avatar: parsedCustomer.avatar || null,
+        fullName: reduxCustomer.fullName || "",
+        email: reduxCustomer.email || "",
+        phoneNumber: reduxCustomer.phoneNumber || "",
+        avatar: reduxCustomer.avatar || null,
       });
     }
-  }, []);
+  }, [reduxCustomer]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -59,10 +63,7 @@ export default function CustomerProfile() {
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setFormData((prev) => ({
-        ...prev,
-        avatar: file,
-      }));
+      setFormData((prev) => ({ ...prev, avatar: file }));
     }
   };
 
@@ -71,38 +72,57 @@ export default function CustomerProfile() {
     setError("");
     setSuccess("");
 
+    if (!isValidPhone(formData.phoneNumber)) {
+      setError(
+        "Số điện thoại phải bắt đầu bằng 0 hoặc +84, theo sau là đầu số hợp lệ (03, 05, 07, 08, 09) và 7 chữ số, tổng cộng 10 chữ số"
+      );
+      return;
+    }
+
+    if (!customer) {
+      setError("Vui lòng đăng nhập để cập nhật thông tin.");
+      return;
+    }
+
     try {
-      // Cập nhật thông tin cá nhân
       const updateData = { phoneNumber: formData.phoneNumber };
-      // Chỉ gửi fullName nếu tài khoản không phải Google
       if (customer.accountId) {
         updateData.fullName = formData.fullName;
+        updateData.email = formData.email;
       }
 
-      const updateResponse = await axios.put(`http://localhost:9999/api/v1/customers/${customer.id}`, updateData);
+      const updateResponse = await axios.put(
+        `http://localhost:9999/api/v1/customers/${customer._id}`,
+        updateData,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
-      // Cập nhật avatar nếu có (chỉ áp dụng cho tài khoản không đăng nhập bằng Google)
       if (customer.accountId && formData.avatar && formData.avatar instanceof File) {
         const avatarFormData = new FormData();
         avatarFormData.append("avatar", formData.avatar);
         const avatarResponse = await axios.put(
-          `http://localhost:9999/api/v1/customers/${customer.id}/avatar`,
+          `http://localhost:9999/api/v1/customers/${customer._id}/avatar`,
           avatarFormData,
           {
-            headers: { "Content-Type": "multipart/form-data" },
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
           }
         );
         updateResponse.data.customer.avatar = avatarResponse.data.customer.avatar;
       }
 
-      // Cập nhật localStorage
       const updatedCustomer = {
         ...customer,
         fullName: customer.accountId ? formData.fullName : customer.fullName,
         phoneNumber: formData.phoneNumber,
+        email: updateResponse.data.customer.email,
         avatar: updateResponse.data.customer.avatar || customer.avatar,
+        id: customer._id,
       };
-      localStorage.setItem("customer", JSON.stringify(updatedCustomer));
       setCustomer(updatedCustomer);
 
       setSuccess("Cập nhật thông tin thành công!");
@@ -148,6 +168,7 @@ export default function CustomerProfile() {
         </Typography>
       )}
 
+      {/* Avatar + Upload */}
       <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
         <Stack direction="column" alignItems="center" spacing={1}>
           <Avatar
@@ -166,6 +187,7 @@ export default function CustomerProfile() {
         </Stack>
       </Box>
 
+      {/* 📝 Luôn hiển thị form, chỉ khác nhau ở trạng thái editable hay không */}
       <Box component="form" onSubmit={handleSubmit}>
         <Stack spacing={2}>
           <TextField
@@ -174,9 +196,23 @@ export default function CustomerProfile() {
             value={formData.fullName}
             onChange={handleChange}
             fullWidth
-            disabled={!editMode || !customer.accountId} // Disable vì login bằng Google ko cho phép sửa tên 
+            disabled={!editMode || !customer.accountId}
           />
-          <TextField label="Email" name="email" value={formData.email} fullWidth disabled />
+          <TextField
+            label="Email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            fullWidth
+            disabled={!editMode || !customer.accountId}
+            error={editMode && customer.accountId && !isValidEmail(formData.email)}
+            helperText={
+              editMode && customer.accountId && !isValidEmail(formData.email)
+                ? "Email không hợp lệ, cần Email chính xác để 𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 gửi các thông tin như chọn phòng, gửi hoá đơn,..."
+                : ""
+            }
+          />
+
           <TextField
             label="Số điện thoại"
             name="phoneNumber"
@@ -184,13 +220,21 @@ export default function CustomerProfile() {
             onChange={handleChange}
             fullWidth
             disabled={!editMode}
+            error={editMode && !isValidPhone(formData.phoneNumber)}
+            helperText={
+              editMode && !isValidPhone(formData.phoneNumber)
+                ? "Số điện thoại không hợp lệ, nếu sai sẽ không nhận được mã OTP"
+                : ""
+            }
           />
+
           {editMode ? (
             <Stack direction="row" spacing={2}>
               <StyledButton type="submit">Lưu thay đổi</StyledButton>
               <Button
                 variant="outlined"
                 color="secondary"
+                style={{ height: "52px" }}
                 onClick={() => {
                   setEditMode(false);
                   setFormData({
@@ -211,6 +255,14 @@ export default function CustomerProfile() {
           )}
         </Stack>
       </Box>
+
+      {/* Thông báo lưu ý nếu là Google account */}
+      {!editMode && !customer.accountId && (
+        <Typography variant="body2" color="error" sx={{ fontStyle: "italic", textAlign: "center", mt: 2 }}>
+          * Đối với người dùng đăng nhập bằng Google, bạn chỉ có thể cập nhật số điện thoại. Việc chỉnh sửa họ tên,
+          email và ảnh đại diện sẽ không được hỗ trợ để đảm bảo tính nhất quán với thông tin từ Google.
+        </Typography>
+      )}
     </Box>
   );
 }

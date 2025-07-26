@@ -1,0 +1,136 @@
+.manage-room-container {
+  background: #f8fafc;
+  padding: 18px 0 24px 0;
+  min-height: 100vh;
+}
+
+.manage-room-container .container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: none;
+  padding: 12px 8px 8px 8px;
+  margin-top: 12px;
+}
+
+.manage-room-container .row {
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.manage-room-container .btn-success {
+  border-radius: 20px;
+  font-weight: 600;
+  padding: 5px 18px;
+  font-size: 0.98rem;
+  background: #219653;
+  color: #fff;
+  border: none;
+  min-width: 150px;
+  margin-right: 8px;
+}
+.manage-room-container .btn-success:hover {
+  background: #17643a;
+}
+
+.manage-room-container .btn-warning {
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: #222;
+  background: #FFC107;
+  border: none;
+  min-width: 200px;
+  margin-right: 8px;
+}
+.manage-room-container .btn-warning:hover {
+  background: #e0a800;
+}
+
+.manage-room-container .btn-primary {
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  background: #1976D2;
+  border: none;
+  min-width: 80px;
+}
+.manage-room-container .btn-primary:hover {
+  background: #1251a3;
+}
+
+.manage-room-container .room {
+  background: #fff;
+  border-radius: 18px;
+  border: 2px solid #b2dfdb;
+  box-shadow: none;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 10px 18px;
+  gap: 18px !important;
+  display: flex;
+}
+.manage-room-container .room img {
+  border-radius: 10px;
+  box-shadow: none;
+  width: 120px;
+  height: 75px;
+  object-fit: cover;
+}
+.manage-room-container .room-name p {
+  font-size: 1rem;
+  color: #222;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+.manage-room-container .ok {
+  display: flex;
+  gap: 8px;
+}
+
+.manage-room-container .form-control {
+  border-radius: 18px;
+  font-size: 0.96rem;
+  padding: 6px 12px;
+  height: 34px;
+  width: 170px;
+  margin-left: auto;
+}
+
+.manage-room-container .pagination {
+  justify-content: center;
+  margin-top: 12px;
+}
+.manage-room-container .page-item .page-link {
+  border-radius: 6px;
+  margin: 0 2px;
+  color: #1cb5e0;
+  border: 1px solid #e0e0e0;
+  font-size: 0.96rem;
+  padding: 3px 8px;
+}
+.manage-room-container .page-item.active .page-link {
+  background: #1cb5e0;
+  color: #fff;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .manage-room-container .container {
+    padding: 4px 1px;
+  }
+  .manage-room-container .room {
+    flex-direction: column;
+    gap: 8px !important;
+    padding: 8px 2px;
+  }
+  .manage-room-container .btn-primary, .manage-room-container .btn-warning, .manage-room-container .btn-success {
+    font-size: 0.93rem;
+    min-width: 60px;
+    padding: 5px 7px;
+  }
+  .manage-room-container .form-control {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+} 

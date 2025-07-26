@@ -1,0 +1,335 @@
+.manage-service-yacht {
+  padding: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+
+  .back-link {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #f0f0f0;
+      text-decoration: none;
+      color: #333;
+    }
+
+    p {
+      margin: 0;
+      font-weight: 500;
+    }
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .accordion {
+    margin-bottom: 30px;
+    
+    .accordion-item {
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      background-color: #007bff;
+      color: white;
+      
+      .accordion-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        font-weight: 600;
+        
+        &:not(.collapsed) {
+          background-color: #0056b3;
+          color: white;
+        }
+        
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .accordion-body {
+      padding: 25px;
+      background-color: #fff;
+    }
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  .form-control {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+    
+    &.is-invalid {
+      border-color: #dc3545;
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
+    
+    &.is-valid {
+      border-color: #28a745;
+      box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    }
+  }
+  
+  .form-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    
+    &::after {
+      content: " *";
+      color: #dc3545;
+    }
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    
+    &:hover:not(:disabled) {
+      background-color: #218838;
+      transform: translateY(-1px);
+    }
+    
+    &:disabled {
+      background-color: #6c757d;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .spinner-border-sm {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  .service-table-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 30px 0;
+  }
+
+  .table {
+    margin: 0;
+    
+    thead {
+      background-color: #f8f9fa;
+      
+      th {
+        border: none;
+        padding: 15px;
+        font-weight: 600;
+        color: #333;
+        vertical-align: middle;
+        
+        .sort-icons {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          margin-left: 10px;
+          
+          svg {
+            cursor: pointer;
+            transition: color 0.3s ease;
+            
+            &:hover {
+              color: #007bff;
+            }
+          }
+        }
+      }
+    }
+    
+    tbody {
+      tr {
+        transition: background-color 0.3s ease;
+        
+        &:hover {
+          background-color: #f8f9fa;
+        }
+        
+        td {
+          border: none;
+          padding: 15px;
+          vertical-align: middle;
+          color: #333;
+        }
+      }
+    }
+  }
+
+  .search-container {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    
+    .form-control {
+      max-width: 300px;
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      
+      &.edit-btn {
+        color: #007bff;
+        
+        &:hover {
+          background-color: rgba(0, 123, 255, 0.1);
+        }
+      }
+      
+      &.delete-btn {
+        color: #dc3545;
+        
+        &:hover {
+          background-color: rgba(220, 53, 69, 0.1);
+        }
+      }
+      
+      label {
+        margin: 0;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fff;
+    border-top: 1px solid #dee2e6;
+    
+    .pagination {
+      margin: 0;
+      
+      .page-item {
+        .page-link {
+          border: 1px solid #dee2e6;
+          color: #007bff;
+          padding: 8px 12px;
+          margin: 0 2px;
+          border-radius: 4px;
+          
+          &:hover {
+            background-color: #e9ecef;
+            border-color: #dee2e6;
+          }
+        }
+        
+        &.active .page-link {
+          background-color: #007bff;
+          border-color: #007bff;
+          color: white;
+        }
+      }
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    padding: 10px;
+    
+    .back-link {
+      padding: 10px;
+      gap: 10px;
+    }
+    
+    .accordion-body {
+      padding: 15px;
+    }
+    
+    .table {
+      font-size: 14px;
+      
+      th, td {
+        padding: 10px 8px;
+      }
+      
+      .sort-icons {
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .search-container {
+      .form-control {
+        max-width: 100%;
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .table {
+      font-size: 12px;
+      
+      th, td {
+        padding: 8px 4px;
+      }
+    }
+    
+    .action-buttons {
+      .action-btn {
+        padding: 6px 8px;
+        
+        label {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+} 

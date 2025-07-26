@@ -7,4 +7,3 @@ const yachtServiceSchema = new Schema({
 });
 
 module.exports = mongoose.model("YachtService", yachtServiceSchema, "yachtServices");
-//done

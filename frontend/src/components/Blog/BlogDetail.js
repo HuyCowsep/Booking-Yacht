@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Box, Breadcrumbs, Link, Typography, Chip, Container, useTheme } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
@@ -229,6 +230,7 @@ const articles = [
     ],
   },
 
+
   // Bạn có thể thêm nhiều bài viết khác tại đây
 ];
 
@@ -264,11 +266,13 @@ export default function BlogDetail() {
         py: 3,
       }}
     >
+
       <Container maxWidth="lg">
         {/* Breadcrumb */}
         <Box display="flex" alignItems="center" mb={3} fontSize="0.875rem" color="gray">
           <Breadcrumbs separator=">" aria-label="breadcrumb">
             <Link underline="hover" color="inherit" href="/" sx={{ display: "flex", alignItems: "center" }}>
+
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Home
             </Link>
@@ -280,7 +284,9 @@ export default function BlogDetail() {
         </Box>
 
         {/* Title */}
+
         <Typography variant="h4" component="h1" gutterBottom>
+
           {article.title}
         </Typography>
 
@@ -289,6 +295,7 @@ export default function BlogDetail() {
           label={article.date}
           size="small"
           sx={{
+
             backgroundColor: "#f3f4f6",
             color: "#6b7280",
             fontSize: "1rem",
@@ -304,6 +311,7 @@ export default function BlogDetail() {
 
         {/* Intro paragraph */}
         <Typography variant="body1" color="text.secondary" fontStyle="italic" mb={6} maxWidth="600px" lineHeight={1.75}>
+
           {article.intro}
         </Typography>
 
@@ -313,6 +321,7 @@ export default function BlogDetail() {
           src={article.img}
           alt={article.title}
           sx={{
+
             width: "100%",
             borderRadius: "12px",
             objectFit: "cover",
@@ -324,11 +333,13 @@ export default function BlogDetail() {
         <Box maxWidth="md">
           {article.content.map((section, index) => (
             <Box key={index} mb={6}>
+
               <Typography variant="body1" fontWeight="bold" fontSize="1.5rem" color="text.primary" mb={1}>
                 {section.heading}
               </Typography>
               {section.paragraphs.map((p, i) => (
                 <Typography key={i} variant="body1" color="text.secondary" mb={2} lineHeight={1.75}>
+
                   {p}
                 </Typography>
               ))}
@@ -338,6 +349,7 @@ export default function BlogDetail() {
                   src={section.image}
                   alt={section.heading}
                   sx={{
+
                     width: "100%",
                     maxWidth: 400,
                     borderRadius: "12px",
@@ -354,3 +366,4 @@ export default function BlogDetail() {
   );
 }
 //BlogDetail
+

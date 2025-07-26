@@ -47,11 +47,22 @@ export default function Review() {
   return (
     <Box sx={{ width: "100%", py: 8, px: 2 }}>
       <Box maxWidth={900} mx="auto">
-        <Typography variant="h5" fontWeight={700} mb={2} color="text.primary">
+        <Typography
+          fontFamily={"Archivo, sans-serif"}
+          variant="h5"
+          fontWeight={700}
+          mb={2}
+          color="text.primary"
+        >
           Đánh giá từ những người đã trải nghiệm
         </Typography>
-        <Typography mb={4} color="text.secondary">
-          Khách hàng chia sẻ về những kỷ niệm tuyệt vời trên chuyến du lịch với chúng tôi.
+        <Typography
+          fontFamily={"Archivo, sans-serif"}
+          mb={4}
+          color="text.secondary"
+        >
+          Khách hàng chia sẻ về những kỷ niệm tuyệt vời trên chuyến du lịch với
+          chúng tôi.
         </Typography>
         <Typography mb={3} mt={-2}>
           <img src="/images/border.jpg" alt="border" width={100} />
@@ -61,25 +72,48 @@ export default function Review() {
           sx={{
             px: { xs: 2, md: 4 },
             py: { xs: 3, md: 5 },
-            borderRadius: 4,
+            borderRadius: 3,
             border: "1px solid #e0e0e0",
             mb: 3,
-            background: "url('https://ext.same-assets.com/834882384/1398955826.png') center/cover",
+            background:
+              "url('https://ext.same-assets.com/834882384/1398955826.png') center/cover",
             backgroundColor: (theme) => theme.palette.background.paper,
           }}
         >
-          <Typography variant="h4" fontWeight={800} mb={2} color="text.primary" fontFamily={"Archivo, sans-serif"}>
+          <Typography
+            variant="h4"
+            fontWeight={800}
+            mb={2}
+            color="text.primary"
+            fontFamily={"Archivo, sans-serif"}
+          >
             {selected.cruise}
           </Typography>
-          <Typography variant="body1" fontStyle="italic" color="text.secondary">
+          <Typography
+            variant="body1"
+            fontFamily={"Archivo, sans-serif"}
+            fontStyle="italic"
+            color="text.secondary"
+          >
             “{selected.text}”
           </Typography>
-          <Typography mt={2} variant="subtitle1" color="primary" fontWeight={700}>
+          <Typography
+            mt={2}
+            variant="subtitle1"
+            color="primary"
+            fontWeight={700}
+            fontFamily={"Archivo, sans-serif"}
+          >
             {selected.name} -
           </Typography>
         </Paper>
 
-        <Stack direction="row" spacing={2} justifyContent="center" flexWrap="wrap">
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="center"
+          flexWrap="wrap"
+        >
           {testimonials.map((c, idx) => (
             <Stack
               key={idx}
@@ -92,13 +126,21 @@ export default function Review() {
                 src={c.avatar}
                 alt={c.name}
                 sx={{
-                  border: idx === selectedIndex ? "3px solid #1976d2" : "3px solid transparent",
+                  border:
+                    idx === selectedIndex
+                      ? "3px solid #1976d2"
+                      : "3px solid transparent",
                   width: 48,
                   height: 48,
                   transition: "border 0.2s",
                 }}
               />
-              <Typography variant="caption" color="text.secondary" textAlign="center">
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                textAlign="center"
+                fontFamily={"Archivo, sans-serif"}
+              >
                 {c.name}
               </Typography>
             </Stack>

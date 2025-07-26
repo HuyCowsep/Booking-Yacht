@@ -1,0 +1,26 @@
+.booking {
+    gap: 16px;
+
+    .child {
+        padding: 20px;
+        border-radius: 10px;
+        width: 258px;
+        margin-top: 10px;
+    }
+}
+
+.revenue {
+    gap: 10px;
+
+    .child1 {
+        padding: 20px;
+        margin-top: 10px;
+        border-radius: 10px;
+        width: 290px;
+    }
+}
+
+.graph {
+    display: flex;
+    justify-content: center;
+}

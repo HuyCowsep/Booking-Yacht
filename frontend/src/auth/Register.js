@@ -70,7 +70,9 @@ export default function Register() {
     }
     // Kiểm tra định dạng email
     if (!validateEmail(formData.email)) {
-      setError("Email không hợp lệ! Vui lòng nhập email đúng định dạng (ví dụ: example@domain.com).");
+      setError(
+        "Email không hợp lệ! Vui lòng nhập email đúng định dạng (ví dụ: example@domain.com)."
+      );
       return;
     }
     // Chuẩn bị dữ liệu gửi lên API
@@ -84,7 +86,10 @@ export default function Register() {
     };
 
     try {
-      const response = await axios.post("http://localhost:9999/api/v1/customers/register", dataToSend);
+      await axios.post(
+        "http://localhost:9999/api/v1/customers/register",
+        dataToSend
+      );
       setSuccess("Đăng ký thành công!");
 
       // Chuyển hướng về /login và reload sau 1.5 giây
@@ -92,7 +97,8 @@ export default function Register() {
         navigate("/login");
       }, 1500);
     } catch (err) {
-      const errorMessage = err.response?.data?.message || "Đã có lỗi xảy ra, vui lòng thử lại.";
+      const errorMessage =
+        err.response?.data?.message || "Đã có lỗi xảy ra, vui lòng thử lại.";
       setError(errorMessage);
     }
   };
@@ -121,8 +127,11 @@ export default function Register() {
           className="auth-form"
           sx={{
             bgcolor: (theme) =>
-              theme.palette.mode === "light" ? "rgba(255, 255, 255, 0.1)" : "rgba(27, 36, 42, 0.7)",
-            backdropFilter: (theme) => (theme.palette.mode === "light" ? "blur(80px)" : "blur(5px)"),
+              theme.palette.mode === "light"
+                ? "rgba(255, 255, 255, 0.1)"
+                : "rgba(27, 36, 42, 0.7)",
+            backdropFilter: (theme) =>
+              theme.palette.mode === "light" ? "blur(80px)" : "blur(5px)",
             borderRadius: 3,
             p: 3,
             width: 600,
@@ -132,7 +141,9 @@ export default function Register() {
             "&:hover": {
               boxShadow: (theme) =>
                 `0 12px 48px ${
-                  theme.palette.mode === "light" ? "rgba(129, 127, 127, 0.5)" : "rgba(0, 0, 0, 0.7)"
+                  theme.palette.mode === "light"
+                    ? "rgba(129, 127, 127, 0.5)"
+                    : "rgba(0, 0, 0, 0.7)"
                 }`,
             },
           }}
@@ -183,9 +194,13 @@ export default function Register() {
                   "& .MuiOutlinedInput-root": {
                     background: "rgba(255, 255, 255, 0.2)",
                     "& input": { color: "white" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(255, 255, 255, 0.3)",
+                    },
                   },
-                  "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "rgba(255, 255, 255, 0.7)",
+                  },
                 }}
               />
             </Box>
@@ -213,9 +228,13 @@ export default function Register() {
                     "& .MuiOutlinedInput-root": {
                       background: "rgba(255, 255, 255, 0.2)",
                       "& input": { color: "white" },
-                      "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(255, 255, 255, 0.3)",
+                      },
                     },
-                    "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
+                    "& .MuiInputBase-input::placeholder": {
+                      color: "rgba(255, 255, 255, 0.7)",
+                    },
                   }}
                 />
               </Grid>
@@ -242,9 +261,13 @@ export default function Register() {
                     "& .MuiOutlinedInput-root": {
                       background: "rgba(255, 255, 255, 0.2)",
                       "& input": { color: "white" },
-                      "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(255, 255, 255, 0.3)",
+                      },
                     },
-                    "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
+                    "& .MuiInputBase-input::placeholder": {
+                      color: "rgba(255, 255, 255, 0.7)",
+                    },
                   }}
                 />
               </Grid>
@@ -272,13 +295,49 @@ export default function Register() {
                   "& .MuiOutlinedInput-root": {
                     background: "rgba(255, 255, 255, 0.2)",
                     "& input": { color: "white" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(255, 255, 255, 0.3)",
+                    },
                   },
-                  "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "rgba(255, 255, 255, 0.7)",
+                  },
                 }}
               />
             </Box>
-            
+            <Box className="form-group" sx={{ mb: 2 }}>
+              <Typography
+                component="label"
+                htmlFor="address"
+                color="text.primary"
+                sx={{ mb: 1, fontSize: "1rem" }}
+              >
+                Địa chỉ
+              </Typography>
+              <TextField
+                fullWidth
+                id="address"
+                type="text"
+                placeholder="Nhập địa chỉ"
+                variant="outlined"
+                margin="normal"
+                value={formData.address}
+                onChange={handleChange}
+                sx={{
+                  mt: 1,
+                  "& .MuiOutlinedInput-root": {
+                    background: "rgba(255, 255, 255, 0.2)",
+                    "& input": { color: "white" },
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(255, 255, 255, 0.3)",
+                    },
+                  },
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "rgba(255, 255, 255, 0.7)",
+                  },
+                }}
+              />
+            </Box>
             <Grid container spacing={2} sx={{ mb: 2 }}>
               <Grid item xs={12} sm={6}>
                 <Typography
@@ -303,9 +362,13 @@ export default function Register() {
                     "& .MuiOutlinedInput-root": {
                       background: "rgba(255, 255, 255, 0.2)",
                       "& input": { color: "white" },
-                      "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(255, 255, 255, 0.3)",
+                      },
                     },
-                    "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
+                    "& .MuiInputBase-input::placeholder": {
+                      color: "rgba(255, 255, 255, 0.7)",
+                    },
                   }}
                 />
               </Grid>
@@ -332,9 +395,13 @@ export default function Register() {
                     "& .MuiOutlinedInput-root": {
                       background: "rgba(255, 255, 255, 0.2)",
                       "& input": { color: "white" },
-                      "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255, 255, 255, 0.3)" },
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(255, 255, 255, 0.3)",
+                      },
                     },
-                    "& .MuiInputBase-input::placeholder": { color: "rgba(255, 255, 255, 0.7)" },
+                    "& .MuiInputBase-input::placeholder": {
+                      color: "rgba(255, 255, 255, 0.7)",
+                    },
                   }}
                 />
               </Grid>
@@ -342,7 +409,11 @@ export default function Register() {
             <StyledButton type="submit">Đăng ký</StyledButton>
           </Box>
           <Box className="social-login" sx={{ mt: 3 }}>
-            <Typography align="center" color="text.secondary" sx={{ mb: 2, fontSize: "0.9rem" }}>
+            <Typography
+              align="center"
+              color="text.secondary"
+              sx={{ mb: 2, fontSize: "0.9rem" }}
+            >
               Hoặc đăng ký bằng
             </Typography>
             <Stack direction="row" spacing={2} justifyContent="center" mt={2}>
@@ -357,7 +428,11 @@ export default function Register() {
                   "&:hover": { bgcolor: "#c1352b" },
                 }}
               >
-                <FontAwesomeIcon icon={faGoogle} className="icon" style={{ marginRight: "8px" }} />
+                <FontAwesomeIcon
+                  icon={faGoogle}
+                  className="icon"
+                  style={{ marginRight: "8px" }}
+                />
                 Google
               </Button>
               <Button
@@ -371,7 +446,11 @@ export default function Register() {
                   "&:hover": { bgcolor: "#365899" },
                 }}
               >
-                <FontAwesomeIcon icon={faFacebookF} className="icon" style={{ marginRight: "8px" }} />
+                <FontAwesomeIcon
+                  icon={faFacebookF}
+                  className="icon"
+                  style={{ marginRight: "8px" }}
+                />
                 Facebook
               </Button>
             </Stack>
@@ -384,7 +463,10 @@ export default function Register() {
             sx={{ fontSize: "0.9rem" }}
           >
             Bạn đã có tài khoản?{" "}
-            <Link to="/login" style={{ color: "#68bfb5", textDecoration: "none" }}>
+            <Link
+              to="/login"
+              style={{ color: "#68bfb5", textDecoration: "none" }}
+            >
               Đăng nhập
             </Link>
           </Typography>

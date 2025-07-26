@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Box, Typography, Container, Grid, Card, CardMedia, CardContent, CardActionArea } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -59,7 +60,7 @@ export default function BlogList() {
       }}
     >
       <Container maxWidth="lg">
-        <Typography variant="h4" gutterBottom fontWeight="bold" color="primary.main" textAlign="center" py={3}>
+        <Typography variant="h4" gutterBottom fontWeight="bold">
           Bài viết mới nhất
         </Typography>
 
@@ -89,4 +90,5 @@ export default function BlogList() {
       </Container>
     </Box>
   );
+
 }
