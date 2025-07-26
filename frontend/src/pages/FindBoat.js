@@ -9,6 +9,7 @@ import {
   Stack,
   TextField,
   Typography,
+  CircularProgress,
 } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -90,54 +91,34 @@ const FindBoat = () => {
         setLoading(true);
 
         // Lấy danh sách du thuyền
-        const response = await axios.get(
-          "http://localhost:9999/api/v1/yachts/findboat"
-        );
-        const initialYachts = Array.isArray(response.data?.data)
-          ? response.data.data
-          : [];
+        const response = await axios.get("http://localhost:9999/api/v1/yachts/findboat");
+        const initialYachts = Array.isArray(response.data?.data) ? response.data.data : [];
 
         // Lấy danh sách dịch vụ
-        const servicesResponse = await axios.get(
-          "http://localhost:9999/api/v1/yachts/services"
-        );
-        const servicesData = Array.isArray(servicesResponse.data?.data)
-          ? servicesResponse.data.data
-          : [];
+        const servicesResponse = await axios.get("http://localhost:9999/api/v1/yachts/services");
+        const servicesData = Array.isArray(servicesResponse.data?.data) ? servicesResponse.data.data : [];
 
         // Bổ sung starRating, durations, services cho từng du thuyền
         const yachtsWithDetails = await Promise.all(
           initialYachts.map(async (yacht) => {
             // Lấy feedbacks để tính starRating
-            const feedbacksResponse = await axios.get(
-              `http://localhost:9999/api/v1/yachts/${yacht._id}/feedbacks`
-            );
+            const feedbacksResponse = await axios.get(`http://localhost:9999/api/v1/yachts/${yacht._id}/feedbacks`);
             const feedbacks = feedbacksResponse.data?.data || [];
             const starRating =
               feedbacks.length > 0
-                ? Math.round(
-                    (feedbacks.reduce(
-                      (sum, fb) => sum + (fb.starRating || 0),
-                      0
-                    ) /
-                      feedbacks.length) *
-                      10
-                  ) / 10
+                ? Math.round((feedbacks.reduce((sum, fb) => sum + (fb.starRating || 0), 0) / feedbacks.length) * 10) /
+                  10
                 : 0;
 
             // Lấy schedules để tính durations
-            const schedulesResponse = await axios.get(
-              `http://localhost:9999/api/v1/yachts/${yacht._id}/schedules`
-            );
+            const schedulesResponse = await axios.get(`http://localhost:9999/api/v1/yachts/${yacht._id}/schedules`);
             const schedules = schedulesResponse.data?.data || [];
             const durations = schedules
               .filter((schedule) => schedule.scheduleId)
               .map((schedule) => {
                 const startDate = new Date(schedule.scheduleId.startDate);
                 const endDate = new Date(schedule.scheduleId.endDate);
-                const days = Math.ceil(
-                  (endDate - startDate) / (1000 * 60 * 60 * 24)
-                );
+                const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
                 return `${days} ngày ${days - 1} đêm`;
               });
 
@@ -154,33 +135,15 @@ const FindBoat = () => {
         setYachts(yachtsWithDetails);
 
         // Cập nhật uniqueDeparturePoints
-        const points = [
-          ...new Set(
-            yachtsWithDetails
-              .map((yacht) => yacht.locationId?.name)
-              .filter(Boolean)
-          ),
-        ];
+        const points = [...new Set(yachtsWithDetails.map((yacht) => yacht.locationId?.name).filter(Boolean))];
         setUniqueDeparturePoints(points);
 
         // Cập nhật availableServices
-        const services = [
-          ...new Set(
-            servicesData
-              .map((service) => service.serviceId?.serviceName)
-              .filter(Boolean)
-          ),
-        ];
+        const services = [...new Set(servicesData.map((service) => service.serviceId?.serviceName).filter(Boolean))];
         setAvailableServices(services);
 
         // Cập nhật availableDurations
-        const durations = [
-          ...new Set(
-            yachtsWithDetails
-              .flatMap((yacht) => yacht.durations)
-              .filter(Boolean)
-          ),
-        ];
+        const durations = [...new Set(yachtsWithDetails.flatMap((yacht) => yacht.durations).filter(Boolean))];
         setAvailableDurations(durations);
 
         setError(null);
@@ -203,9 +166,7 @@ const FindBoat = () => {
   const filteredYachts = yachts.filter((yacht) => {
     // Filter by search term (name)
     const matchesSearchTerm =
-      !searchTerm ||
-      searchTerm === "Tất cả du thuyền" ||
-      yacht.name.toLowerCase().includes(searchTerm.toLowerCase());
+      !searchTerm || searchTerm === "Tất cả du thuyền" || yacht.name.toLowerCase().includes(searchTerm.toLowerCase());
 
     // Filter by departure point (locationId.name)
     const matchesDeparturePoint =
@@ -216,32 +177,24 @@ const FindBoat = () => {
     // Filter by price range (cheapestPrice)
     const cheapestPrice = yacht.cheapestPrice || 0;
     const matchesPriceRange = (() => {
-      if (!selectedPriceRange || selectedPriceRange === "Tất cả mức giá")
-        return true;
-      if (selectedPriceRange === "< 3 triệu")
-        return cheapestPrice >= 0 && cheapestPrice <= 3000000;
-      if (selectedPriceRange === "3-6 triệu")
-        return cheapestPrice >= 3000000 && cheapestPrice <= 6000000;
+      if (!selectedPriceRange || selectedPriceRange === "Tất cả mức giá") return true;
+      if (selectedPriceRange === "< 3 triệu") return cheapestPrice >= 0 && cheapestPrice <= 3000000;
+      if (selectedPriceRange === "3-6 triệu") return cheapestPrice >= 3000000 && cheapestPrice <= 6000000;
       if (selectedPriceRange === "> 6 triệu") return cheapestPrice > 6000000;
       return true;
     })();
 
     // Filter by stars (starRating)
-    const matchesStars =
-      selectedStars.length === 0 ||
-      selectedStars.includes(Math.round(yacht.starRating));
+    const matchesStars = selectedStars.length === 0 || selectedStars.includes(Math.round(yacht.starRating));
 
     // Filter by durations
     const yachtDurations = yacht.durations || [];
     const matchesDurations =
-      selectedDurations.length === 0 ||
-      selectedDurations.some((d) => yachtDurations.includes(d));
+      selectedDurations.length === 0 || selectedDurations.some((d) => yachtDurations.includes(d));
 
     // Filter by services
     const yachtServices = yacht.services || [];
-    const matchesServices =
-      selectedServices.length === 0 ||
-      selectedServices.every((s) => yachtServices.includes(s));
+    const matchesServices = selectedServices.length === 0 || selectedServices.every((s) => yachtServices.includes(s));
 
     return (
       matchesSearchTerm &&
@@ -415,19 +368,46 @@ const FindBoat = () => {
         <Grid item xs={12} md={9}>
           <Stack spacing={3}>
             {loading ? (
-              <Typography align="center">Đang tải...</Typography>
+              <Stack alignItems="center" spacing={1}>
+                <CircularProgress size={28} color="primary" />
+                <Typography color="text.secondary">Đang tải dữ liệu...</Typography>
+              </Stack>
             ) : error ? (
               <Typography color="error" align="center">
                 {error}
               </Typography>
             ) : currentYachts.length === 0 ? (
-              <Typography align="center">
-                Không tìm thấy du thuyền nào.
-              </Typography>
+              <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                minHeight="300px"
+                textAlign="center"
+                sx={{
+                  backgroundColor: (theme) => theme.palette.background.paper,
+                  borderRadius: 4,
+                  boxShadow: 3,
+                  p: 4,
+                }}
+              >
+                <img
+                  src="/images/logo.png"
+                  alt="LongWave Logo"
+                  style={{ width: 100, marginBottom: 16, opacity: 0.9 }}
+                />
+                <Typography variant="h5" fontWeight={700} color="text.primary" gutterBottom>
+                  𝓛𝓸𝓷𝓰𝓦𝓪𝓿𝓮 xin lỗi bạn 😢
+                </Typography>
+                <Typography variant="body1" color="text.secondary" mb={2}>
+                  Không tìm thấy du thuyền nào phù hợp với tiêu chí tìm kiếm hiện tại.
+                </Typography>
+                <Typography variant="body2" color="text.disabled">
+                  Thử thay đổi bộ lọc hoặc quay lại sau nha 💙
+                </Typography>
+              </Box>
             ) : (
-              currentYachts.map((yacht) => (
-                <CruiseCard key={yacht._id} cruise={yacht} />
-              ))
+              currentYachts.map((yacht) => <CruiseCard key={yacht._id} cruise={yacht} />)
             )}
           </Stack>
 

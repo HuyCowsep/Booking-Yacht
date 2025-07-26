@@ -11,9 +11,9 @@ import {
   servicerReducer,
   uiReducer,
   yachtReducer,
+  userReducer,
+  adminReducer,
 } from "./reducers";
-import userReducer from "./reducers/UserReducer";
-import adminReducer from "./reducers/adminReducer";
 
 const rootReducer = combineReducers({
   yacht: yachtReducer,

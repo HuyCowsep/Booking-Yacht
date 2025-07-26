@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const { sendOTP } = require("../utils/sendMail");
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+const { cloudinary } = require("../utils/configClound");
 
 // Định nghĩa base URL của server
 const BASE_URL = "http://localhost:9999";
@@ -13,9 +14,7 @@ const register = async (req, res) => {
   try {
     const { username, email, fullName, phoneNumber, password } = req.body;
     if (!username || !email || !fullName || !phoneNumber || !password) {
-      return res
-        .status(400)
-        .json({ message: "Vui lòng điền đầy đủ thông tin" });
+      return res.status(400).json({ message: "Vui lòng điền đầy đủ thông tin" });
     }
 
     const existing = await Account.findOne({ username });
@@ -66,31 +65,21 @@ const login = async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
-      return res
-        .status(400)
-        .json({ message: "Hãy điền tên đăng nhập và mật khẩu" });
+      return res.status(400).json({ message: "Hãy điền tên đăng nhập và mật khẩu" });
     }
 
     const account = await Account.findOne({ username });
     if (!account) {
-      return res
-        .status(400)
-        .json({ message: "Tên đăng nhập hoặc mật khẩu không đúng" });
+      return res.status(400).json({ message: "Tên đăng nhập hoặc mật khẩu không đúng" });
     }
 
     const isMatch = await bcryptjs.compare(password, account.password);
     if (!isMatch) {
-      return res
-        .status(400)
-        .json({ message: "Tên đăng nhập hoặc mật khẩu không đúng" });
+      return res.status(400).json({ message: "Tên đăng nhập hoặc mật khẩu không đúng" });
     }
 
     // Sinh JWT token
-    const token = jwt.sign(
-      { _id: account._id, role: account.roles },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
-    );
+    const token = jwt.sign({ _id: account._id, role: account.roles }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
     // Nếu là CUSTOMER thì cố gắng lấy thêm thông tin hồ sơ
     let customerInfo = null;
@@ -161,11 +150,7 @@ const googleLogin = async (req, res) => {
       }
     }
 
-    const jwtToken = jwt.sign(
-      { _id: customer._id, role: "CUSTOMER" },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
-    );
+    const jwtToken = jwt.sign({ _id: customer._id, role: "CUSTOMER" }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
     res.status(200).json({
       message: "Đăng nhập bằng Google thành công",
@@ -200,25 +185,17 @@ const updateCustomer = async (req, res) => {
 
     // Kiểm tra nếu tài khoản là Google (có googleId) thì không cho sửa email
     if (customer.googleId && email) {
-      return res
-        .status(400)
-        .json({ message: "Không thể sửa email cho tài khoản Google" });
+      return res.status(400).json({ message: "Không thể sửa email cho tài khoản Google" });
     }
 
     if (fullName) customer.fullName = fullName;
     if (email && !customer.googleId) {
-      // Chỉ cập nhật email nếu không phải tài khoản Google
       customer.email = email;
     }
     if (phoneNumber) {
-      if (
-        !/^(?:\+84|0)(3[2-9]|5[6-9]|7[0-9]|8[1-9]|9[0-9])[0-9]{7}$/.test(
-          phoneNumber
-        )
-      ) {
+      if (!/^(?:\+84|0)(3[2-9]|5[6-9]|7[0-9]|8[1-9]|9[0-9])[0-9]{7}$/.test(phoneNumber)) {
         return res.status(400).json({
-          message:
-            "Số điện thoại không hợp lệ (phải bắt đầu bằng 0 hoặc +84, theo sau là đầu số hợp lệ và 7 chữ số)",
+          message: "Số điện thoại không hợp lệ (phải bắt đầu bằng 0 hoặc +84, theo sau là đầu số hợp lệ và 7 chữ số)",
         });
       }
       customer.phoneNumber = phoneNumber;
@@ -251,7 +228,7 @@ const updateCustomer = async (req, res) => {
   }
 };
 
-// Hàm upload avatar cho khách hàng
+// Hàm upload avatar cho khách hàng (sửa để dùng Cloudinary)
 const uploadCustomerAvatar = async (req, res) => {
   const { id } = req.params;
 
@@ -265,11 +242,17 @@ const uploadCustomerAvatar = async (req, res) => {
       return res.status(400).json({ message: "Vui lòng tải lên ảnh avatar" });
     }
 
-    customer.avatar = `/uploads/customer-avatar/${req.file.filename}`;
-    await customer.save();
+    // Upload file lên Cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: "customer-avatars", // Tùy chỉnh folder cho avatar khách hàng
+      resource_type: "image",
+      allowed_formats: ["jpg", "jpeg", "png", "webp"],
+      transformation: [{ width: 500, crop: "limit" }], // Tùy chỉnh kích thước
+    });
 
-    // Thêm BASE_URL vào trước đường dẫn avatar
-    const avatar = customer.avatar ? `${BASE_URL}${customer.avatar}` : null;
+    // Lưu URL từ Cloudinary vào customer.avatar
+    customer.avatar = result.secure_url; // Lưu URL công khai từ Cloudinary
+    await customer.save();
 
     res.status(200).json({
       message: "Upload avatar thành công",
@@ -278,14 +261,12 @@ const uploadCustomerAvatar = async (req, res) => {
         fullName: customer.fullName,
         email: customer.email,
         phoneNumber: customer.phoneNumber,
-        avatar: avatar,
+        avatar: customer.avatar, // URL từ Cloudinary
       },
     });
   } catch (error) {
     console.error("Error in upload-customer-avatar:", error);
-    res
-      .status(500)
-      .json({ message: "Lỗi server khi upload avatar", error: error.message });
+    res.status(500).json({ message: "Lỗi server khi upload avatar", error: error.message });
   }
 };
 
@@ -298,14 +279,10 @@ const changePassword = async (req, res) => {
     return res.status(400).json({ message: "Vui lòng điền đầy đủ thông tin" });
   }
   if (newPassword !== confirmPassword) {
-    return res
-      .status(400)
-      .json({ message: "Mật khẩu mới và xác nhận mật khẩu không khớp" });
+    return res.status(400).json({ message: "Mật khẩu mới và xác nhận mật khẩu không khớp" });
   }
   if (newPassword.length < 6) {
-    return res
-      .status(400)
-      .json({ message: "Mật khẩu mới phải có ít nhất 6 ký tự" });
+    return res.status(400).json({ message: "Mật khẩu mới phải có ít nhất 6 ký tự" });
   }
 
   try {
@@ -344,17 +321,13 @@ const forgotPassword = async (req, res) => {
 
     const customer = await Customer.findOne({ accountId: account._id });
     if (!customer || !customer.email) {
-      return res
-        .status(404)
-        .json({ message: "Không tìm thấy email của khách hàng" });
+      return res.status(404).json({ message: "Không tìm thấy email của khách hàng" });
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const sent = await sendOTP(customer.email, otp);
     if (!sent) {
-      return res
-        .status(500)
-        .json({ message: "Lỗi gửi email OTP, vui lòng thử lại" });
+      return res.status(500).json({ message: "Lỗi gửi email OTP, vui lòng thử lại" });
     }
 
     res.status(200).json({ message: "OTP đã được gửi đến email của bạn", otp }); // Gửi OTP về frontend để lưu
@@ -401,15 +374,11 @@ const verifyOtp = async (req, res) => {
 const resetPassword = async (req, res) => {
   const { username, newPassword } = req.body;
   if (!username || !newPassword) {
-    return res
-      .status(400)
-      .json({ message: "Vui lòng nhập username và mật khẩu mới" });
+    return res.status(400).json({ message: "Vui lòng nhập username và mật khẩu mới" });
   }
 
   if (newPassword.length < 6) {
-    return res
-      .status(400)
-      .json({ message: "Mật khẩu mới phải có ít nhất 6 ký tự" });
+    return res.status(400).json({ message: "Mật khẩu mới phải có ít nhất 6 ký tự" });
   }
 
   try {

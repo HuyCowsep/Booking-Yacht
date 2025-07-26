@@ -9,3 +9,5 @@ export { default as authReducer } from "./authReducer";
 export { default as filtersReducer } from "./filtersReducer";
 export { default as paymentReducer } from "./paymentReducer";
 export { default as invoiceReducer } from "./invoiceReducer";
+export { default as userReducer } from "./userReducer";
+export { default as adminReducer } from "./adminReducer";

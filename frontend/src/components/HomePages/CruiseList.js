@@ -88,7 +88,7 @@ export default function CruiseList() {
         Du thuyền mới và phổ biến nhất
       </Typography>
       <Typography
-        color="text.primary"
+        color="text.secondary"
         fontFamily={"Archivo, sans-serif"}
         mb={3}
       >
@@ -133,19 +133,20 @@ export default function CruiseList() {
                     width="fit-content"
                   >
                     <LocationOnIcon
-                      color="primary"
+                      color="purple"
                       sx={{ backgroundColor: "#f3f4f6", borderRadius: 1 }}
                       fontSize="small"
                     />
                     <Typography
                       variant="subtitle2"
                       fontFamily={"Archivo, sans-serif"}
-                      color="text.primary"
+                      color="text.secondary"
                       sx={{ fontWeight: 500 }}
                     >
                       <Chip
                         label={cruise.locationId?.name || "Không xác định"}
                         size="small"
+                        color="primary"
                       />
                     </Typography>
                   </Stack>
@@ -158,7 +159,7 @@ export default function CruiseList() {
                     sx={{
                       minHeight: 36,
                       mb: 1,
-                      color: "text.primary",
+                      color: "text.secondary",
                       textOverflow: "ellipsis",
                       overflow: "hidden",
                     }}
@@ -194,7 +195,7 @@ export default function CruiseList() {
                       <Typography
                         variant="h6"
                         fontFamily={"Archivo, sans-serif"}
-                        color="text.primary"
+                        color="text.secondary"
                         fontWeight={700}
                         justifyContent={"start"}
                       >

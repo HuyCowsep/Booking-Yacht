@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  Button,
-  CardActions,
-} from "@mui/material";
+import { Box, Typography, Card, CardContent, CardMedia, Grid, Button, CardActions } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const destinations = [
@@ -39,13 +30,10 @@ export default function Destination() {
       >
         <p>Các điểm đến của LongWave</p>
       </Typography>
-      <Typography
-        fontFamily={"Archivo, sans-serif"}
-        color="text.secondary"
-        mb={3}
-      >
-        Khám phá điểm du lịch tuyệt vời của Du thuyền Hạ Long. Hành trình đến
-        thiên đường thiên nhiên.
+      <Typography fontFamily={"Archivo, sans-serif"} color="text.secondary" mb={3}>
+        Khám phá vẻ đẹp huyền bí của Hạ Long – nơi những dãy núi đá vôi kỳ vĩ hòa quyện cùng làn nước trong xanh, tạo
+        nên một bức tranh thiên nhiên sống động. Trải nghiệm hành trình du thuyền đẳng cấp, đưa bạn đến gần hơn với
+        thiên đường nơi hạ giới.
       </Typography>
       <Typography mb={3} mt={-2}>
         <img src="/images/border.jpg" alt="border" width={100} />
@@ -61,13 +49,7 @@ export default function Destination() {
                 backgroundColor: (theme) => theme.palette.background.paper,
               }}
             >
-              <CardMedia
-                component="img"
-                image={item.image}
-                alt={item.name}
-                height="175"
-                sx={{ objectFit: "cover" }}
-              />
+              <CardMedia component="img" image={item.image} alt={item.name} height="175" sx={{ objectFit: "cover" }} />
               <CardContent>
                 <Typography
                   variant="subtitle1"

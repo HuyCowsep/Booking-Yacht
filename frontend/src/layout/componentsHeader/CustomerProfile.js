@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, TextField, Button, Avatar, Stack, IconButton } from "@mui/material";
+import { Box, Typography, TextField, Button, Avatar, Stack, IconButton, CircularProgress } from "@mui/material";
 import styled from "@emotion/styled";
 import axios from "axios";
 import Swal from "sweetalert2";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { useSelector } from "react-redux"; // Thêm useSelector
-import { isValidPhone, isValidEmail } from "../../redux/validation"; // Import hàm validate
+import { useSelector, useDispatch } from "react-redux";
+import { isValidPhone, isValidEmail } from "../../redux/validation";
+import { updateCustomerProfile } from "../../redux/actions/userAction";
 
 const StyledButton = styled(Button)(({ theme }) => ({
   width: "100%",
@@ -18,6 +19,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   "&:hover": {
     backgroundColor: theme.palette.primary.dark,
   },
+  position: "relative",
 }));
 
 const Input = styled("input")({
@@ -35,8 +37,9 @@ export default function CustomerProfile() {
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
-  // Lấy customer và token từ Redux ở cấp component
   const reduxCustomer = useSelector((state) => state.account.account.customer);
   const token = useSelector((state) => state.account.account.data);
 
@@ -71,16 +74,23 @@ export default function CustomerProfile() {
     e.preventDefault();
     setError("");
     setSuccess("");
+    setIsLoading(true);
 
     if (!isValidPhone(formData.phoneNumber)) {
-      setError(
-        "Số điện thoại phải bắt đầu bằng 0 hoặc +84, theo sau là đầu số hợp lệ (03, 05, 07, 08, 09) và 7 chữ số, tổng cộng 10 chữ số"
-      );
+      Swal.fire({
+        icon: "error",
+        title:
+          "Số điện thoại phải bắt đầu bằng 0 hoặc +84, theo sau là đầu số hợp lệ (03, 05, 07, 08, 09) và 7 chữ số, tổng cộng 10 chữ số",
+        text: "Vui lòng kiểm tra lại số điện thoại của bạn.",
+        confirmButtonText: "OK",
+      });
+      setIsLoading(false);
       return;
     }
 
     if (!customer) {
       setError("Vui lòng đăng nhập để cập nhật thông tin.");
+      setIsLoading(false);
       return;
     }
 
@@ -91,14 +101,11 @@ export default function CustomerProfile() {
         updateData.email = formData.email;
       }
 
-      const updateResponse = await axios.put(
-        `http://localhost:9999/api/v1/customers/${customer._id}`,
-        updateData,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const updateResponse = await axios.put(`http://localhost:9999/api/v1/customers/${customer._id}`, updateData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
+      let updatedAvatar = customer.avatar;
       if (customer.accountId && formData.avatar && formData.avatar instanceof File) {
         const avatarFormData = new FormData();
         avatarFormData.append("avatar", formData.avatar);
@@ -112,7 +119,7 @@ export default function CustomerProfile() {
             },
           }
         );
-        updateResponse.data.customer.avatar = avatarResponse.data.customer.avatar;
+        updatedAvatar = avatarResponse.data.customer.avatar; // Lấy URL mới từ Cloudinary
       }
 
       const updatedCustomer = {
@@ -120,24 +127,26 @@ export default function CustomerProfile() {
         fullName: customer.accountId ? formData.fullName : customer.fullName,
         phoneNumber: formData.phoneNumber,
         email: updateResponse.data.customer.email,
-        avatar: updateResponse.data.customer.avatar || customer.avatar,
+        avatar: updatedAvatar,
         id: customer._id,
       };
+
+      // Dispatch action để cập nhật Redux
+      dispatch(updateCustomerProfile(updatedCustomer));
+
       setCustomer(updatedCustomer);
-
       setSuccess("Cập nhật thông tin thành công!");
-      setEditMode(false);
-
       Swal.fire({
         icon: "success",
-        title: "Cập nhật thành công!",
-        text: "Thông tin cá nhân của bạn đã được cập nhật.",
-        timer: 1500,
-        timerProgressBar: true,
-        showConfirmButton: false,
+        title: "Thành công!",
+        text: "Thông tin cá nhân đã được cập nhật.",
+        confirmButtonText: "OK",
       });
+      setEditMode(false);
+      setIsLoading(false);
     } catch (err) {
       setError(err.response?.data?.message || "Cập nhật thông tin thất bại, vui lòng thử lại.");
+      setIsLoading(false);
     }
   };
 
@@ -230,7 +239,16 @@ export default function CustomerProfile() {
 
           {editMode ? (
             <Stack direction="row" spacing={2}>
-              <StyledButton type="submit">Lưu thay đổi</StyledButton>
+              <StyledButton type="submit" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <span>Đang xử lý</span>
+                    <CircularProgress size={24} style={{ color: "white" }} />
+                  </>
+                ) : (
+                  "Lưu thay đổi"
+                )}
+              </StyledButton>
               <Button
                 variant="outlined"
                 color="secondary"
